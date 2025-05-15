@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /* Alerts */
+    .alert {
+        @apply relative bg-red-100 px-4 py-3 border border-red-400 rounded text-red-700;
+    }
+
+    .alert.alert-success {
+        @apply border-green-400 bg-green-100 text-green-700;
+    }
+
+    .alert.alert-danger {
+        @apply bg-red-100 border-red-400 text-red-700;
+    }
+
+    .alert.alert-warning {
+        @apply border-orange-400 bg-orange-100 text-orange-700;
+    }
+
+    .alert.alert-info {
+        @apply bg-blue-100 border-blue-400 text-blue-700;
+    }
+
+    .alert .close {
+        @apply absolute;
+        @apply top-0 right-0 px-4 py-3;
+    }
+
+    /* Dropdowns */
+    .dropdown {
+        @apply inline-flex relative justify-center items-center;
+    }
+
+    .dropdown .dropdown-menu {
+        @apply absolute z-20 flex flex-col py-2 mt-1 list-none bg-white rounded shadow-md w-72 top-full shadow-slate-500/10;
+    }
+
+    .dropdown .dropdown-menu .dropdown-item {
+        @apply flex justify-start items-start gap-2 hover:bg-emerald-50 focus:bg-emerald-50 px-5 p-2 text-slate-500 hover:text-emerald-500 focus:text-emerald-600 transition-colors duration-300 focus:outline-none focus-visible:outline-none;
+    }
+    
+
+    /* Button */
+    .btn{
+        @apply inline-flex justify-center items-center gap-2 disabled:border-emerald-300 bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:bg-emerald-300 disabled:shadow-none px-6 rounded h-12 font-medium text-sm text-white tracking-wide whitespace-nowrap transition duration-300 focus-visible:outline-none disabled:cursor-not-allowed;
+    }
+
+    .btn.btn-sm{
+        @apply gap-2 px-4 h-8 text-xs;
+    }
+
+    .btn.btn-lg{
+        @apply gap-2 px-6 h-12;
+    }
+
+    /* Button Link */
+    .btn-link{
+        @apply inline-flex justify-center justify-self-center items-center gap-2 hover:bg-emerald-50 disabled:hover:bg-transparent focus:bg-emerald-100 disabled:shadow-none px-2 rounded h-10 font-medium text-emerald-500 text-sm hover:text-emerald-600 focus:text-emerald-700 disabled:text-emerald-300 tracking-wide whitespace-nowrap transition duration-300 focus-visible:outline-none disabled:cursor-not-allowed;
+    }
+
+    /* Nav */
+    .navigation-wrapper {
+        @apply relative z-20 w-full border-b shadow-lg border-slate-200 bg-white/90 shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full after:bg-slate-200 lg:border-slate-200 lg:backdrop-blur-sm lg:after:hidden;
+    }
+
+    .navigation-wrapper .navigation-container {
+        @apply relative mx-auto px-6 max-w-full lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem];
+    }
+
+    .navigation-wrapper .navigation{
+        @apply flex justify-between items-stretch h-[5.5rem] text-slate-700;
+    }
+
+    .menu-items {
+        @apply invisible absolute left-0 top-0 z-[-1] ml-auto h-screen w-full justify-center overflow-hidden overflow-y-auto overscroll-contain bg-white/90 px-8 pb-12 pt-28 opacity-0 transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0 lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-center lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0 lg:pt-0 lg:opacity-100;
+    }
+
+    nav > ul .btn-link {
+        @apply flex items-center gap-2 bg-transparent hover:bg-transparent focus:bg-transparent lg:px-4 py-3 h-auto text-inherit hover:text-emerald-500 focus:text-emerald-600 transition-colors duration-300 focus:outline-none focus-visible:outline-none;
+    }
+    
+    /* Cards */
+    .card {
+        @apply bg-white shadow-md shadow-slate-200 rounded text-slate-500 overflow-hidden;
+    }
+
+    .card .card-header {
+        @apply px-6 pt-6 font-medium text-slate-700 text-xl;
+    }
+
+    .card .card-body {
+        @apply p-6;
+    }
+
+    /* Forms */
+    input.form-element {
+        @apply relative border-slate-200 autofill:bg-white disabled:bg-slate-50 px-4 border-b w-full h-10 text-slate-500 text-sm disabled:text-slate-400 transition-all disabled:cursor-not-allowed outline-none placeholder-transparent focus-visible:outline-none focus:outline-none;
+    }
+
+    input.form-element:focus {
+        @apply border-emerald-500;
+    }
+
+    input.form-element:invalid {
+        @apply border-pink-500 text-pink-500;
+    }
+
+    input.form-element:invalid:focus {
+        @apply border-pink-500;
+    }
+
+    input.form-element:disabled {
+        @apply bg-slate-50 cursor-not-allowed;
+    }
+
+    input.form-element:--webkit-autofill {
+        @apply bg-white;
+    }
+
+    label.form-label {
+        @apply before:block -top-2 before:top-0 left-2 before:left-0 z-[1] before:z-[-1] absolute before:absolute before:bg-white px-2 before:w-full before:h-full text-slate-400 text-xs transition-all 
+        before:transition-all cursor-text;
+    }
+
+    input.form-element:placeholder-shown + label.form-label {
+        @apply top-2.5 text-sm;
+    }
+    
+    input.form-element:focus + label.form-label {
+        @apply -top-2 text-emerald-500 text-xs cursor-default;
+    }
+
+    input.form-element:--webkit-autofill + label.form-label {
+        @apply -top-2 bg-white;
+    }
+
+
+    input.form-element:required::after + label.form-label {
+        @apply content-['\00a0*'] text-pink-500;
+    }
+
+    input.form-element:invalid + label.form-label {
+        @apply text-pink-500;
+    }
+
+    input.form-element:invalid:focus + label.form-label {
+        @apply text-pink-500;
+    }
+
+    input.form-element:disabled + label.form-label {
+        @apply text-slate-400 cursor-not-allowed;
+    }
+
+    input.form-element:disabled + label.form-label::before {
+        @apply bg-transparent;
+    }
+
+}
+
+@layer utilities {
+
+}
