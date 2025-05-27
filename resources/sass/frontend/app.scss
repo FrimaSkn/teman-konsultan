@@ -1,8 +1,7 @@
-@import "../global";
-@import "global";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-// Variables
-@import 'variables';
-
-// Import all of Bootstrap's CSS
-@import "~bootstrap/scss/bootstrap";
+@import '_navigation';
+@import 'custom-swiper';
+@import '_global'

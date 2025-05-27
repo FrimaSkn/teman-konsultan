@@ -5,3 +5,42 @@
 .alert.header-message {
     border-radius: 0 !important;
 }
+
+[x-cloak] { display: none; }
+
+@layer components {
+    .text-underline {
+        @apply relative mb-10;
+
+        &::before {
+            @apply absolute h-1 w-16 bg-secondary left-1/2 -translate-x-1/2 -bottom-10;
+            content: '';
+        }
+
+        &-left {
+            @apply relative mb-8;
+            &::before {
+                @apply absolute h-1 w-16 bg-secondary left-0 -bottom-8;
+                content: '';
+            }
+        }
+    }
+
+    .triangle {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: '';
+            z-index: -1;
+            bottom: -1.8rem;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 40px 30px 0;
+            border-color: transparent #bdbec0 transparent transparent;
+            transform: rotate(0deg);
+        }
+    }
+}

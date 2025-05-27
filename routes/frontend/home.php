@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\ChargeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TermsController;
 use Tabuna\Breadcrumbs\Trail;
@@ -9,10 +10,11 @@ use Tabuna\Breadcrumbs\Trail;
  * All route names are prefixed with 'frontend.'.
  */
 Route::get('/', [HomeController::class, 'index'])
-    ->name('index')
-    ->breadcrumbs(function (Trail $trail) {
-        $trail->push(__('Home'), route('frontend.index'));
-    });
+    ->name('home');
+
+Route::get('harga', [ChargeController::class, 'index'])
+    ->name('harga');
+
 
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')

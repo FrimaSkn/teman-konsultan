@@ -12,7 +12,7 @@
     @stack('before-styles')
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/vendor/fontawesome/app.scss'])
+    @vite(['resources/sass/frontend/app.scss', 'resources/js/frontend/app.js'])
 
     @livewireStyles
 
@@ -21,16 +21,21 @@
 <body>
     @include('includes.partials.read-only')
     @include('includes.partials.logged-in-as')
-    @include('includes.partials.announcements')
+    {{-- @include('includes.partials.announcements') --}}
 
     <div id="app">
-        @include('frontend.includes.nav')
+        {{-- @include('frontend.includes.nav') --}}
+        @include('frontend.includes.navigation')
         @include('includes.partials.messages')
 
         <main>
             @yield('content')
         </main>
     </div><!--app-->
+
+    @include('frontend.includes.footer')
+
+    @vite('resources/js/frontend/plugins.js')
 
     @stack('before-scripts')
     @livewireScripts

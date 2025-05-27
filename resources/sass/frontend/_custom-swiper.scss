@@ -1,0 +1,26 @@
+.home-banner-swiper {
+    .swiper-button-next, .swiper-button-prev {
+        @apply border-2 border-white size-7;
+
+        &::after {
+            @apply text-white;
+            font-size: 12px;
+        }
+    }
+}
+
+.testimonial-swiper.swiper {
+    @apply pb-12;
+
+    & .swiper-pagination{
+        @apply bottom-0 text-left;
+    }
+
+    & .swiper-pagination-bullet {
+        @apply bg-gray-400 opacity-50 rounded-none size-4;
+
+        &.swiper-pagination-bullet-active {
+            @apply bg-primary opacity-100;
+        }
+    }
+}
