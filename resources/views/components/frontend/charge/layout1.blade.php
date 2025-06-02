@@ -47,7 +47,7 @@
 
     <div class="swiper price-swiper basis-[70%]">
         <div class="swiper-wrapper">
-            @for ($index = 0; $index < 3; $index++)
+            @for ($index = 0; $index < 8; $index++)
             <div class="swiper-slide !w-72">
                 <div class="pb-4 overflow-hidden bg-white shadow rounded-2xl w-72">
                     <div class="py-2.5 bg-primary">

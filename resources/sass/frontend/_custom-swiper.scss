@@ -24,3 +24,14 @@
         }
     }
 }
+
+.price-swiper.swiper {
+    .swiper-button-next, .swiper-button-prev {
+        @apply border-2 border-gray-700 size-7;
+
+        &::after {
+            @apply text-gray-700;
+            font-size: 12px;
+        }
+    }
+}

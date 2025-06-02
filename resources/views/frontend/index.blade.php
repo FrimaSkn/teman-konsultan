@@ -53,17 +53,17 @@
             <h2 class="block text-3xl font-semibold text-underline">JASA KAMI</h2>
 
             <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
-                @for ($index = 0; $index < 8; $index++)
+                @foreach ($services as $category)
                     <div x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false" data-motion="hover-stg"
                         class="relative flex items-center justify-center w-full overflow-hidden rounded-lg cursor-default aspect-square bg-[url('https://swiperjs.com/demos/images/nature-3.jpg')]">
-                        <div x-show="!open" class="flex items-center justify-center w-full h-full p-6 bg-white/60"
+                        <div x-show="!open" class="flex items-center justify-center w-full h-full p-6 bg-white/70"
                             x-transition:enter="transition ease-in duration-200"
                             x-transition:enter-start="opacity-10 translate-y-20"
                             x-transition:enter-end="opacity-100 translate-y-0"
                             x-transition:leave="transition ease-out duration-200"
                             x-transition:leave-start="opacity-100 translate-y-0"
                             x-transition:leave-end="opacity-0 translate-y-20">
-                            <div class="text-center md:text-2xl">LORREEMM & IPPSSUUMM</div>
+                            <div class="text-center uppercase md:text-2xl lg:text-[1.7rem]">{{ $category->name }}</div>
                         </div>
                         <div x-show="open" class="absolute top-0 left-0 w-full h-full p-4 text-white rounded-lg bg-primary/85"
                             x-transition:enter="transition ease-in duration-200"
@@ -76,12 +76,9 @@
                             <div class="relative items-center justify-center w-full h-full max-md:flex">
                                 <div class="flex items-center w-full h-4/5 max-md:hidden">
                                     <ol class="text-sm list-disc list-inside">
-                                        <li animate-fade-right>LORREEMM & IIPPSSUUMM</li>
-                                        <li animate-fade-right>LORREEMM & IIPPSSUUMM</li>
-                                        <li animate-fade-right>LORREEMM & IIPPSSUUMM</li>
-                                        <li animate-fade-right>LORREEMM & IIPPSSUUMM</li>
-                                        <li animate-fade-right>LORREEMM & IIPPSSUUMM</li>
-                                        <li animate-fade-right>LORREEMM & IIPPSSUUMM</li>
+                                        @foreach ($category->services as $service)
+                                            <li animate-fade-right>{{ $service->name }}</li>
+                                        @endforeach
                                     </ol>
                                 </div>
                                 <a href="" class="pl-3 pr-1 py-0.5 uppercase text-sm bg-secondary rounded-lg hover:bg-opacity-90 text-white text-nowrap inline-flex items-center justify-between">
@@ -91,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
         </section>
 

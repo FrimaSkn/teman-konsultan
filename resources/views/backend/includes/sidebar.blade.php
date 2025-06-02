@@ -39,6 +39,32 @@
                     :text="__('Order Management')" />
             </li>
 
+            <li class="c-sidebar-nav-title">@lang('Servives')</li>
+            <li class="c-sidebar-nav-dropdown">
+                <x-utils.link
+                    href="#"
+                    icon="c-sidebar-nav-icon cil-list"
+                    class="c-sidebar-nav-dropdown-toggle"
+                    :text="__('Services Management')" />
+
+                <ul class="c-sidebar-nav-dropdown-items">
+                     <li class="c-sidebar-nav-item">
+                         <x-utils.link
+                             class="c-sidebar-nav-link"
+                             :href="route('admin.services-category.index')"
+                             :active="activeClass(Route::is('admin.services-category.*'), 'c-active')"
+                             :text="__('Category')" />
+                        <x-utils.link
+                            class="c-sidebar-nav-link"
+                            :href="route('admin.services.index')"
+                            :active="activeClass(Route::is('admin.services.*'), 'c-active')"
+                            :text="__('Services')" />
+                    </li>
+                </ul>
+            </li>
+
+
+
             <li class="c-sidebar-nav-title">@lang('System')</li>
 
             <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">

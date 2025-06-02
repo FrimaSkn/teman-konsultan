@@ -22,28 +22,28 @@
                             x-transition:leave-end="opacity-0 -translate-x-2"
                             x-cloak
                             >
-                            @php
+                            {{-- @php
                                 $services = collect(config('web-data.services'));
                                 $tab = $services->first();
-                            @endphp
-                            <div class="tabs-container" x-data="{ tab: '{{ $tab['slug'] }}' }">
+                            @endphp --}}
+                            <div class="tabs-container" x-data="{ tab: '{{ $services->first()->slug }}' }">
                                 <div class="tabs-menu">
                                     <div class="mb-2 ml-4 font-medium uppercase text-primary">Jasa Kami</div>
                                     <ul class="tab-item">
-                                        @foreach ($services as $tabItem)
-                                            <li x-on:click.prevent="tab = '{{ $tabItem['slug'] }}'" x-bind:class="{ 'active': tab === '{{ $tabItem['slug'] }}' }" class="text-gray-700 cursor-pointer">
-                                                <span>{{ $tabItem['title'] }}</span>
+                                        @foreach ($services as $category)
+                                            <li x-on:click.prevent="tab = '{{ $category->slug }}'" x-bind:class="{ 'active': tab === '{{ $category->slug }}' }" class="text-gray-700 cursor-pointer text-nowrap">
+                                                <span>{{ $category->name }}</span>
                                             </li>
                                         @endforeach
                                     </ul>
                                 </div>
-                                <div class="grid grid-flow-col grid-rows-5 p-6 grid-cols-auto gap-y-4 gap-x-10 tabs-content">
-                                    @foreach ($services as $tabContent)
-                                        @foreach ($tabContent['sub_menu'] as $content)
-                                            <div x-show="tab === '{{ $tabContent['slug'] }}'" class="p-2 cursor-pointer hover:bg-gray-100">
+                                <div class="grid grid-flow-col grid-rows-5 p-6 grid-cols-auto gap-x-8 tabs-content">
+                                    @foreach ($services as $category)
+                                        @foreach ($category->services as $service)
+                                            <div x-show="tab === '{{ $category['slug'] }}'" class="p-1 cursor-pointer hover:bg-gray-100">
                                                 <div class="leading-none">
-                                                    <h2 class="font-semibold">{{ $content['title'] }}</h2>
-                                                    <p class="text-sm text-gray-600">{{ $content['desc'] }}</p>
+                                                    <h2 class="font-semibold">{{ $service['name'] }}</h2>
+                                                    <p class="text-sm text-gray-600">{{ $service['description'] }}</p>
                                                 </div>
                                             </div>
                                         @endforeach

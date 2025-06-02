@@ -12,6 +12,9 @@ class HomeController
      */
     public function index()
     {
-        return view('frontend.index');
+        $services = \App\Models\ServicesCategory::with('services')->get();
+        return view('frontend.index', [
+            'services' => $services,
+        ]);
     }
 }

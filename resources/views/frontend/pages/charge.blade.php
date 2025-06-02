@@ -20,11 +20,11 @@
             </div>
 
             <div x-show="tab === 'tab1'" class=""><x-frontend.charge.layout1 /></div>
-            <div x-show="tab === 'tab2'">Tab 2</div>
-            <div x-show="tab === 'tab3'">Tab 3</div>
-            <div x-show="tab === 'tab4'">Tab 4</div>
-            <div x-show="tab === 'tab5'">Tab 5</div>
-            <div x-show="tab === 'tab6'">Tab 6</div>
+            <div x-show="tab === 'tab2'" class="text-center">Tab 2</div>
+            <div x-show="tab === 'tab3'" class="text-center">Tab 3</div>
+            <div x-show="tab === 'tab4'" class="text-center">Tab 4</div>
+            <div x-show="tab === 'tab5'" class="text-center">Tab 5</div>
+            <div x-show="tab === 'tab6'" class="text-center">Tab 6</div>
         </div>
     </section>
 @endsection
