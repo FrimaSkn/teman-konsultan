@@ -22,10 +22,6 @@
                             x-transition:leave-end="opacity-0 -translate-x-2"
                             x-cloak
                             >
-                            {{-- @php
-                                $services = collect(config('web-data.services'));
-                                $tab = $services->first();
-                            @endphp --}}
                             <div class="tabs-container" x-data="{ tab: '{{ $services->first()->slug }}' }">
                                 <div class="tabs-menu">
                                     <div class="mb-2 ml-4 font-medium uppercase text-primary">Jasa Kami</div>

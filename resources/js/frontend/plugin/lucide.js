@@ -1,4 +1,4 @@
-import { createIcons, Menu, Facebook, Instagram, Linkedin, ChevronRight } from 'lucide';
+import { createIcons, Menu, Facebook, Instagram, Linkedin, ChevronRight, Check, X } from 'lucide';
 
 createIcons({
   icons: {
@@ -7,5 +7,7 @@ createIcons({
     Facebook,
     Instagram,
     Linkedin,
+    Check,
+    X
   }
 });

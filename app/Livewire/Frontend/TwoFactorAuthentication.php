@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Frontend;
+namespace App\Livewire\Frontend;
 
 use Illuminate\Http\Request;
 use Livewire\Component;

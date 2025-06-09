@@ -30,8 +30,7 @@
         @apply border-2 border-gray-700 size-7;
 
         &::after {
-            @apply text-gray-700;
-            font-size: 12px;
+            @apply text-gray-700 text-base font-semibold;
         }
     }
 }

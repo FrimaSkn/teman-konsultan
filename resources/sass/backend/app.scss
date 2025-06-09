@@ -4,3 +4,31 @@
 @import '~@coreuicss';
 @import '~@coreui/icons/css/free.min.css';
 // @import 'sweetalert2/dist/sweetalert2.min.css';
+
+@config '../../../tailwind.backend.config.js';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+
+.fi-btn, .fi-fo-builder-item, .fi-checkbox-input, .fi-input-wrp, .fi-pagination-items{
+    @apply border-gray-300 border rounded-md;
+}
+
+.fi-ta-ctn {
+    box-shadow: none !important;
+}
+
+.fi-ta-row {
+    @apply hover:bg-gray-100;
+}
+
+// [data-field-wrapper] .fi-input-wrp-input * {
+//         @apply border-gray-300 border rounded-md;
+// }
+
+input.fi-checkbox-input:checked {
+    background-color: blue !important;
+}

@@ -27,6 +27,6 @@ class ServicesCategoryController extends Controller
         // Assuming you have a Service model to handle the creation
         ServicesCategory::create($validatedData);
 
-        return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
+        return redirect()->route('admin.services-category.index')->with('success', 'Service created successfully.');
     }
 }

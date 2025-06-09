@@ -9,21 +9,21 @@
             <p class="w-3/5 pt-10 mx-auto text-center">Berikut adalah Harga Paket Pupular kami, terutama untuk Perusahaan Star Up dan UMKM. Untuk pertanyaan lebih lanjut, ataupun jasa lainnya, konsultasikan langsung ke kami.</p>
         </div>
 
-        <div x-data="{ tab: 'tab1' }" class="space-y-10">
+        <div x-data="{ tab: 'tab2' }" class="space-y-10">
             <div class="flex justify-center gap-4 pt-10">
-                <button x-on:click="tab = 'tab1'" class="px-6 py-1.5 leading-tight text-white uppercase rounded-lg bg-primary max-w-40">Akutansi & Perpajakan</button>
-                <button x-on:click="tab = 'tab2'" class="px-6 py-1.5 leading-tight text-white uppercase rounded-lg bg-primary max-w-40">Akutansi</button>
-                <button x-on:click="tab = 'tab3'" class="px-6 py-1.5 leading-tight text-white uppercase rounded-lg bg-primary max-w-40">Perpajakan individual</button>
-                <button x-on:click="tab = 'tab4'" class="px-6 py-1.5 leading-tight text-white uppercase rounded-lg bg-primary max-w-40">Perpajakan perusahaan</button>
-                <button x-on:click="tab = 'tab5'" class="px-6 py-1.5 leading-tight text-white uppercase rounded-lg bg-primary max-w-40">virtual manager</button>
-                <button x-on:click="tab = 'tab6'" class="px-6 py-1.5 leading-tight text-white uppercase rounded-lg bg-primary max-w-40">konsultasi</button>
+                <button x-on:click="tab = 'tab1'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab1'}">Akuntansi & Perpajakan</button>
+                <button x-on:click="tab = 'tab2'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab2'}">Akuntansi</button>
+                <button x-on:click="tab = 'tab3'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab3'}">Perpajakan individual</button>
+                <button x-on:click="tab = 'tab4'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab4'}">Perpajakan perusahaan</button>
+                <button x-on:click="tab = 'tab5'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab5'}">virtual manager</button>
+                <button x-on:click="tab = 'tab6'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab6'}">konsultasi</button>
             </div>
 
-            <div x-show="tab === 'tab1'" class=""><x-frontend.charge.layout1 /></div>
-            <div x-show="tab === 'tab2'" class="text-center">Tab 2</div>
-            <div x-show="tab === 'tab3'" class="text-center">Tab 3</div>
-            <div x-show="tab === 'tab4'" class="text-center">Tab 4</div>
-            <div x-show="tab === 'tab5'" class="text-center">Tab 5</div>
+            <div x-show="tab === 'tab1'" class=""><x-frontend.charge.akuntansi-perpajakan /></div>
+            <div x-show="tab === 'tab2'" class="text-center"><x-frontend.charge.layout-card :data="config('web-data.charges.akuntansi')"/></div>
+            <div x-show="tab === 'tab3'" class="text-center"><x-frontend.charge.layout-card :data="config('web-data.charges.perpajakan_individual')"/></div>
+            <div x-show="tab === 'tab4'" class="text-center"><x-frontend.charge.layout-card :data="config('web-data.charges.perpajakan_perusahaan')"/></div>
+            <div x-show="tab === 'tab5'" class="text-center"><x-frontend.charge.layout-card :data="config('web-data.charges.virtual_manager')"/></div>
             <div x-show="tab === 'tab6'" class="text-center">Tab 6</div>
         </div>
     </section>

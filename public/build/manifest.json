@@ -24,7 +24,7 @@
     "src": "node_modules/@coreui/icons/fonts/CoreUI-Icons-Free.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-k-irQawI.css",
+    "file": "assets/app-DVdEjIHT.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -39,16 +39,22 @@
     ]
   },
   "resources/js/frontend/app.js": {
-    "file": "assets/app-cNxu7AHR.js",
+    "file": "assets/app-ydBupzed.js",
     "name": "app",
     "src": "resources/js/frontend/app.js",
     "isEntry": true,
     "imports": [
       "_bootstrap-DWfKOCZz.js",
       "_sweetalert2-DuZSYcrD.js"
-    ],
+    ]
+  },
+  "resources/js/frontend/plugins.js": {
+    "file": "assets/plugins-BdvU8iuU.js",
+    "name": "plugins",
+    "src": "resources/js/frontend/plugins.js",
+    "isEntry": true,
     "css": [
-      "assets/app-CJ-KzOvo.css"
+      "assets/plugins-CJ-KzOvo.css"
     ]
   },
   "resources/js/plugins.js": {
@@ -61,12 +67,12 @@
     ]
   },
   "resources/sass/backend/app.scss": {
-    "file": "assets/app-C48t4LMz.css",
+    "file": "assets/app-C3sJrrjJ.css",
     "src": "resources/sass/backend/app.scss",
     "isEntry": true
   },
   "resources/sass/frontend/app.scss": {
-    "file": "assets/app-qJgFDEjv.css",
+    "file": "assets/app-SHxIujzL.css",
     "src": "resources/sass/frontend/app.scss",
     "isEntry": true
   },

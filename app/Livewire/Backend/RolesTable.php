@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Backend;
+namespace App\Livewire\Backend;
 
 use App\Domains\Auth\Models\Role;
 use Illuminate\Database\Eloquent\Builder;

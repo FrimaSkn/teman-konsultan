@@ -16,13 +16,13 @@
         'resources/sass/backend/app.scss',
         'resources/vendor/fontawesome/app.scss'])
 
-    @livewireStyles
-
+    {{-- @livewireStyles --}}
 
     <style>
         [x-cloak] { display: none !important; }
     </style>
 
+    @filamentStyles
     @stack('after-styles')
 </head>
 <body class="c-app">
@@ -49,7 +49,8 @@
     </div><!--c-wrapper-->
 
     @stack('before-scripts')
-    @livewireScripts
+    {{-- @livewireScripts --}}
+    @filamentScripts
     @stack('after-scripts')
 </body>
 </html>

@@ -6,3 +6,4 @@ import '~@coreuijs';
 
 window.$ = window.jQuery = $;
 window.Swal = Swal;
+

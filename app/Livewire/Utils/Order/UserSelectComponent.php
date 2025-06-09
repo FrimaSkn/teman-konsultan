@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Utils\Order;
+namespace App\Livewire\Utils\Order;
 
 use App\Domains\Auth\Models\User;
 use Livewire\Component;

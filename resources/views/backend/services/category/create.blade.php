@@ -3,7 +3,7 @@
 @section('title', __('Create category'))
 
 @section('content')
-    <x-forms.post :action="route('admin.services-category.store')">
+    {{-- <x-forms.post :action="route('admin.services-category.store')">
         <x-backend.card>
 
             <x-slot name="header">
@@ -30,5 +30,19 @@
             </x-slot>
 
         </x-backend.card>
-    </x-forms.post>
+    </x-forms.post> --}}
+
+    <x-backend.card>
+        <x-slot name="header">
+            @lang('Create category')
+        </x-slot>
+
+        <x-slot name="headerActions">
+            <x-utils.link class="card-header-action" :href="route('admin.services-category.index')" :text="__('Cancel')" />
+        </x-slot>
+
+        <x-slot name="body">
+            <livewire:backend.services.category-create />
+        </x-slot>
+    </x-backend.card>
 @endsection

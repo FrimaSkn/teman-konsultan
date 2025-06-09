@@ -43,4 +43,15 @@
             transform: rotate(0deg);
         }
     }
+
+    // Page: Harga
+    .pricelist {
+        &-tabs {
+            @apply px-6 py-1.5 leading-tight text-white uppercase rounded-lg bg-primary max-w-40 font-semibold shadow;
+
+            &.active {
+                @apply bg-secondary text-primary;
+            }
+        }
+    }
 }

@@ -1,12 +1,12 @@
 @extends('backend.layouts.app')
 
-@section('title', __('Create Service'))
+@section('title', __('Edit Service'))
 
 @section('content')
         <x-backend.card>
 
             <x-slot name="header">
-                @lang('Create Service')
+                @lang('Edit Service')
             </x-slot>
 
             <x-slot name="headerActions">
@@ -15,7 +15,7 @@
 
 
             <x-slot name="body">
-                <livewire:backend.services.services-create />
+                <livewire:backend.services.services-edit :record="$service"/>
             </x-slot>
         </x-backend.card>
 @endsection

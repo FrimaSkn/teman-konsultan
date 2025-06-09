@@ -18,7 +18,10 @@
         </x-slot>
 
         <x-slot name="body">
-            <livewire:backend.services-table />
+            <livewire:backend.services.services-table />
         </x-slot>
     </x-backend.card>
+
+
+
 @endsection
