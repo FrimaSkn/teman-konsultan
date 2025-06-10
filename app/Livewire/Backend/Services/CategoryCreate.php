@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Backend\Services;
 
-use App\Models\ServicesCategory;
 use Filament\Forms;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Livewire\Component;
+use Filament\Forms\Form;
+use App\Models\ServicesCategory;
 use Illuminate\Contracts\View\View;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class CategoryCreate extends Component implements HasForms
 {
@@ -25,6 +26,8 @@ class CategoryCreate extends Component implements HasForms
     {
         return $form
             ->schema([
+                SpatieMediaLibraryFileUpload::make('image')
+                    ->collection('service_category'),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255)

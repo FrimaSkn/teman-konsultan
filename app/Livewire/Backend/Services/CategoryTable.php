@@ -11,10 +11,12 @@ use Illuminate\Contracts\View\View;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class CategoryTable extends Component implements HasForms, HasTable
 {
@@ -28,6 +30,8 @@ class CategoryTable extends Component implements HasForms, HasTable
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                SpatieMediaLibraryImageColumn::make('image')
+                    ->collection('service_category'),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -49,6 +53,8 @@ class CategoryTable extends Component implements HasForms, HasTable
                     ->action(fn (ServicesCategory $record) => $record->delete()),
                 Tables\Actions\EditAction::make()
                     ->form([
+                        SpatieMediaLibraryFileUpload::make('image')
+                            ->collection('service_category'),
                         TextInput::make('name')
                             ->label('Category Name')
                             ->required()

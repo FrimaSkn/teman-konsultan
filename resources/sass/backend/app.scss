@@ -32,3 +32,9 @@
 input.fi-checkbox-input:checked {
     background-color: blue !important;
 }
+
+.fi-modal {
+    .z-40 {
+        z-index: 9999 !important;
+    }
+}

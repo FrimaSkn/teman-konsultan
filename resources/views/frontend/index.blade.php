@@ -55,7 +55,7 @@
             <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
                 @foreach ($services as $category)
                     <div x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false" data-motion="hover-stg"
-                        class="relative flex items-center justify-center w-full overflow-hidden rounded-lg cursor-default aspect-square bg-[url('https://swiperjs.com/demos/images/nature-3.jpg')]">
+                        class="relative flex items-center justify-center w-full overflow-hidden bg-cover rounded-lg cursor-default aspect-square" style="background-image: url('{{ $category->getFirstMediaUrl('service_category') }}');">
                         <div x-show="!open" class="flex items-center justify-center w-full h-full p-6 bg-white/70"
                             x-transition:enter="transition ease-in duration-200"
                             x-transition:enter-start="opacity-10 translate-y-20"
@@ -65,7 +65,7 @@
                             x-transition:leave-end="opacity-0 translate-y-20">
                             <div class="text-center uppercase md:text-2xl lg:text-[1.7rem]">{{ $category->name }}</div>
                         </div>
-                        <div x-show="open" class="absolute top-0 left-0 w-full h-full p-4 text-white rounded-lg bg-primary/85"
+                        <div x-show="open" class="absolute top-0 left-0 w-full h-full p-4 text-white rounded-lg bg-primary/90"
                             x-transition:enter="transition ease-in duration-200"
                             x-transition:enter-start="opacity-0 -translate-y-20"
                             x-transition:enter-end="opacity-100 translate-y-0"
