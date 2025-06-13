@@ -4,6 +4,10 @@
             <img src="{{ asset('img/brand/logo.png') }}" alt="">
         </a>
         <div class="menu">
+            <div class="flex gap-4">
+                <a href="#" class="px-4 pt-1 pb-1.5 uppercase bg-primary rounded-lg hover:bg-opacity-90 text-secondary text-nowrap text-sm font-medium">free consultation</a>
+                <a href="{{ route('frontend.auth.login') }}" class="px-4 pt-1 pb-1.5 uppercase bg-primary rounded-lg hover:bg-opacity-90 text-secondary text-nowrap text-sm font-medium">login</a>
+            </div>
             <ul class="menu-list">
                 <li>
                     <a href="{{ route('frontend.home') }}" class="menu-item {{ activeMenu('frontend.home') }}">Home</a>
@@ -56,15 +60,12 @@
                     <a href="#" class="menu-item">Artikel</a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">Tentang Kami</a>
+                    <a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">Tentang Kami</a>
                 </li>
                 <li>
                     <a href="#" class="menu-item">Hubungi Kami</a>
                 </li>
             </ul>
-            <div>
-                <a href="#" class="px-4 pt-1 pb-1.5 uppercase bg-primary rounded-lg hover:bg-opacity-90 text-secondary text-nowrap text-sm">free consultation</a>
-            </div>
         </div>
     </nav>
 </header>

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Frontend\ChargeController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\TermsController;
 use Tabuna\Breadcrumbs\Trail;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\TermsController;
+use App\Http\Controllers\Frontend\ChargeController;
 
 /*
  * Frontend Controllers
@@ -14,6 +15,9 @@ Route::get('/', [HomeController::class, 'index'])
 
 Route::get('harga', [ChargeController::class, 'index'])
     ->name('harga');
+
+Route::get('tentang-kami', [AboutController::class, 'index'])
+    ->name('about');
 
 
 Route::get('terms', [TermsController::class, 'index'])

@@ -21,32 +21,32 @@ const HomeBanner = new Swiper('.home-banner-swiper', {
     }
 });
 
-const Testimonial = new Swiper('.testimonial-swiper', {
-    modules: [Navigation, Pagination, Autoplay, EffectCreative],
-    loop: true,
-    autoHeight: true,
-    autoplay: {
-        delay: 6000,
-        disableOnInteraction: false,
-    },
-    effect: "creative",
-    creativeEffect: {
-        prev: {
-          shadow: false,
-          opacity: 0,
-          translate: ["-120%", 0, -500],
-        },
-        next: {
-          shadow: false,
-          opacity: 0,
-          translate: ["120%", 0, -500],
-        },
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-});
+// const Testimonial = new Swiper('.testimonial-swiper', {
+//     modules: [Navigation, Pagination, Autoplay, EffectCreative],
+//     loop: true,
+//     autoHeight: true,
+//     autoplay: {
+//         delay: 6000,
+//         disableOnInteraction: false,
+//     },
+//     effect: "creative",
+//     creativeEffect: {
+//         prev: {
+//           shadow: false,
+//           opacity: 0,
+//           translate: ["-120%", 0, -500],
+//         },
+//         next: {
+//           shadow: false,
+//           opacity: 0,
+//           translate: ["120%", 0, -500],
+//         },
+//     },
+//     pagination: {
+//         el: ".swiper-pagination",
+//         clickable: true,
+//     },
+// });
 
 const priceSwiper = new Swiper('.price-swiper', {
     modules: [Navigation, Pagination, Autoplay],

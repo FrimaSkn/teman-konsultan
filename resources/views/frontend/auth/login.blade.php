@@ -3,8 +3,9 @@
 @section('title', __('Login'))
 
 @section('content')
-    <div class="container py-4 mx-auto">
-        <div class="grid grid-cols-3">
+    <x-frontend.hero-section />
+    <div class="container min-h-[40svh] py-10 flex items-center justify-center">
+        <div class="w-full max-w-lg">
 
             {{-- center content --}}
             <div
@@ -12,43 +13,28 @@
             >
                 <x-frontend.card>
                     <x-slot name="header">
-                        @lang('Login')
+                        <div class="text-2xl font-medium text-center uppercase text-underline">
+                            @lang('Login')
+                        </div>
                     </x-slot>
 
                     <x-slot name="body">
                         <x-forms.post :action="route('frontend.auth.login')">
-                            <div class="grid-cols-3 grid">
-                                <!-- Component: Plain basic input  -->
-                                <div class="relative my-6 col-span-3">
-                                    <input
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        placeholder="{{ __('E-mail Address') }}"
-                                        class="relative w-full h-10 px-4 text-sm placeholder-transparent transition-all border-b outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400" />
-                                    <label for="id-b02" class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent">
-                                        @lang('E-mail Address')
-                                    </label>
+                            <div class="grid grid-cols-3">
+                                <div class="relative col-span-3 my-3">
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">EMAIL</label>
+                                    <input type="email" id="email" name="email" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
                                 </div>
-                            </div><!--form-group-->
+                            </div>
 
-                            <div class="grid-cols-3 grid">
-                                <!-- Component: Plain basic input  -->
-                                <div class="relative my-6 col-span-3">
-                                    <input
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        placeholder="{{ __('Password') }}"
-                                        class="relative w-full h-10 px-4 text-sm placeholder-transparent transition-all border-b outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white
-                                        invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400" />
-                                    <label for="id-b02" class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent">
-                                        @lang('Password')
-                                    </label>
+                            <div class="grid grid-cols-3">
+                                <div class="relative col-span-3 my-3">
+                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 uppercase">password</label>
+                                    <input type="password" id="password" name="password" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                                 </div>
-                            </div><!--form-group-->
+                            </div>
 
-                            <div>
+                            {{-- <div>
                                 <!-- Component: Primary basic checkbox -->
                                 <div class="relative flex flex-wrap items-center">
                                     <input
@@ -65,7 +51,7 @@
                                     </svg>
                                 </div>
                                 <!-- End Primary basic checkbox -->
-                            </div>
+                            </div> --}}
 
                             @if(config('boilerplate.access.captcha.login'))
                                 <div class="row">
@@ -77,14 +63,16 @@
                             @endif
 
                             <div class="grid grid-cols-3 gap-4 mt-4">
-                                <div class="col-span-3">
-                                    <button class="btn btn-primary" type="submit">@lang('Login')</button>
-
-                                    <x-utils.link :href="route('frontend.auth.password.request')" class="btn-link" :text="__('Forgot Your Password?')" />
+                                <div class="flex items-end justify-between col-span-3">
+                                    <a href="{{ route('frontend.auth.register') }}" class="underline">Don’t have an account yet? Register here</a>
+                                    <button class="pl-8 pr-6 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center" type="submit">
+                                        <span>@lang('Login')</span>
+                                        <i data-lucide="chevron-right"></i>
+                                    </button>
                                 </div>
                             </div><!--form-group-->
 
-                            <div class="text-center grid-cols-2 grid gap-2 mt-2">
+                            <div class="grid grid-cols-2 gap-2 mt-2 text-center">
                                 @include('frontend.auth.includes.social')
                             </div>
                         </x-forms.post>

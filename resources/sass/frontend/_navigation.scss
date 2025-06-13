@@ -12,7 +12,7 @@
             }
 
             .menu {
-                @apply items-center hidden gap-10 xl:flex;
+                @apply hidden gap-6 lg:flex flex-col items-end;
 
                 .menu-list {
                     @apply flex items-center gap-8;
