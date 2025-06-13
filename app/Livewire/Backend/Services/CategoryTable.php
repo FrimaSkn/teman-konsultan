@@ -5,6 +5,7 @@ namespace App\Livewire\Backend\Services;
 use Filament\Tables;
 use Livewire\Component;
 use Filament\Tables\Table;
+use Filament\Contracts\Plugin;
 use App\Models\ServicesCategory;
 use Filament\Tables\Actions\Action;
 use Illuminate\Contracts\View\View;
@@ -13,15 +14,17 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
+use App\Livewire\Trait\FrimzTranslatableFields;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
-class CategoryTable extends Component implements HasForms, HasTable
+class CategoryTable extends Component implements HasForms, HasTable, Plugin
 {
     use InteractsWithForms;
     use InteractsWithTable;
+    use FrimzTranslatableFields;
 
     public function table(Table $table): Table
     {
@@ -58,7 +61,7 @@ class CategoryTable extends Component implements HasForms, HasTable
                         TextInput::make('name')
                             ->label('Category Name')
                             ->required()
-                            ->maxLength(255),
+                            ->translatable(),
                     ])
                     ->color('info')
                     ->button()

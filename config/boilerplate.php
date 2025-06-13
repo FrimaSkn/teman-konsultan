@@ -147,8 +147,8 @@ return [
          * Commenting out languages will make them unavailable to the user
          */
         'languages' => [
-            'en' => ['name' => 'English', 'rtl' => false],
             'id' => ['name' => 'Indonesian', 'rtl' => false],
+            'en' => ['name' => 'English', 'rtl' => false],
             // 'ar' => ['name' => 'Arabic', 'rtl' => true],
             // 'az' => ['name' => 'Azerbaijan', 'rtl' => false],
             // 'zh' => ['name' => 'Chinese Simplified', 'rtl' => false],

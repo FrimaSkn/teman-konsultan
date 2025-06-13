@@ -6,18 +6,21 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ServicesCategory extends Model implements HasMedia
 {
-    use HasFactory, HasSlug, InteractsWithMedia;
+    use HasFactory, HasSlug, InteractsWithMedia, HasTranslations;
 
     protected $fillable = [
         'name',
         'slug',
         'description',
     ];
+
+    public $translatable = ['name'];
 
     /**
      * Get the options for generating the slug.

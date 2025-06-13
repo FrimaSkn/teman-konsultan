@@ -25,6 +25,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^4.0",
         "midtrans/midtrans-php": "^2.6",
+        "outerweb/filament-translatable-fields": "^2.1",
         "rappasoft/laravel-livewire-tables": "^3.6",
         "rappasoft/lockout": "^5.0",
         "spatie/laravel-activitylog": "^4.0.0",

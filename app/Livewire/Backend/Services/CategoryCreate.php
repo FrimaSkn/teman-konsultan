@@ -2,18 +2,20 @@
 
 namespace App\Livewire\Backend\Services;
 
+use App\Livewire\Trait\FrimzTranslatableFields;
 use Filament\Forms;
 use Livewire\Component;
 use Filament\Forms\Form;
 use App\Models\ServicesCategory;
+use Filament\Contracts\Plugin;
 use Illuminate\Contracts\View\View;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
-class CategoryCreate extends Component implements HasForms
+class CategoryCreate extends Component implements HasForms, Plugin
 {
-    use InteractsWithForms;
+    use InteractsWithForms, FrimzTranslatableFields;
 
     public ?array $data = [];
 
@@ -29,8 +31,9 @@ class CategoryCreate extends Component implements HasForms
                 SpatieMediaLibraryFileUpload::make('image')
                     ->collection('service_category'),
                 Forms\Components\TextInput::make('name')
+                    ->label('Category Name')
                     ->required()
-                    ->maxLength(255)
+                    ->translatable(),
             ])
             ->statePath('data')
             ->model(ServicesCategory::class);
