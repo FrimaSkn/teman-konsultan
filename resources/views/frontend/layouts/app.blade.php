@@ -21,12 +21,10 @@
 <body>
     @include('includes.partials.read-only')
     @include('includes.partials.logged-in-as')
-    {{-- @include('includes.partials.announcements') --}}
 
     <div id="app">
-        {{-- @include('frontend.includes.nav') --}}
         @include('frontend.includes.navigation')
-        @include('includes.partials.messages')
+        {{-- @include('includes.partials.messages') --}}
 
         <main>
             @yield('content')

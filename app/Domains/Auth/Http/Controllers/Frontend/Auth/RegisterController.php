@@ -75,11 +75,13 @@ class RegisterController
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
-            'password' => ['max:100', Password::min(8)->mixedCase()->letters()->numbers()->symbols()->uncompromised()],
-            'terms' => ['required', 'in:1'],
+            'phone' => ['required', 'string', 'max:14'],
+            'password' => ['max:100', Password::min(8)->letters()->numbers()],
+            // 'password' => ['max:100', Password::min(8)->mixedCase()->letters()->numbers()->symbols()->uncompromised()],
+            // 'terms' => ['required', 'in:1'],
             'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
         ], [
-            'terms.required' => __('You must accept the Terms & Conditions.'),
+            // 'terms.required' => __('You must accept the Terms & Conditions.'),
             'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
         ]);
     }

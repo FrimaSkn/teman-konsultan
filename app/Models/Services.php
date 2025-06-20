@@ -5,11 +5,12 @@ namespace App\Models;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Services extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasTranslations;
 
     protected $fillable = [
         'category_id',
@@ -17,6 +18,9 @@ class Services extends Model
         'slug',
         'description',
     ];
+
+    public $translatable = ['name', 'description'];
+
 
     /**
      * Get the options for generating the slug.

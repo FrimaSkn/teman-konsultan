@@ -59,6 +59,14 @@
                                 </div><!--row-->
                             @endif
 
+                            @if(isset($errors) && $errors->any())
+                                <x-utils.alert type="danger" class="header-message">
+                                    @foreach($errors->all() as $error)
+                                        {{ $error }}<br/>
+                                    @endforeach
+                                </x-utils.alert>
+                            @endif
+
                             <div class="float-right mt-3">
                                 <button class="pl-8 pr-6 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center" type="submit">
                                     <span>@lang('Create Account')</span>

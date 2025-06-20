@@ -128,6 +128,11 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         $this->notify(new VerifyEmail);
     }
 
+    public function hasVerifiedEmail()
+    {
+        return true;
+    }
+
     /**
      * Return true or false if the user can impersonate an other user.
      *

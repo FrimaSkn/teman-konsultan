@@ -1,15 +1,13 @@
 <?php
 
 use App\Http\Controllers\LocaleController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
  * Global Routes
  *
  * Routes that are used between both frontend and backend.
  */
-
-// Switch between the included languages
-Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.change');
 
 /*
  * Frontend Routes
@@ -32,3 +30,7 @@ Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.cha
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
     includeRouteFiles(__DIR__.'/backend/');
 });
+
+
+// Switch between the included languages
+Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.change');

@@ -19,14 +19,14 @@
 
                     li {
                         .menu-item {
-                            @apply text-sm text-black uppercase block;
+                            @apply text-sm text-black uppercase block font-medium;
 
                             &:hover {
                                 @apply text-primary;
                             }
 
                             &.active {
-                                @apply relative;
+                                @apply relative text-primary;
 
                                 &:after {
                                     @apply absolute block w-full h-1 bg-secondary bottom-[-10px] left-0;

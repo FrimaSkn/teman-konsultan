@@ -2,19 +2,21 @@
 
 namespace App\Livewire\Backend\Services;
 
+use Redirect;
 use Filament\Forms;
 use Livewire\Component;
 use App\Models\Services;
 use Filament\Forms\Form;
+use Filament\Contracts\Plugin;
 use App\Models\ServicesCategory;
 use Illuminate\Contracts\View\View;
 use Filament\Forms\Contracts\HasForms;
+use App\Livewire\Trait\FrimzTranslatableFields;
 use Filament\Forms\Concerns\InteractsWithForms;
-use Redirect;
 
-class ServicesCreate extends Component implements HasForms
+class ServicesCreate extends Component implements HasForms, Plugin
 {
-    use InteractsWithForms;
+    use InteractsWithForms, FrimzTranslatableFields;
 
     public ?array $data = [];
 
@@ -34,8 +36,10 @@ class ServicesCreate extends Component implements HasForms
                     ->searchable(),
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->translatable(),
                 Forms\Components\Textarea::make('description')
+                    ->translatable()
                     ->columnSpanFull(),
             ])
             ->statePath('data')

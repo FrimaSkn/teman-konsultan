@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\LocaleMiddleware::class,
+            // \App\Http\Middleware\LocaleMiddleware::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Domains\Auth\Http\Middleware\ToBeLoggedOut::class,
         ],
@@ -58,6 +58,9 @@ class Kernel extends HttpKernel
             'auth',
             'password.expires',
             'is_admin',
+
+            \App\Http\Middleware\LocaleMiddleware::class,
+
         ],
     ];
 

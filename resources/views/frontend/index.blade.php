@@ -34,8 +34,8 @@
 
         <div class="container flex items-center justify-between px-16 py-6 text-white bg-primary">
             <h2>PERCAYAKAN KENUTUHAN PERPAJAKAN DAN AKUNTING PERUSAHAAN ANDA KEPADA KAMI</h2>
-            <a href="" data-motion="hover-btn" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden">
-                <span animate-slide-x class="flex items-center font-medium text-primary text-nowrap">
+            <a href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden">
+                <span class="flex items-center font-medium text-primary text-nowrap">
                     <span>get a quote</span>
                     <i data-lucide="chevron-right"></i>
                 </span>
@@ -66,8 +66,8 @@
                             x-transition:leave-start="opacity-100 translate-y-0"
                             x-transition:leave-end="opacity-0 -translate-y-20"
                         >
-                            <div class="relative items-center justify-center w-full h-full max-md:flex">
-                                <div class="flex items-center w-full h-4/5 max-md:hidden">
+                            <div class="relative flex-col items-center justify-center w-full h-full max-md:flex">
+                                <div class="items-center w-full h-5/6 max-md:hidden">
                                     <ol class="text-sm list-disc list-inside">
                                         @foreach ($category->services as $service)
                                             <li animate-fade-right>{{ $service->name }}</li>

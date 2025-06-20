@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 /**
  * Class LocaleController.
  */
