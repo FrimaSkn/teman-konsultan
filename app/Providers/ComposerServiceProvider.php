@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Announcement\Services\AnnouncementService;
+use App\Models\Contact;
 use App\Models\ServicesCategory;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +35,13 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(['frontend.includes.navigation'], function ($view) {
             $services = ServicesCategory::with('services')->get();
             $view->with('services', $services);
+        });
+
+        View::composer(['backend.includes.sidebar'], function ($view) {
+            $view->with([
+                'unread_contacts' => Contact::where('is_read', false)->count(),
+                'unread_consultations' => \App\Models\Consultation::where('is_read', false)->count(),
+            ]);
         });
     }
 }

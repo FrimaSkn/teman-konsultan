@@ -39,13 +39,13 @@
                     :text="__('Order Management')" />
             </li>
 
-            <li class="c-sidebar-nav-title">@lang('Servives')</li>
+            <li class="c-sidebar-nav-title">@lang('Service')</li>
             <li class="c-sidebar-nav-dropdown">
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-list"
                     class="c-sidebar-nav-dropdown-toggle"
-                    :text="__('Services Management')" />
+                    :text="__('Service Management')" />
 
                 <ul class="c-sidebar-nav-dropdown-items">
                      <li class="c-sidebar-nav-item">
@@ -63,6 +63,37 @@
                 </ul>
             </li>
 
+
+
+            <li class="c-sidebar-nav-title">@lang('Messages')</li>
+
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    :href="route('admin.consultation.index')"
+                    :active="activeClass(Route::is('admin.consultation.*'), 'c-active')"
+                    class="c-sidebar-nav-link"
+                    icon="c-sidebar-nav-icon cil-description"
+                    >
+                    {{ __('Consultation') }}
+                    @if($unread_consultations > 0)
+                        <span class="badge text-bg-danger bg-danger">{{ $unread_consultations }}</span>
+                    @endif
+                </x-utils.link>
+            </li>
+
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    :href="route('admin.contact.index')"
+                    class="c-sidebar-nav-link"
+                    :active="activeClass(Route::is('admin.contact.*'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-send"
+                    >
+                    {{ __('Contact Us') }}
+                    @if($unread_contacts > 0)
+                        <span class="badge text-bg-danger bg-danger">{{ $unread_contacts }}</span>
+                    @endif
+                </x-utils.link>
+            </li>
 
 
             <li class="c-sidebar-nav-title">@lang('System')</li>

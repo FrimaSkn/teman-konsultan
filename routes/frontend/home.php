@@ -25,8 +25,22 @@ Route::get('tentang-kami', [AboutController::class, 'index'])
 Route::get('hubungi-kami', [ContactUsController::class, 'index'])
     ->name('contact-us');
 
-Route::get('free-consultation', [ConsultationController::class, 'free_consultation'])
-    ->name('free-consultation');
+Route::post('hubungi-kami', [ContactUsController::class, 'store'])
+    ->name('contact-us.store');
+
+Route::group([
+    'prefix' => 'free-consultation',
+    'as' => 'free-consultation.',
+], function () {
+    Route::get('/', [ConsultationController::class, 'free_consultation'])
+        ->name('index');
+
+    Route::get('messages', [ConsultationController::class, 'messages'])
+        ->name('messages');
+
+    Route::post('store', [ConsultationController::class, 'store'])
+        ->name('store');
+});
 
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')

@@ -49,43 +49,73 @@
             <div class="col-span-6">
                 <div class="text-xl font-semibold uppercase text-underline-left">ENQUIRY FORM</div>
 
-                <form action="#" class="my-20">
+                <x-forms.post :action="route('frontend.contact-us.store')" class="my-20">
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">Nama lengkap</label>
-                            <input type="text" id="name" name="name" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                            <input type="text" id="name" name="name" value="{{ old('name') }}"
+                                class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                {{ $errors->has('name') ? 'border-red-500' : 'border-gray-600' }}"
+                                placeholder=""  required/>
                         </div>
+                        @error('name')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 uppercase">EMAIL</label>
-                            <input type="email" id="email" name="email" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                            <input type="email" id="email" name="email" value="{{ old('email') }}"
+                                class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }}"
+                                placeholder="" required />
                         </div>
+                        @error('email')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
                             <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 uppercase">NOMOR WHATSAPP / HP</label>
-                            <input type="text" id="phone" name="phone" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                            <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
+                                class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                {{ $errors->has('phone') ? 'border-red-500' : 'border-gray-600' }}"
+                                placeholder="" required />
                         </div>
+                        @error('phone')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
                             <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 uppercase">Subject</label>
-                            <input type="text" id="subject" name="subject" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                            <input type="text" id="subject" name="subject" value="{{ old('subject') }}"
+                                class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                {{ $errors->has('subject') ? 'border-red-500' : 'border-gray-600' }}"
+                                placeholder="" required />
                         </div>
+                        @error('subject')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
                             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 uppercase">pesan</label>
-                            <textarea id="message" name="message" rows="6" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required ></textarea>
+                            <textarea id="message" name="message" rows="6"
+                            class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                            {{ $errors->has('message') ? 'border-red-500' : 'border-gray-600' }}"
+                            placeholder="" required >{{ old('message') }}</textarea>
                         </div>
+                        @error('message')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <button class="pl-8 pr-6 pt-1 pb-1.5 uppercase bg-secondary float-right rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center" type="submit">
                         <span>@lang('Submit')</span>
                         <i data-lucide="chevron-right"></i>
                     </button>
-                </form>
+                </x-forms.post>
             </div>
         </div>
     </section>

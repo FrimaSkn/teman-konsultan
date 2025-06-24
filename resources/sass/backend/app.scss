@@ -42,3 +42,18 @@ input.fi-checkbox-input:checked {
 .fi-tabs-item-active {
     @apply bg-gray-200;
 }
+
+.list-group {
+    .list-group-item {
+        &.active {
+            @apply alert-info;
+        }
+        &:hover {
+            @apply bg-gray-100 border-gray-300;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}

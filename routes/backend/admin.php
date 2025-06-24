@@ -59,3 +59,35 @@ Route::group(['prefix' => 'services-category', 'as' => 'services-category.'], fu
     Route::post('store', [\App\Http\Controllers\Backend\ServicesCategoryController::class, 'store'])
         ->name('store');
 });
+
+Route::group(['prefix' => 'consultation', 'as' => 'consultation.'], function () {
+    Route::get('/', [\App\Http\Controllers\Backend\ConsultationController::class, 'index'])
+        ->name('index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('Consultations'), route('admin.consultation.index'));
+        });
+
+    Route::get('show/{consultation}', [\App\Http\Controllers\Backend\ConsultationController::class, 'show'])
+        ->name('show')
+        ->breadcrumbs(function (Trail $trail, $consultation) {
+            $trail->parent('admin.consultation.index')
+                  ->push(__('Consultation Details'), route('admin.consultation.show', $consultation));
+        });
+});
+
+Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
+    Route::get('/', [\App\Http\Controllers\Backend\ContactUsController::class, 'index'])
+        ->name('index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('Contact Us'), route('admin.contact.index'));
+        });
+
+    Route::get('show/{contact}', [\App\Http\Controllers\Backend\ContactUsController::class, 'show'])
+        ->name('show')
+        ->breadcrumbs(function (Trail $trail, $contact) {
+            $trail->parent('admin.contact.index')
+                  ->push(__('Contact Details'), route('admin.contact.show', $contact));
+        });
+});

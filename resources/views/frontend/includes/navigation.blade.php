@@ -10,12 +10,15 @@
                     <div class="w-px h-4 bg-black"></div>
                     <a rel="alternate" hreflang="id" href="{{ LaravelLocalization::getLocalizedURL('id', null, [], true) }}" class="text-sm {{ LaravelLocalization::getCurrentLocale() == 'id' ? 'px-2 py-px uppercase bg-primary rounded-md font-medium text-white':''}}">IDN</a>
                 </div>
-                <a href="{{ route('frontend.free-consultation') }}"
+                <a href="{{ route('frontend.free-consultation.index') }}"
                     class="px-4 py-2 text-sm font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
-                            {{ Route::is('frontend.free-consultation') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
+                            {{ Route::is('frontend.free-consultation.*') || Route::is('frontend.free-consultation.index') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
                 >free consultation</a>
                 @guest
-                    <a href="{{ route('frontend.auth.login') }}" class="px-4 py-2 text-sm font-medium leading-none uppercase rounded-lg bg-primary hover:bg-opacity-90 text-secondary text-nowrap">login</a>
+                    <a href="{{ route('frontend.auth.login') }}"
+                        class="px-4 py-2 text-sm font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
+                        {{ Route::is('frontend.auth.*') || Route::is('frontend.auth.login') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
+                    >login</a>
                 @else
                     <div class="relative flex gap-2" x-data="{ open: false }" x-on:click.away="open = false">
                         <button x-on:click="open = !open" class="flex items-center gap-3">
