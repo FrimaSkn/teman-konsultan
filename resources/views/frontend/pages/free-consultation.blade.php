@@ -142,6 +142,7 @@
                 if (this.checked) {
                     checkboxOther.checked = false;
                     document.getElementById('input-area').style.display = 'none';
+                    document.getElementById('other-area').value = '';
                 }
             });
 
@@ -149,6 +150,7 @@
                 if (this.checked) {
                     checkboxOther.checked = false;
                     document.getElementById('input-area').style.display = 'none';
+                    document.getElementById('other-area').value = '';
                 }
             });
         });

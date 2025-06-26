@@ -60,3 +60,16 @@ if (!function_exists('activeMenu')) {
         return $active;
     }
 }
+
+// translate helper
+if (!function_exists('translate')) {
+    function translate($value = '') {
+        if ($value === null || $value === '') {
+            return '';
+        }
+
+        $locale = session()->get('locale') ?? config('app.locale');
+
+        return $value[$locale];
+    }
+}

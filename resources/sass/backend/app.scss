@@ -43,6 +43,12 @@ input.fi-checkbox-input:checked {
     @apply bg-gray-200;
 }
 
+.fi-fieldset {
+    legend {
+        width: auto !important;
+    }
+}
+
 .list-group {
     .list-group-item {
         &.active {

@@ -20,7 +20,7 @@
             <div class="absolute inset-0 text-white">
                 <div class="container flex items-center h-full">
                     <div class="md:w-3/4 lg:w-[45%] p-8 bg-black bg-opacity-50 md:ml-10 xl:ml-0 relative z-20">
-                        <h3 class="text-3xl leading-none">One Stop Solutions for Your Business</h3>
+                        <h3 class="text-3xl leading-none">{{ translate($settings->hero_title) }}</h3>
                         <div class="w-[15%] h-1.5 mt-4 bg-secondary"></div>
                         <p class="mt-7">Kami menyediakan Solusi Satu Pintu yang Terintegrasi dengan personel berkualifikasi tinggi dalam bidang keuangan, perpajakan, akuntansi, penggajian, hukum, teknologi, konsultasi dan audit; meningkatkan dukungan secara efektif untuk pengembangan bisnis Anda. </p>
                         <a href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center mt-4">

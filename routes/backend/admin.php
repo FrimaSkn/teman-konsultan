@@ -91,3 +91,14 @@ Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
                   ->push(__('Contact Details'), route('admin.contact.show', $contact));
         });
 });
+
+Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+    Route::get('home', function () {
+        return view('backend.settings.home');
+    })
+        ->name('home')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('Home Settings'), route('admin.settings.home'));
+        });
+});

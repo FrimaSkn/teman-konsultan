@@ -79,6 +79,7 @@ return [
                     'sub_title' => 'ACCOUNTING TAX',
                     'price' => '2 Juta / Bulan',
                     'min_contract' => '1 Tahun',
+
                     'coverage' => [
                         [
                             'key' => 'Jumlah Penghasilan',
@@ -1322,6 +1323,112 @@ return [
                     ],
                 ],
             ]
+        ],
+        'consultasi' => [
+            'category' => 'Konsultasi',
+            'slug' => 'konsultasi',
+            'note' => null,
+            'paket' => [
+                [
+                    'title' => '30 Menit',
+                    'slug' => '30-menit',
+                    'sub_title' => null,
+                    'price' => 'Rp 250.000',
+                    'min_contract' => null,
+                    'button' => [
+                        'text' => 'Ambil Paket',
+                        'url' => '#'
+                    ],
+                    'meeting' => [
+                        [
+                            'key' => '',
+                            'value' => '30 MENIT',
+                        ],
+                        [
+                            'key' => 'Senin-Jumat 09.00-17.00',
+                            'value' => '',
+                        ],
+                        [
+                            'key' => 'Berdasarkan appointment',
+                            'value' => '',
+                        ],
+                    ],
+                    'pembukuan' => [
+                        'key' => ' Pendampingan Proses Pembukuan',
+                        'value' => 'Sesuai Konsultasi',
+                    ],
+                    'support' => [
+                        'key' => 'Email & Chat Support:',
+                        'value' => false,
+                    ]
+                ],
+                [
+                    'title' => '1 Jam',
+                    'slug' => '1-jam',
+                    'sub_title' => null,
+                    'price' => 'Rp 500.000',
+                    'min_contract' => null,
+                    'button' => [
+                        'text' => 'Ambil Paket',
+                        'url' => '#'
+                    ],
+                    'meeting' => [
+                        [
+                            'key' => '',
+                            'value' => '1 JAM',
+                        ],
+                        [
+                            'key' => 'Senin-Jumat 09.00-17.00',
+                            'value' => '',
+                        ],
+                        [
+                            'key' => 'Berdasarkan appointment',
+                            'value' => '',
+                        ],
+                    ],
+                    'pembukuan' => [
+                        'key' => ' Pendampingan Proses Pembukuan',
+                        'value' => 'Sesuai Konsultasi',
+                    ],
+                    'support' => [
+                        'key' => 'Email & Chat Support:',
+                        'value' => false,
+                    ]
+                ],
+                [
+                    'title' => '2 Jam',
+                    'slug' => '2-jam',
+                    'sub_title' => null,
+                    'price' => 'Rp 800.000',
+                    'min_contract' => null,
+                    'button' => [
+                        'text' => 'Ambil Paket',
+                        'url' => '#'
+                    ],
+                    'meeting' => [
+                        [
+                            'key' => '',
+                            'value' => '2 JAM',
+                        ],
+                        [
+                            'key' => 'Senin-Jumat 09.00-17.00',
+                            'value' => '',
+                        ],
+                        [
+                            'key' => 'Berdasarkan appointment',
+                            'value' => '',
+                        ],
+                    ],
+                    'pembukuan' => [
+                        'key' => ' Pendampingan Proses Pembukuan',
+                        'value' => 'Sesuai Konsultasi',
+                    ],
+                    'support' => [
+                        'key' => 'Email & Chat Support:',
+                        'value' => true,
+                    ]
+                ],
+            ],
         ]
     ]
 ];

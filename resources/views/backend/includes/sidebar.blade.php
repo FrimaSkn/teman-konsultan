@@ -96,6 +96,18 @@
             </li>
 
 
+            <li class="c-sidebar-nav-title">@lang('Settings')</li>
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    :href="route('admin.settings.home')"
+                    class="c-sidebar-nav-link"
+                    :active="activeClass(Route::is('admin.settings.home'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-home"
+                    >
+                    {{ __('Home Settings') }}
+                </x-utils.link>
+            </li>
+
             <li class="c-sidebar-nav-title">@lang('System')</li>
 
             <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">
