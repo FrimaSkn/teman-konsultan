@@ -1317,10 +1317,7 @@ return [
                         ]
                     ],
                     'note' => null,
-                    'button' => [
-                        'text' => 'Hubungi Kami',
-                        'url' => '#'
-                    ],
+                    'button' => null,
                 ],
             ]
         ],
@@ -1422,6 +1419,105 @@ return [
                     'pembukuan' => [
                         'key' => ' Pendampingan Proses Pembukuan',
                         'value' => 'Sesuai Konsultasi',
+                    ],
+                    'support' => [
+                        'key' => 'Email & Chat Support:',
+                        'value' => true,
+                    ]
+                ],
+                [
+                    'title' => '4 Jam',
+                    'slug' => '4-jam',
+                    'sub_title' => null,
+                    'price' => 'Rp 1.400.000',
+                    'min_contract' => null,
+                    'button' => [
+                        'text' => 'Ambil Paket',
+                        'url' => '#'
+                    ],
+                    'meeting' => [
+                        [
+                            'key' => '',
+                            'value' => '4 JAM',
+                        ],
+                        [
+                            'key' => 'Senin-Jumat 09.00-17.00',
+                            'value' => '',
+                        ],
+                        [
+                            'key' => 'Berdasarkan appointment',
+                            'value' => '',
+                        ],
+                    ],
+                    'pembukuan' => [
+                        'key' => ' Pendampingan Proses Pembukuan',
+                        'value' => 'Sesuai Konsultasi',
+                    ],
+                    'support' => [
+                        'key' => 'Email & Chat Support:',
+                        'value' => true,
+                    ]
+                ],
+                [
+                    'title' => '10 Jam',
+                    'slug' => '10-jam',
+                    'sub_title' => null,
+                    'price' => 'Rp 3.000.000',
+                    'min_contract' => null,
+                    'button' => [
+                        'text' => 'Ambil Paket',
+                        'url' => '#'
+                    ],
+                    'meeting' => [
+                        [
+                            'key' => '',
+                            'value' => '10 JAM',
+                        ],
+                        [
+                            'key' => 'Senin-Jumat 09.00-17.00',
+                            'value' => '',
+                        ],
+                        [
+                            'key' => 'Berdasarkan appointment',
+                            'value' => '',
+                        ],
+                    ],
+                    'pembukuan' => [
+                        'key' => ' Pendampingan Proses Pembukuan',
+                        'value' => 'Sesuai Konsultasi',
+                    ],
+                    'support' => [
+                        'key' => 'Email & Chat Support:',
+                        'value' => true,
+                    ]
+                ],
+                [
+                    'title' => 'MONTHLY PACKAGE',
+                    'slug' => 'monthly-package',
+                    'sub_title' => null,
+                    'price' => 'Rp 5.000.000',
+                    'min_contract' => null,
+                    'button' => [
+                        'text' => 'Ambil Paket',
+                        'url' => '#'
+                    ],
+                    'meeting' => [
+                        [
+                            'key' => '',
+                            'value' => '12 JAM',
+                        ],
+                        [
+                            'key' => 'Senin-Jumat 09.00-17.00',
+                            'value' => '',
+                        ],
+                        [
+                            'key' => 'Berdasarkan appointment',
+                            'value' => '',
+                        ],
+                    ],
+                    'pembukuan' => [
+                        'key' => ' Pendampingan Proses Pembukuan',
+                        'value' => 'true',
                     ],
                     'support' => [
                         'key' => 'Email & Chat Support:',

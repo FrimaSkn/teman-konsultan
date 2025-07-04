@@ -31,6 +31,23 @@
         </main>
     </div><!--app-->
 
+    <div class="fixed z-50 bottom-2 right-2">
+        <a href="https://wa.me/628123456789" target="_blank">
+            {{-- <img class="transition-all w-72 hover:animate-pulse hover:scale-110" src="{{ asset('img/icons/floating-wa.png') }}" alt=""> --}}
+            <div x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false" class="relative flex items-center transition-all hover:animate-pulse hover:scale-110">
+                <div x-show="open" x-cloak
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 translate-x-10"
+                    x-transition:enter-end="opacity-100 translate-x-0"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-x-0"
+                    x-transition:leave-end="opacity-0 translate-x-10"
+                    class="py-1 pl-2 pr-4 -mr-3 text-sm font-bold bg-gray-200 rounded shadow-2xl">Need help? Chat with us</div>
+                <img class="relative z-10 w-16" src="{{ asset('img/icons/floating-icon-wa.png') }}" alt="">
+            </div>
+        </a>
+    </div>
+
     @include('frontend.includes.footer')
 
     @vite('resources/js/frontend/plugins.js')

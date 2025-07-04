@@ -70,7 +70,6 @@ class ManageHome extends Component implements HasForms, Plugin
                             ->image()
                             ->disk('public_pages')
                             ->directory('home/about')
-                            // ->required()
                             ->maxSize(1024)
                             ->acceptedFileTypes(['image/*']),
                         Grid::make(1)
@@ -87,7 +86,33 @@ class ManageHome extends Component implements HasForms, Plugin
                                     ->translatable(),
                             ])->columnSpan(1),
                     ])
-                    ->columns(2)
+                    ->columns(2),
+                Fieldset::make('why choose us Section')
+                    ->schema([
+                        Repeater::make('section_4_content')
+                            ->label(__('Content'))
+                            ->schema([
+                                Forms\Components\FileUpload::make('icon')
+                                    ->label(__('Icon'))
+                                    ->image()
+                                    ->disk('public_pages')
+                                    ->directory('home/about')
+                                    ->maxSize(1024)
+                                    ->acceptedFileTypes(['image/*']),
+                                Grid::make(1)
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->label(__('Title'))
+                                            ->required()
+                                            ->translatable(),
+                                        Forms\Components\Textarea::make('description')
+                                            ->label(__('Description'))
+                                            ->required()
+                                            ->translatable()
+                                    ])->columnSpan(1),
+                            ])->columns(2)
+                    ])
+                    ->columns(1),
                 ])
             ->statePath('data')
             ->model(SettingHome::class);

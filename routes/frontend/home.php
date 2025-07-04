@@ -2,6 +2,7 @@
 
 use Tabuna\Breadcrumbs\Trail;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\TermsController;
 use App\Http\Controllers\Frontend\ChargeController;
@@ -18,6 +19,17 @@ Route::get('/', [HomeController::class, 'index'])
 
 Route::get('harga', [ChargeController::class, 'index'])
     ->name('harga');
+
+Route::group([
+    'prefix' => 'artikel',
+    'as' => 'post.',
+], function () {
+    Route::get('/', [PostController::class, 'index'])
+        ->name('index');
+
+    Route::get('{post}', [PostController::class, 'show'])
+        ->name('show');
+});
 
 Route::get('tentang-kami', [AboutController::class, 'index'])
     ->name('about');

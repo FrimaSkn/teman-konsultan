@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="w-full p-8 bg-secondary aspect-video">
-                <div class="text-xl font-semibold uppercase text-primary text-underline-left-blue">head office</div>
+                <div class="text-xl font-semibold uppercase text-primary text-underline-left-blue">WORKSHOP</div>
                 <div class="pt-8 font-light text-primary">
                     Latinos Business District BSD B16/6, <br>
                     Jl. Raya Rawa Buntu, Kel. Rawa Buntu, <br>

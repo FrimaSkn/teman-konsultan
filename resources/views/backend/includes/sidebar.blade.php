@@ -63,6 +63,29 @@
                 </ul>
             </li>
 
+            <li class="c-sidebar-nav-dropdown">
+                <x-utils.link
+                    href="#"
+                    icon="c-sidebar-nav-icon cil-list"
+                    class="c-sidebar-nav-dropdown-toggle"
+                    :text="__('Package Management')" />
+
+                <ul class="c-sidebar-nav-dropdown-items">
+                     <li class="c-sidebar-nav-item">
+                         <x-utils.link
+                             class="c-sidebar-nav-link"
+                             :href="route('admin.packages.category.index')"
+                             :active="activeClass(Route::is('admin.packages.category.*'), 'c-active')"
+                             :text="__('Category')" />
+                        <x-utils.link
+                            class="c-sidebar-nav-link"
+                            :href="route('admin.packages.index')"
+                            :active="activeClass(Route::is('admin.packages.*'), 'c-active')"
+                            :text="__('Packages')" />
+                    </li>
+                </ul>
+            </li>
+
 
 
             <li class="c-sidebar-nav-title">@lang('Messages')</li>

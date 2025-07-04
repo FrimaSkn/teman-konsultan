@@ -60,6 +60,38 @@ Route::group(['prefix' => 'services-category', 'as' => 'services-category.'], fu
         ->name('store');
 });
 
+Route::group(['prefix' => 'packages', 'as' => 'packages.'], function () {
+    // package routes
+    Route::get('/', [\App\Http\Controllers\Backend\PackageController::class, 'index'])
+        ->name('index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('Packages'), route('admin.packages.index'));
+        });
+
+    Route::get('create', [\App\Http\Controllers\Backend\PackageController::class, 'create'])
+        ->name('create')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.packages.index')
+                  ->push(__('Create Package'), route('admin.packages.create'));
+        });
+
+    // category routes
+    Route::get('/category', [\App\Http\Controllers\Backend\PackageCategoryController::class, 'index'])
+        ->name('category.index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('Category Packages'), route('admin.packages.category.index'));
+        });
+
+    Route::get('category/create', [\App\Http\Controllers\Backend\PackageCategoryController::class, 'create'])
+        ->name('category.create')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.packages.category.index')
+                  ->push(__('Create Category Package'), route('admin.packages.category.create'));
+        });
+});
+
 Route::group(['prefix' => 'consultation', 'as' => 'consultation.'], function () {
     Route::get('/', [\App\Http\Controllers\Backend\ConsultationController::class, 'index'])
         ->name('index')

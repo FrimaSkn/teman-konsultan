@@ -42,7 +42,7 @@
             </div>
             <ul class="menu-list">
                 <li>
-                    <a href="{{ route('frontend.home') }}" class="menu-item {{ activeMenu('frontend.home') }}">Home</a>
+                    <a href="{{ route('frontend.home') }}" class="menu-item {{ activeMenu('frontend.home') }}">@lang('Home')</a>
                 </li>
                 <li>
                     <div x-data="{ open: false }" x-on:click.away="open = false">
@@ -89,7 +89,7 @@
                     <a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">Harga</a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">Artikel</a>
+                    <a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.index') }}">Artikel</a>
                 </li>
                 <li>
                     <a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">Tentang Kami</a>

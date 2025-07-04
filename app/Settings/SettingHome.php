@@ -13,6 +13,7 @@ class SettingHome extends Settings
     public $about_title;
     public $about_description;
     public $about_image;
+    public $section_4_content;
 
 
     public static function group(): string

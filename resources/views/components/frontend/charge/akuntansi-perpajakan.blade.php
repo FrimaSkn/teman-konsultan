@@ -114,9 +114,15 @@
                         @endif
 
                         @if (array_key_exists('pembukuan', $paket))
-                            <div class="pt-10 text-center">
-                                <div class="text-sm">{{ $paket['pembukuan']['value'] }}</div>
-                            </div>
+                            @if ($paket['pembukuan']['value'] == 'true')
+                                <div class="pt-10 text-center">
+                                    <div class="p-0.5  mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
+                                </div>
+                            @else
+                                <div class="pt-10 text-center">
+                                    <div class="text-sm">{{ $paket['pembukuan']['value'] }}</div>
+                                </div>
+                            @endif
                         @endif
 
                         @if (array_key_exists('support', $paket))

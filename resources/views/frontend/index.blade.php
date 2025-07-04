@@ -95,7 +95,7 @@
                     <p class="mt-8">
                         Berlandaskan harapan yang tulus untuk mendukung perkembangan bisnis dan mempermudah pekerjaan pemilik bisnis serta manajemen atas, kami menawarkan solusi terintegrasi satu pintu di bidang bidang keuangan, perpajakan, akuntansi, penggajian, hukum, teknologi, konsultasi dan audit. Didukung oleh tim professional kami, kami memastikan semua pekerjaan kami dilakukan dengan standar tertinggi berdasarkan nilai-nilai profesionalisme, tanggung jawab dan integritas.
                     </p>
-                    <a href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-white text-nowrap inline-flex items-center mt-4">
+                    <a href="{{ route('frontend.about') }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-white text-nowrap inline-flex items-center mt-4">
                         <span>read more</span>
                         <i data-lucide="chevron-right"></i>
                     </a>
