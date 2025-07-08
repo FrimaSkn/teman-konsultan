@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.dashboard')
 
 @section('title', __('Two Factor Recovery Codes'))
 
@@ -19,7 +19,7 @@
                         <p class="text-danger"><strong>@lang('Save these codes! If you lose your device and don\'t have the recovery codes you will lose access to your account forever!')</strong></p>
 
                         <x-forms.patch :action="route('frontend.auth.account.2fa.update')" name="confirm-item">
-                            <button class="btn btn-sm btn-block btn-danger mb-3" type="submit">@lang('Generate New Backup Codes')</button>
+                            <button class="mb-3 btn btn-sm btn-block btn-danger" type="submit">@lang('Generate New Backup Codes')</button>
                         </x-forms.patch>
 
                         <p><strong>@lang('Each code can only be used once!')</strong></p>

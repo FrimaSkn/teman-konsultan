@@ -26,13 +26,13 @@ class BladeServiceProvider extends ServiceProvider
      */
     protected function registerCaptcha(): void
     {
-        /*
+         /*
          * The block of code inside this directive prints the required elements for google recaptcha
          * courtesy of albertcht/invisible-recaptcha
          */
         Blade::directive('captcha', function ($lang) {
-            $html = new HtmlString('<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>');
-            $html .= new HtmlString('<div id="_g-recaptcha"></div>');
+            // $html = new HtmlString('<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>');
+            $html = new HtmlString('<div id="_g-recaptcha"></div>');
 
             if (config('boilerplate.access.captcha.configs.options.hidden')) {
                 $html .= new HtmlString('<style>.grecaptcha-badge{display:none;!important}</style>');

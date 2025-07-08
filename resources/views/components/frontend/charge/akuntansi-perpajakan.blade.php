@@ -184,7 +184,7 @@
                         @endif
 
                         <div class="flex justify-center">
-                            <a href="" class="pl-4 pr-2 pt-2 pb-2.5 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center mt-4 justify-center w-full">
+                            <a href="{{ route('frontend.contact-us') }}" class="pl-4 pr-2 pt-2 pb-2.5 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center mt-4 justify-center w-full">
                                 <span>ambil paket</span>
                                 <i data-lucide="chevron-right" class="size-4"></i>
                             </a>

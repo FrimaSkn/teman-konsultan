@@ -1,0 +1,16 @@
+@import "../global";
+
+// Variables
+@import 'variables';
+
+// Import all of Bootstrap's CSS
+@import "~bootstrap/scss/bootstrap";
+
+
+#breadcrumbs {
+    background-color: #e9ecef;
+}
+
+.alert.header-message {
+    border-radius: 0 !important;
+}

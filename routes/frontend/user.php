@@ -16,14 +16,14 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
         ->middleware('is_user')
         ->name('dashboard')
         ->breadcrumbs(function (Trail $trail) {
-            $trail->parent('frontend.index')
+            $trail->parent('frontend.home')
                 ->push(__('Dashboard'), route('frontend.user.dashboard'));
         });
 
     Route::get('account', [AccountController::class, 'index'])
         ->name('account')
         ->breadcrumbs(function (Trail $trail) {
-            $trail->parent('frontend.index')
+            $trail->parent('frontend.user.dashboard')
                 ->push(__('My Account'), route('frontend.user.account'));
         });
 
