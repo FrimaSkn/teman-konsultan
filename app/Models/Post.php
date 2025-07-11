@@ -10,20 +10,22 @@ use Spatie\Translatable\HasTranslations;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Post extends Model implements HasMedia
 {
     use HasFactory, HasSlug, HasTranslations, InteractsWithMedia;
 
     protected $fillable = [
+        'user_id',
         'title',
         'slug',
-        'excerpt',
         'content',
+        'excerpt',
         'status',
     ];
 
-    public $translatable = ['title', 'content'];
+    public $translatable = ['title', 'excerpt', 'content'];
 
     /**
      * Get the options for generating the slug.
@@ -45,11 +47,6 @@ class Post extends Model implements HasMedia
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    public function getExcerptAttribute()
-    {
-        return substr($this->content, 0, 150) . '...';
     }
 
     public function scopePublished($query)

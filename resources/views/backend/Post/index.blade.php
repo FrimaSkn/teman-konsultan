@@ -18,7 +18,7 @@
         </x-slot>
 
         <x-slot name="body">
-            {{--  --}}
+            <livewire:backend.post.post-table />
         </x-slot>
     </x-backend.card>
 

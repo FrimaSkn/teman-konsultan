@@ -15,7 +15,7 @@
 
 
             <x-slot name="body">
-                {{--  --}}
+                <livewire:backend.post.post-edit :record="$post"/>
             </x-slot>
         </x-backend.card>
 @endsection

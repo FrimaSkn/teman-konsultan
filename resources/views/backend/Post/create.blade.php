@@ -15,7 +15,7 @@
 
 
             <x-slot name="body">
-                {{--  --}}
+                <livewire:backend.post.post-create />
             </x-slot>
         </x-backend.card>
 @endsection

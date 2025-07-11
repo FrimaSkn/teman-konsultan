@@ -50,10 +50,6 @@ class CategoryTable extends Component implements HasForms, HasTable, Plugin
                 //
             ])
             ->actions([
-                DeleteAction::make('delete')
-                    ->requiresConfirmation()
-                    ->button()
-                    ->action(fn (ServicesCategory $record) => $record->delete()),
                 Tables\Actions\EditAction::make()
                     ->form([
                         SpatieMediaLibraryFileUpload::make('image')
@@ -67,6 +63,10 @@ class CategoryTable extends Component implements HasForms, HasTable, Plugin
                     ->button()
                     ->modalHeading('Edit Category')
                     ->modalSubmitActionLabel('Update Category'),
+                DeleteAction::make('delete')
+                    ->requiresConfirmation()
+                    ->button()
+                    ->action(fn (ServicesCategory $record) => $record->delete()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

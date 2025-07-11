@@ -18,21 +18,21 @@
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">nama lengkap</label>
-                                    <input type="text" id="name" name="name" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                                    <input type="text" id="name" name="name" value="{{ old('name') }}" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 uppercase">EMAIL</label>
-                                    <input type="email" id="email" name="email" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                                    <input type="email" id="email" name="email" value="{{ old('email') }}" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 uppercase">nomor whatsapp / hp</label>
-                                    <input type="text" id="phone" name="phone" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                                 </div>
                             </div>
 

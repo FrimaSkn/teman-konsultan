@@ -43,14 +43,14 @@ class ServicesTable extends Component implements HasForms, HasTable
                 //
             ])
             ->actions([
-                DeleteAction::make('delete')
-                    ->requiresConfirmation()
-                    ->button()
-                    ->action(fn (Services $record) => $record->delete()),
                 Tables\Actions\EditAction::make('edit')
                     ->url(fn (Services $record): string => route('admin.services.edit', $record))
                     ->button()
                     ->color('info'),
+                DeleteAction::make('delete')
+                    ->requiresConfirmation()
+                    ->button()
+                    ->action(fn (Services $record) => $record->delete()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
