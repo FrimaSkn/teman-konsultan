@@ -3,7 +3,7 @@
 @section('title', __('Artikel'))
 
 @section('content')
-    <x-frontend.hero-section :image="asset('img/bg-hero-1.jpg')" />
+    <x-frontend.hero-section :image="asset('img/asset-5.jpg')" />
     <section class="container py-20">
         <div class="text-3xl font-semibold text-center uppercase text-underline">@lang('Article')</div>
 

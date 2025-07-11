@@ -3,7 +3,7 @@
 @section('title', __('Hubungi Kami'))
 
 @section('content')
-    <x-frontend.hero-section :image="asset('img/bg-hero-1.jpg')" />
+    <x-frontend.hero-section :image="asset('img/asset-5.jpg')" />
     <section class="container pt-20">
         <div class="text-3xl font-semibold text-center uppercase text-underline">HUBUNGI KAMI</div>
 
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-11 mt-20">
+        <div id="form-contact" class="grid grid-cols-11 mt-20">
             <div class="self-end col-span-5">
                 <img src="{{ asset('img/asset-contact.png') }}" alt="">
             </div>

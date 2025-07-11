@@ -17,7 +17,7 @@
                 @endif
                 @if (isset($paket['button']))
                     {{-- <a href="{{ $paket['button']['url'] }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center"> --}}
-                    <a href="{{ route('frontend.contact-us') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
+                    <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
                         <span>{{ $paket['button']['text'] }}</span>
                         <i data-lucide="chevron-right"></i>
                     </a>
@@ -43,7 +43,7 @@
                                 @endforeach
                                 <td class="py-2 text-right">
                                     {{-- <a href="{{ $tableRow['button']['url'] }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center"> --}}
-                                    <a href="{{ route('frontend.contact-us') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
+                                    <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
                                         <span>{{ $tableRow['button']['text'] }}</span>
                                         <i data-lucide="chevron-right"></i>
                                     </a>

@@ -7,11 +7,12 @@
         <section class="relative">
             <div class="swiper home-banner-swiper h-60 md:h-[70vh]">
                 <div class="swiper-wrapper">
-                    @for ($i = 1; $i <= 5; $i++)
                         <div class="swiper-slide">
-                            <img class="object-cover w-full" src="{{ asset('img/asset-' . $i . '.jpg') }}" />
+                            <img class="object-cover w-full" src="{{ asset('img/asset-1.jpg') }}" />
                         </div>
-                    @endfor
+                        <div class="swiper-slide">
+                            <img class="object-cover w-full" src="{{ asset('img/asset-5.jpg') }}" />
+                        </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>

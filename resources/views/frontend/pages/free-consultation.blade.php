@@ -3,7 +3,7 @@
 @section('title', __('Free Consultation'))
 
 @section('content')
-    <x-frontend.hero-section :image="asset('img/bg-hero-1.jpg')" />
+    <x-frontend.hero-section :image="asset('img/asset-1.jpg')" />
     <section class="container py-20">
         <div class="text-3xl font-semibold text-center uppercase text-underline">free consultation</div>
 

@@ -3,7 +3,7 @@
 @section('title', __('Tentang Kami'))
 
 @section('content')
-    <x-frontend.hero-section :image="asset('img/bg-hero-1.jpg')" />
+    <x-frontend.hero-section :image="asset('img/asset-1.jpg')" />
     <div class="container flex items-center justify-between px-16 py-6 text-white bg-primary">
         <h2>PERCAYAKAN KENUTUHAN PERPAJAKAN DAN AKUNTING PERUSAHAAN ANDA KEPADA KAMI</h2>
         <a href="{{ route('frontend.contact-us') }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden">
