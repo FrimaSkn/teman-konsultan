@@ -58,31 +58,31 @@
             <div class="grid gap-2 md:grid-flow-col md:grid-rows-4 max-lg:order-6">
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="" class="text-sm group-hover:text-secondary text-nowrap">Home</a>
+                    <a href="{{ route('frontend.home') }}" class="text-sm group-hover:text-secondary text-nowrap">Home</a>
                 </div>
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="" class="text-sm group-hover:text-secondary text-nowrap">Jasa Kami</a>
+                    <a href="#" class="text-sm group-hover:text-secondary text-nowrap">Jasa Kami</a>
                 </div>
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="" class="text-sm group-hover:text-secondary text-nowrap">Harga</a>
+                    <a href="{{ route('frontend.harga') }}" class="text-sm group-hover:text-secondary text-nowrap">Harga</a>
                 </div>
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="" class="text-sm group-hover:text-secondary text-nowrap">Artikel</a>
+                    <a href="{{ route('frontend.post.index') }}" class="text-sm group-hover:text-secondary text-nowrap">Artikel</a>
                 </div>
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="" class="text-sm group-hover:text-secondary text-nowrap">Tentang Kami</a>
+                    <a href="{{ route('frontend.about') }}" class="text-sm group-hover:text-secondary text-nowrap">Tentang Kami</a>
                 </div>
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="" class="text-sm group-hover:text-secondary text-nowrap">Hubungi Kami</a>
+                    <a href="{{ route('frontend.contact-us') }}" class="text-sm group-hover:text-secondary text-nowrap">Hubungi Kami</a>
                 </div>
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="" class="text-sm group-hover:text-secondary text-nowrap">free consultation</a>
+                    <a href="{{ route('frontend.free-consultation.index') }}" class="text-sm group-hover:text-secondary text-nowrap">free consultation</a>
                 </div>
             </div>
         </div>
