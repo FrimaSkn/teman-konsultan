@@ -30,7 +30,7 @@
         <div class="grid grid-cols-3 mt-6">
             <div class="flex items-center justify-center gap-2">
                 <img class="w-5" src="{{ asset('img/icons/wa.png') }}" alt="">
-                <div>WhatsApp : <a href="#">+62812 3456 789</a></div>
+                <div>WhatsApp : <a href="https://wa.me/628978396600" target="_blank">+62 897-8396-600</a></div>
             </div>
             <div class="flex items-center justify-center gap-2">
                 <img class="w-5" src="{{ asset('img/icons/email.png') }}" alt="">

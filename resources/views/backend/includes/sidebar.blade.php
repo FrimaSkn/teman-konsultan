@@ -39,6 +39,16 @@
                     :text="__('Order Management')" />
             </li>
 
+            <li class="c-sidebar-nav-title">@lang('Articles')</li>
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.post.index')"
+                    :active="activeClass(Route::is('admin.post.*'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-speedometer"
+                    :text="__('Post')" />
+            </li>
+
             <li class="c-sidebar-nav-title">@lang('Service')</li>
             <li class="c-sidebar-nav-dropdown">
                 <x-utils.link

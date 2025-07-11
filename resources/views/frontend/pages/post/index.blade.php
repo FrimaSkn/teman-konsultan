@@ -10,7 +10,7 @@
         <div class="grid grid-cols-3 mt-10 gap-x-4 gap-y-8">
             @for ($i = 0; $i < 9; $i++)
             <div>
-                <div class="bg-center bg-cover aspect-video" style="background-image: url('{{ asset('img/thumb-1.jpg') }}"></div>
+                <div class="bg-center bg-cover aspect-video" style="background-image: url('{{ asset('img/asset-1.jpg') }}"></div>
                 <div class="text-lg font-medium">Title</div>
                 <div class="text-sm text-gray-300">Author | Date</div>
                 <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>

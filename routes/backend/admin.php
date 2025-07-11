@@ -12,6 +12,29 @@ Route::get('dashboard', [DashboardController::class, 'index'])
         $trail->push(__('Home'), route('admin.dashboard'));
     });
 
+Route::group(['prefix' => 'post', 'as' => 'post.'], function () {
+    Route::get('/', [\App\Http\Controllers\Backend\PostController::class, 'index'])
+        ->name('index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('Articles'), route('admin.post.index'));
+        });
+
+    Route::get('create', [\App\Http\Controllers\Backend\PostController::class, 'create'])
+        ->name('create')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.post.index')
+                  ->push(__('Create Article'), route('admin.post.create'));
+        });
+
+    Route::get('edit/{post}', [\App\Http\Controllers\Backend\PostController::class, 'edit'])
+        ->name('edit')
+        ->breadcrumbs(function (Trail $trail, $post) {
+            $trail->parent('admin.post.index')
+                  ->push(__('Edit Article'), route('admin.post.edit', $post));
+        });
+});
+
 Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', [\App\Http\Controllers\Backend\ServicesController::class, 'index'])
         ->name('index')

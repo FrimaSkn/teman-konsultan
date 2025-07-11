@@ -23,7 +23,7 @@
                         <h3 class="text-3xl leading-none">{{ translate($settings->hero_title) }}</h3>
                         <div class="w-[15%] h-1.5 mt-4 bg-secondary"></div>
                         <p class="mt-7">Kami menyediakan Solusi Satu Pintu yang Terintegrasi dengan personel berkualifikasi tinggi dalam bidang keuangan, perpajakan, akuntansi, penggajian, hukum, teknologi, konsultasi dan audit; meningkatkan dukungan secara efektif untuk pengembangan bisnis Anda. </p>
-                        <a href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center mt-4">
+                        <a href="{{ route('frontend.contact-us') }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center mt-4">
                             <span>read more</span>
                             <i data-lucide="chevron-right"></i>
                         </a>
@@ -183,7 +183,7 @@
             <div class="grid grid-cols-3 gap-4 mt-10">
                 @for ($i = 0; $i < 3; $i++)
                 <div>
-                    <div class="bg-center bg-cover aspect-video" style="background-image: url('{{ asset('img/thumb-1.jpg') }}"></div>
+                    <div class="bg-center bg-cover aspect-video" style="background-image: url('{{ asset('img/asset-1.jpg') }}"></div>
                     <div class="text-lg font-medium">Title</div>
                     <div class="text-sm text-gray-300">Author | Date</div>
                     <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>
