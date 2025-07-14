@@ -13,7 +13,7 @@
             >
                 <x-frontend.card>
                     <x-slot name="header">
-                        <div class="text-2xl font-medium text-center uppercase text-underline">
+                        <div class="text-xl font-medium text-center uppercase md:text-2xl text-underline">
                             @lang('Login')
                         </div>
                     </x-slot>

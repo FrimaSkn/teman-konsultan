@@ -8,6 +8,10 @@
 
 [x-cloak] { display: none; }
 
+[data-animate] {
+    opacity: 0;
+}
+
 @layer components {
     .text-underline {
         @apply relative pb-8;

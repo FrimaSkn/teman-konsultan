@@ -10,13 +10,13 @@
         </div>
 
         <div x-data="{ tab: 'tab1' }" class="space-y-10">
-            <div class="flex justify-center gap-4 pt-10">
-                <button x-on:click="tab = 'tab1'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab1'}">Akuntansi & Perpajakan</button>
-                <button x-on:click="tab = 'tab2'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab2'}">Akuntansi</button>
-                <button x-on:click="tab = 'tab3'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab3'}">Perpajakan individual</button>
-                <button x-on:click="tab = 'tab4'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab4'}">Perpajakan perusahaan</button>
-                <button x-on:click="tab = 'tab5'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab5'}">virtual manager</button>
-                <button x-on:click="tab = 'tab6'" class="pricelist-tabs" x-bind:class="{'active': tab == 'tab6'}">konsultasi</button>
+            <div class="flex flex-wrap justify-center gap-4 pt-10">
+                <button x-on:click="tab = 'tab1'" class="max-md:w-full pricelist-tabs" x-bind:class="{'active': tab == 'tab1'}">Akuntansi & Perpajakan</button>
+                <button x-on:click="tab = 'tab2'" class="max-md:w-full pricelist-tabs" x-bind:class="{'active': tab == 'tab2'}">Akuntansi</button>
+                <button x-on:click="tab = 'tab3'" class="max-md:w-full pricelist-tabs" x-bind:class="{'active': tab == 'tab3'}">Perpajakan individual</button>
+                <button x-on:click="tab = 'tab4'" class="max-md:w-full pricelist-tabs" x-bind:class="{'active': tab == 'tab4'}">Perpajakan perusahaan</button>
+                <button x-on:click="tab = 'tab5'" class="max-md:w-full pricelist-tabs" x-bind:class="{'active': tab == 'tab5'}">virtual manager</button>
+                <button x-on:click="tab = 'tab6'" class="max-md:w-full pricelist-tabs" x-bind:class="{'active': tab == 'tab6'}">konsultasi</button>
             </div>
 
             <div x-show="tab === 'tab1'" class=""><x-frontend.charge.akuntansi-perpajakan :data="config('web-data.charges.akuntansi_perpajakan')"/></div>

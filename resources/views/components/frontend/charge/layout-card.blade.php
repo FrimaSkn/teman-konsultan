@@ -4,8 +4,8 @@
 
 <div class="container mt-10 space-y-8">
     @foreach ($data['paket'] as $paket)
-        <div class="w-full px-8 py-6 text-left bg-white shadow rounded-3xl">
-            <div class="flex items-center justify-between">
+        <div class="w-full px-8 py-6 overflow-x-auto text-left bg-white shadow rounded-3xl">
+            <div class="flex justify-between md:items-center max-md:flex-col max-md:gap-4">
                 <h3 class="text-xl font-semibold uppercase text-primary">
                     <span>
                         {{ count($data['paket']) > 1 ? $loop->iteration . '. ' : '' }}

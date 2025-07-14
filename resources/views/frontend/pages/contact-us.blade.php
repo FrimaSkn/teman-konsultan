@@ -5,11 +5,11 @@
 @section('content')
     <x-frontend.hero-section :image="asset('img/asset-5.jpg')" />
     <section class="container pt-20">
-        <div class="text-3xl font-semibold text-center uppercase text-underline">HUBUNGI KAMI</div>
+        <div class="text-xl font-semibold text-center uppercase md:text-3xl text-underline" data-motion="inview-fadedown" data-animate>HUBUNGI KAMI</div>
 
-        <div class="grid grid-cols-2 mt-10">
-            <div class="w-full aspect-video"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2610539142584!2d106.81034819999999!3d-6.229273999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f19c6e35b28f%3A0x748573069d39f637!2s18%20Parc%20Place%20SCBD!5e0!3m2!1sen!2sid!4v1750056022337!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-            <div class="w-full p-8 bg-primary aspect-video">
+        <div class="grid mt-10 md:grid-cols-2">
+            <div class="w-full max-md:order-2 aspect-square md:aspect-video" data-motion="inview-downright" data-animate><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2610539142584!2d106.81034819999999!3d-6.229273999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f19c6e35b28f%3A0x748573069d39f637!2s18%20Parc%20Place%20SCBD!5e0!3m2!1sen!2sid!4v1750056022337!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div class="w-full p-8 max-md:order-1 bg-primary md:aspect-video" data-motion="inview-downleft" data-animate>
                 <div class="text-xl font-semibold text-white uppercase text-underline-left">head office</div>
                 <div class="pt-8 font-light text-white">18 Parc Place, SCBD Tower B Lt. 2 <br>
                     Jl. Jend. Sudirman Kav. 52-53 <br>
@@ -17,7 +17,7 @@
                     Jakarta Selatan 12190
                 </div>
             </div>
-            <div class="w-full p-8 bg-secondary aspect-video">
+            <div class="w-full p-8 bg-secondary md:aspect-video max-md:order-3" data-motion="inview-upright" data-animate>
                 <div class="text-xl font-semibold uppercase text-primary text-underline-left-blue">WORKSHOP</div>
                 <div class="pt-8 font-light text-primary">
                     Latinos Business District BSD B16/6, <br>
@@ -25,31 +25,31 @@
                     Kec. Serpong, Tangerang Selatan, Banten 15310 <br>
                 </div>
             </div>
-            <div class="w-full aspect-video"><iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3965.561787214481!2d106.67920117586915!3d-6.321144361856625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s%20Latinos%20Business%20District%20BSD%20B16%2F6%2C%20%20Jl.%20Raya%20Rawa%20Buntu%2C%20Kel.%20Rawa%20Buntu%2C%20%20Kec.%20Serpong%2C%20Tangerang%20Selatan%2C%20Banten%2015310!5e0!3m2!1sen!2sid!4v1750056268556!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div class="w-full aspect-square md:aspect-video max-md:order-4" data-motion="inview-upleft" data-animate><iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3965.561787214481!2d106.67920117586915!3d-6.321144361856625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s%20Latinos%20Business%20District%20BSD%20B16%2F6%2C%20%20Jl.%20Raya%20Rawa%20Buntu%2C%20Kel.%20Rawa%20Buntu%2C%20%20Kec.%20Serpong%2C%20Tangerang%20Selatan%2C%20Banten%2015310!5e0!3m2!1sen!2sid!4v1750056268556!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
         </div>
-        <div class="grid grid-cols-3 mt-6">
-            <div class="flex items-center justify-center gap-2">
+        <div class="grid mt-6 md:grid-cols-3">
+            <div class="flex items-center gap-2 md:justify-center">
                 <img class="w-5" src="{{ asset('img/icons/wa.png') }}" alt="">
                 <div>WhatsApp : <a href="https://wa.me/628978396600" target="_blank">+62 897-8396-600</a></div>
             </div>
-            <div class="flex items-center justify-center gap-2">
+            <div class="flex items-center gap-2 md:justify-center">
                 <img class="w-5" src="{{ asset('img/icons/email.png') }}" alt="">
                 <div><a href="#">info@temankonsultan.com</a></div>
             </div>
-            <div class="flex items-center justify-center gap-2">
+            <div class="flex items-center gap-2 md:justify-center">
                 <img class="w-5" src="{{ asset('img/icons/call.png') }}" alt="">
                 <div>021 - 488 8888</div>
             </div>
         </div>
 
-        <div id="form-contact" class="grid grid-cols-11 mt-20">
+        <div id="form-contact" class="grid mt-10 md:mt-20 md:grid-cols-11">
             <div class="self-end col-span-5">
                 <img src="{{ asset('img/asset-contact.png') }}" alt="">
             </div>
-            <div class="col-span-6">
+            <div class="col-span-6" data-motion="inview-fadeup" data-animate>
                 <div class="text-xl font-semibold uppercase text-underline-left">ENQUIRY FORM</div>
 
-                <x-forms.post :action="route('frontend.contact-us.store')" class="my-20">
+                <x-forms.post :action="route('frontend.contact-us.store')" class="my-14 md:my-20">
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">Nama lengkap</label>

@@ -1,6 +1,6 @@
 <footer class="bg-accent">
     <div class="container pt-10 pb-40 mx-auto">
-        <div class="grid grid-cols-1 gap-8 lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-8 lg:gap-1 xl:gap-8 lg:grid-cols-4">
             <div class="space-y-4">
                 <div><img src="{{ asset('img/brand/logo.png') }}" alt="Teman Konsultan"></div>
                 <div class="w-1/6 h-1 bg-secondary"></div>

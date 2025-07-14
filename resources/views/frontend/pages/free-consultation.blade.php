@@ -4,8 +4,8 @@
 
 @section('content')
     <x-frontend.hero-section :image="asset('img/asset-1.jpg')" />
-    <section class="container py-20">
-        <div class="text-3xl font-semibold text-center uppercase text-underline">free consultation</div>
+    <section class="container py-20" data-motion="inview-fadeup" data-animate>
+        <div class="text-xl font-semibold text-center uppercase md:text-3xl text-underline">free consultation</div>
 
         <div class="max-w-lg mx-auto mt-8">
             <x-forms.post :action="route('frontend.free-consultation.store')">
