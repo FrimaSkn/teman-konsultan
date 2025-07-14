@@ -34,7 +34,7 @@
             </div>
             <div class="flex items-center gap-2 md:justify-center">
                 <img class="w-5" src="{{ asset('img/icons/email.png') }}" alt="">
-                <div><a href="#">info@temankonsultan.com</a></div>
+                <div><a href="mailto:info@temankonsultan.com" target="_blank">info@temankonsultan.com</a></div>
             </div>
             <div class="flex items-center gap-2 md:justify-center">
                 <img class="w-5" src="{{ asset('img/icons/call.png') }}" alt="">

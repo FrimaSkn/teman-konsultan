@@ -22,11 +22,11 @@
             <div>
                 <div class="flex items-center gap-2 text-white">
                     <img class="w-5" src="{{ asset('img/icons/wa.png') }}" alt="">
-                    <div>WhatsApp : <a href="#">+62812 3456 789</a></div>
+                    <div>WhatsApp : <a href="https://wa.me/628978396600" target="_blank">+62 897-8396-600</a></div>
                 </div>
                 <div class="flex items-center gap-2 text-white">
                     <img class="w-5" src="{{ asset('img/icons/email.png') }}" alt="">
-                    <div><a href="#">info@temankonsultan.com</a></div>
+                    <div><a href="mailto:info@temankonsultan.com" target="_blank">info@temankonsultan.com</a></div>
                 </div>
                 <div class="flex items-center gap-2 text-white">
                     <img class="w-5" src="{{ asset('img/icons/call.png') }}" alt="">
