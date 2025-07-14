@@ -26,14 +26,14 @@
                         <p class="mt-4 text-sm md:mt-7 max-md:leading-none md:text-base">Kami menyediakan Solusi Satu Pintu yang Terintegrasi dengan personel berkualifikasi tinggi dalam bidang keuangan, perpajakan, akuntansi, penggajian, hukum, teknologi, konsultasi dan audit; meningkatkan dukungan secara efektif untuk pengembangan bisnis Anda. </p>
                         <a href="{{ route('frontend.contact-us') }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center mt-2 max-md:text-sm md:mt-4">
                             <span>read more</span>
-                            <i data-lucide="chevron-right" class="max-md:size-4"></i>
+                            <i data-lucide="chevron-right" class="max-md:size-4 "></i>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="container flex justify-between gap-2 px-4 py-4 text-white md:items-center max-md:flex-col md:px-16 md:py-6 bg-primary" data-motion="inview-faderight-stg">
+        <div class="flex justify-between gap-2 px-4 py-4 mt-0 text-white lg:container md:items-center max-md:flex-col md:px-8 md:py-6 lg:px-16 lg:py-6 bg-primary md:-mt-10 lg:mt-0" data-motion="inview-faderight-stg">
             <h2 data-animate="inview-faderight-stg" class="text-sm md:text-base">PERCAYAKAN KENUTUHAN PERPAJAKAN DAN AKUNTING PERUSAHAAN ANDA KEPADA KAMI</h2>
             <a data-animate="inview-faderight-stg" href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden w-max max-md:text-sm">
                 <span class="flex items-center font-medium text-primary text-nowrap">
@@ -46,7 +46,7 @@
         <section class="container flex flex-col items-center justify-center pt-10 pb-20 space-y-10">
             <h2 class="block text-xl font-semibold md:text-3xl text-underline" data-motion="inview-fadeup" data-animate>JASA KAMI</h2>
 
-            <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4" data-motion="inview-fadeup-stg">
+            <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4" data-motion="inview-fadeup-stg">
                 @foreach ($services as $category)
                     <div x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false" data-animate="inview-fadeup-stg"
                         class="relative flex items-center justify-center w-full overflow-hidden bg-cover rounded-lg shadow cursor-default aspect-square" style="background-image: url('{{ $category->getFirstMediaUrl('service_category') }}');">
@@ -87,7 +87,7 @@
         </section>
 
         <section class="py-20 bg-gray-200">
-            <div class="container grid gap-10 md:grid-cols-2">
+            <div class="container grid gap-10 lg:grid-cols-2">
                 <div data-motion="inview-fadeleft" data-animate>
                     <img class="aspect-[16/10]" src="{{ asset('img/thumb-1.jpg') }}" alt="">
                 </div>
@@ -106,7 +106,7 @@
 
         <section class="container py-20">
             <h2 class="inline-block text-xl font-semibold uppercase md:text-3xl text-underline-left" data-motion="inview-faderight" data-animate>why choose us?</h2>
-            <div class="grid gap-8 mt-10 md:grid-cols-3" data-motion="inview-faderight-stg">
+            <div class="grid gap-8 mt-10 md:grid-cols-2 lg:grid-cols-3" data-motion="inview-faderight-stg">
                 <div data-animate="inview-faderight-stg">
                     <div class="h-16 md:h-24 aspect-[9/12] mb-3">
                         <img class="object-contain object-bottom h-full" src="{{ asset('img/icons/Asset-1.png') }}" alt="">

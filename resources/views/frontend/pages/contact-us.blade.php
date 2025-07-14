@@ -27,7 +27,7 @@
             </div>
             <div class="w-full aspect-square md:aspect-video max-md:order-4" data-motion="inview-upleft" data-animate><iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3965.561787214481!2d106.67920117586915!3d-6.321144361856625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s%20Latinos%20Business%20District%20BSD%20B16%2F6%2C%20%20Jl.%20Raya%20Rawa%20Buntu%2C%20Kel.%20Rawa%20Buntu%2C%20%20Kec.%20Serpong%2C%20Tangerang%20Selatan%2C%20Banten%2015310!5e0!3m2!1sen!2sid!4v1750056268556!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
         </div>
-        <div class="grid mt-6 md:grid-cols-3">
+        <div class="grid mt-6 md:grid-cols-3 max-lg:text-sm">
             <div class="flex items-center gap-2 md:justify-center">
                 <img class="w-5" src="{{ asset('img/icons/wa.png') }}" alt="">
                 <div>WhatsApp : <a href="https://wa.me/628978396600" target="_blank">+62 897-8396-600</a></div>

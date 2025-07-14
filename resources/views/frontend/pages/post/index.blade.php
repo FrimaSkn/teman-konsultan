@@ -7,7 +7,7 @@
     <section class="container py-10 md:py-20">
         <div class="text-xl font-semibold text-center uppercase md:text-3xl text-underline">@lang('Article')</div>
 
-        <div class="grid mt-10 md:grid-cols-3 gap-x-4 gap-y-8" data-motion="inview-fadeup-stg">
+        <div class="grid mt-10 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8" data-motion="inview-fadeup-stg">
             @for ($i = 0; $i < 9; $i++)
             <div data-animate="inview-fadeup-stg">
                 <div class="bg-center bg-cover aspect-video" style="background-image: url('{{ asset('img/asset-1.jpg') }}"></div>
