@@ -21,9 +21,9 @@
 <body>
     @include('includes.partials.read-only')
     @include('includes.partials.logged-in-as')
+    @include('frontend.includes.navigation')
 
     <div id="app">
-        @include('frontend.includes.navigation')
         {{-- @include('includes.partials.messages') --}}
 
         <main>

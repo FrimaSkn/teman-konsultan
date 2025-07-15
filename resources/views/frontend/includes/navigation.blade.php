@@ -3,6 +3,8 @@
         <a href="{{ url('/') }}" class="logo">
             <img src="{{ asset('img/brand/logo.png') }}" alt="">
         </a>
+
+        {{-- menu desktop --}}
         <div class="menu">
             <div class="flex gap-4">
                 <div class="flex items-center gap-2">
@@ -99,5 +101,91 @@
                 </li>
             </ul>
         </div>
+
+        <div x-data="menuToggle" class="flex items-center gap-2 lg:hidden">
+            <div class="flex items-center gap-2">
+                <a rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="text-xs {{ LaravelLocalization::getCurrentLocale() == 'en' ? 'px-2 py-px uppercase bg-primary rounded-md font-medium text-white':''}}">ENG</a>
+                <div class="w-px h-4 bg-black"></div>
+                <a rel="alternate" hreflang="id" href="{{ LaravelLocalization::getLocalizedURL('id', null, [], true) }}" class="text-xs {{ LaravelLocalization::getCurrentLocale() == 'id' ? 'px-2 py-px uppercase bg-primary rounded-md font-medium text-white':''}}">IDN</a>
+            </div>
+
+            <div id="nav-icon3" x-bind:class="{ 'open': open }" x-on:click="toggleOpen()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <template x-teleport="body">
+                <div class="fixed inset-x-0 bottom-0 w-full h-screen bg-white top-14 z-[99] pt-10" x-show="open"
+                    x-transition:enter="transition ease-in duration-200"
+                    x-transition:enter-start="-translate-y-[100%]"
+                    x-transition:enter-end="translate-y-0"
+                    x-transition:leave="transition ease-out duration-200"
+                    x-transition:leave-start="translate-y-0"
+                    x-transition:leave-end="-translate-y-[100%]"
+                >
+                    <ul class="container mx-auto *:text-center divide-y-2 divide-amber-100 *:py-3">
+                        <li><a href="{{ route('frontend.home') }}" class="menu-item {{ activeMenu('frontend.home') }}">@lang('Home')</a></li>
+                        <li>
+                            <a href="#" class="flex items-center justify-center gap-1 menu-item">Jasa Kami <i data-lucide="chevron-right" class="size-4"></i></a>
+                        </li>
+                        <li><a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">Harga</a></li>
+                        <li><a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.index') }}">Artikel</a></li>
+                        <li><a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">Tentang Kami</a></li>
+                        <li><a href="{{ route('frontend.contact-us') }}" class="menu-item {{ activeMenu('frontend.contact-us') }}">Hubungi Kami</a></li>
+                    </ul>
+
+                    <div class="container flex flex-col items-center gap-2 mt-4">
+                        @guest
+                            <a href="{{ route('frontend.auth.login') }}"
+                                class="px-3 py-1.5 text-xs font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
+                                {{ Route::is('frontend.auth.*') || Route::is('frontend.auth.login') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
+                            >login</a>
+                        @else
+                            <div class="relative flex gap-2" x-data="{ open: false }" x-on:click.away="open = false">
+                                <button x-on:click="open = !open" class="flex items-center gap-3">
+                                    <img class="rounded-full size-7 bg-slate-200" src="{{ $logged_in_user->avatar }}" />
+                                    <span class="text-xs font-semibold truncate max-w-20">{{ $logged_in_user->name }}</span>
+                                </button>
+                                <div class="absolute z-50 overflow-hidden bg-white rounded shadow top-12 min-w-40" x-show="open" x-cloak>
+                                    <div class="px-4 py-2 bg-gray-100 text-nowrap">
+                                        <div class="font-semibold">{{ $logged_in_user->name }}</div>
+                                    </div>
+                                    <div class="px-4 py-2">
+                                        <div class="flex items-center gap-1 cursor-pointer hover:text-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                            <i class="size-4" data-lucide="log-out"></i>
+                                            @lang('Logout')
+                                            <x-forms.post :action="route('frontend.auth.logout')" id="logout-form" class="d-none" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endguest
+
+                        <a href="{{ route('frontend.free-consultation.index') }}"
+                                class="px-3 py-1.5 text-xs font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
+                                {{ Route::is('frontend.free-consultation.*') || Route::is('frontend.free-consultation.index') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
+                            >free consultation
+                        </a>
+                    </div>
+                </div>
+            </template>
+        </div>
     </nav>
 </header>
+
+@push('after-scripts')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('menuToggle', () => ({
+                open: false,
+                toggleOpen() {
+                    this.open = !this.open
+
+                    icons()
+                },
+            }))
+        });
+
+    </script>
+@endpush
