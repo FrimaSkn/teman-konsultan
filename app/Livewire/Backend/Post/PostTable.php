@@ -36,6 +36,8 @@ class PostTable extends Component implements HasForms, HasTable
                         'draft' => 'warning',
                     })
                     ->searchable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Author'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

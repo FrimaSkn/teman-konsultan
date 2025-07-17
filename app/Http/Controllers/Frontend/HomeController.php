@@ -15,6 +15,7 @@ class HomeController
     public function index(SettingHome $settings)
     {
         $services = \App\Models\ServicesCategory::with('services')->get();
+        // dd($settings);
         return view('frontend.index', [
             'services' => $services,
             'settings' => $settings,

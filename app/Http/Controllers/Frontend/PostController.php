@@ -12,9 +12,9 @@ class PostController extends Controller
         return view('frontend.pages.post.index');
     }
 
-    public function show($slug)
+    public function show()
     {
-        $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
-        return view('frontend.pages.post.show', compact('post'));
+        // $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
+        return view('frontend.pages.post.show');
     }
 }

@@ -18,35 +18,55 @@
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">nama lengkap</label>
-                                    <input type="text" id="name" name="name" value="{{ old('name') }}" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                                    <input type="text" id="name" name="name" value="{{ old('name') }}" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                        {{ $errors->has('name') ? 'border-red-500' : 'border-gray-600' }}" placeholder="" required />
+                                    @error('name')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 uppercase">EMAIL</label>
-                                    <input type="email" id="email" name="email" value="{{ old('email') }}" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
+                                    <input type="email" id="email" name="email" value="{{ old('email') }}" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                        {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }}" placeholder="" required />
+                                    @error('email')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 uppercase">nomor whatsapp / hp</label>
-                                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                        {{ $errors->has('phone') ? 'border-red-500' : 'border-gray-600' }}" placeholder="" required />
+                                    @error('phone')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 uppercase">password</label>
-                                    <input type="password" id="password" name="password" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                                    <input type="password" id="password" name="password" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                        {{ $errors->has('password') ? 'border-red-500' : 'border-gray-600' }}" required />
+                                    @error('password')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
                                     <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 uppercase">retype password</label>
-                                    <input type="password" id="password_confirmation" name="password_confirmation" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                        {{ $errors->has('password_confirmation') ? 'border-red-500' : 'border-gray-600' }}" required />
+                                    @error('password_confirmation')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -57,14 +77,6 @@
                                         <input type="hidden" name="captcha_status" value="true" />
                                     </div><!--col-->
                                 </div><!--row-->
-                            @endif
-
-                            @if(isset($errors) && $errors->any())
-                                <x-utils.alert type="danger" class="header-message">
-                                    @foreach($errors->all() as $error)
-                                        {{ $error }}<br/>
-                                    @endforeach
-                                </x-utils.alert>
                             @endif
 
                             <div class="float-right mt-3">

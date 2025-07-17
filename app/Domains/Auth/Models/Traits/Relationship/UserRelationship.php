@@ -2,6 +2,7 @@
 
 namespace App\Domains\Auth\Models\Traits\Relationship;
 
+use App\Models\Post;
 use App\Domains\Auth\Models\PasswordHistory;
 
 /**
@@ -15,5 +16,10 @@ trait UserRelationship
     public function passwordHistories()
     {
         return $this->morphMany(PasswordHistory::class, 'model');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

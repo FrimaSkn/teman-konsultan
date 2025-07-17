@@ -91,7 +91,7 @@
                     <a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">Harga</a>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.index') }}">Artikel</a>
+                    <a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.*') }}">Artikel</a>
                 </li>
                 <li>
                     <a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">Tentang Kami</a>
@@ -116,7 +116,7 @@
                 <span></span>
             </div>
             <template x-teleport="body">
-                <div class="fixed inset-x-0 bottom-0 w-full h-screen bg-white top-14 z-[99] pt-10" x-show="open"
+                <div class="fixed inset-x-0 bottom-0 w-full h-screen bg-white top-14 z-[99] pt-10 md:pt-20" x-show="open"
                     x-transition:enter="transition ease-in duration-200"
                     x-transition:enter-start="-translate-y-[100%]"
                     x-transition:enter-end="translate-y-0"

@@ -5,8 +5,8 @@
     $getFristPaket = Arr::first($data['paket']);
 @endphp
 
-<div class="flex gap-4">
-    <div class="mt-16 space-y-4 basis-[30%] lg:ml-[5%] xl:ml-[8%] 2xl:ml-[20%]">
+<div class="flex gap-4 max-md:container">
+    <div class="mt-16 space-y-4 md:basis-1/2 lg:basis-[30%] md:ml-[5%] xl:ml-[8%] 2xl:ml-[20%] max-md:hidden">
         @if (array_key_exists('price', $getFristPaket) || array_key_exists('min_contract', $getFristPaket))
             <div>
                 @if (array_key_exists('price', $getFristPaket))
@@ -82,7 +82,7 @@
         @endif
     </div>
 
-    <div class="swiper price-swiper basis-[70%]">
+    <div class="swiper price-swiper md:basis-1/2 lg:basis-[70%]">
         <div class="swiper-wrapper">
             @foreach ($data['paket'] as $paket)
             <div class="swiper-slide !w-72">

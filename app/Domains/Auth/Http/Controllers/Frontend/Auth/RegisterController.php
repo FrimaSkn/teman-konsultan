@@ -77,6 +77,7 @@ class RegisterController
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
             'phone' => ['required', 'string', 'max:14'],
             'password' => ['max:100', Password::min(8)->letters()->numbers()],
+            'password_confirmation' => ['max:100', 'required_with:password', 'same:password'],
             // 'password' => ['max:100', Password::min(8)->mixedCase()->letters()->numbers()->symbols()->uncompromised()],
             // 'terms' => ['required', 'in:1'],
             'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],

@@ -66,12 +66,11 @@ class ManageHome extends Component implements HasForms, Plugin
                 Fieldset::make('About Section')
                     ->schema([
                         Forms\Components\FileUpload::make('about_image')
-                            ->label(__('Image'))
-                            ->image()
+                            ->label(__('File'))
                             ->disk('public_pages')
                             ->directory('home/about')
                             ->maxSize(1024)
-                            ->acceptedFileTypes(['image/*']),
+                            ->acceptedFileTypes(['image/*', 'video/*']),
                         Grid::make(1)
                             ->schema([
                                 Forms\Components\TextInput::make('about_title')
@@ -111,6 +110,24 @@ class ManageHome extends Component implements HasForms, Plugin
                                             ->translatable()
                                     ])->columnSpan(1),
                             ])->columns(2)
+                    ])
+                    ->columns(1),
+                Fieldset::make('Section 5')
+                    ->schema([
+                        Forms\Components\Textarea::make('section_5_desc')
+                            ->label(__('Description'))
+                            ->required()
+                            ->translatable(),
+                        Forms\Components\TextInput::make('section_5_money')
+                            ->label(__('TOTAL UANG YANG KAMI ATUR'))
+                            ->required()
+                            ->translatable(),
+                        Forms\Components\TextInput::make('section_5_implemented')
+                            ->label(__('PAJAK & AKUNTING TERLAKSANA'))
+                            ->required(),
+                        Forms\Components\TextInput::make('section_5_client')
+                            ->label(__('KLIEN PUAS'))
+                            ->required(),
                     ])
                     ->columns(1),
                 ])

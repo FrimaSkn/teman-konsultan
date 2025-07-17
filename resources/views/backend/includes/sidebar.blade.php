@@ -29,7 +29,7 @@
                 $logged_in_user->can('admin.access.user.change-password')
             )
         )
-            <li class="c-sidebar-nav-title">@lang('Orders')</li>
+            {{-- <li class="c-sidebar-nav-title">@lang('Orders')</li>
             <li class="c-sidebar-nav-item">
                 <x-utils.link
                     class="c-sidebar-nav-link"
@@ -37,7 +37,7 @@
                     :active="activeClass(Route::is('admin.order.*'), 'c-active')"
                     icon="c-sidebar-nav-icon cil-speedometer"
                     :text="__('Order Management')" />
-            </li>
+            </li> --}}
 
             <li class="c-sidebar-nav-title">@lang('Articles')</li>
             <li class="c-sidebar-nav-item">
@@ -73,7 +73,7 @@
                 </ul>
             </li>
 
-            <li class="c-sidebar-nav-dropdown">
+            {{-- <li class="c-sidebar-nav-dropdown">
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-list"
@@ -94,7 +94,7 @@
                             :text="__('Packages')" />
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
 
 

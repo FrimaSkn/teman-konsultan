@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Domains\Auth\Models\User;
 use Spatie\Sluggable\HasSlug;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Sluggable\SlugOptions;
@@ -63,5 +64,12 @@ class Post extends Model implements HasMedia
     {
         return $query->where('status', 'archived');
     }
+
+    // user relation
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 }

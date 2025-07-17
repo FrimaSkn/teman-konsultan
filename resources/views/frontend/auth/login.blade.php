@@ -62,6 +62,14 @@
                                 </div><!--row-->
                             @endif
 
+                            @if(isset($errors) && $errors->any())
+                                <x-utils.alert type="danger">
+                                    @foreach($errors->all() as $error)
+                                        {{ $error }}<br/>
+                                    @endforeach
+                                </x-utils.alert>
+                            @endif
+
                             <div class="grid grid-cols-3 gap-4 mt-4">
                                 <div class="flex items-end justify-between col-span-3">
                                     <a href="{{ route('frontend.auth.register') }}" class="underline">Don’t have an account yet? Register here</a>
