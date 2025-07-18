@@ -15,7 +15,7 @@
                 <div class="text-sm text-gray-300">Author | Date</div>
                 <p class="mt-2 max-md:text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>
                 <a href="{{ route('frontend.post.show') }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-white text-nowrap inline-flex items-center mt-4">
-                    <span>read more</span>
+                    <span>@lang('Read more')</span>
                     <i data-lucide="chevron-right"></i>
                 </a>
             </div>

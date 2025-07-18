@@ -33,7 +33,7 @@
         </section>
 
         <div class="flex justify-between gap-2 px-4 py-4 mt-0 text-white lg:container lg:items-center max-lg:flex-col md:px-8 md:py-6 lg:px-16 lg:py-6 bg-primary md:-mt-10 lg:mt-0" data-motion="inview-faderight-stg">
-            <h2 data-animate="inview-faderight-stg" class="text-sm uppercase md:text-base">@lang("Trust your company's tax and accounting needs to us")</h2>
+            <h2 data-animate="inview-faderight-stg" class="text-sm uppercase md:text-base">@lang("Trust your company's business needs to us")</h2>
             <a data-animate="inview-faderight-stg" href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden w-max max-md:text-sm">
                 <span class="flex items-center font-medium text-primary text-nowrap">
                     <span>@lang("Get a quote")</span>
@@ -124,14 +124,14 @@
                 <div class="flex gap-10 mt-10 md:items-center max-md:flex-col" data-motion="inview-faderight-stg">
                     <div class="text-white" data-animate="inview-faderight-stg">
                         <div class="text-3xl font-light">{{ translate($settings->section_5_money) }}</div>
-                        <div class="text-xs font-light uppercase">@lang('Total money we manage')</div>
+                        <div class="text-xs font-light uppercase">@lang('Total cash managed')</div>
                     </div>
                     <div class="text-white" data-animate="inview-faderight-stg">
                         <div class="flex items-center gap-2 text-3xl font-light">
                             <img src="{{ asset('img/icons/Asset-7.png') }}" alt="">
                             <span>{{ $settings->section_5_implemented }}</span>
                         </div>
-                        <div class="text-xs font-light uppercase">@lang('Tax & Accounting Implemented')</div>
+                        <div class="text-xs font-light uppercase">@lang('Tax & Accounting Completed')</div>
                     </div>
                     <div class="text-white" data-animate="inview-faderight-stg">
                         <div class="flex items-center gap-2 text-3xl font-light">

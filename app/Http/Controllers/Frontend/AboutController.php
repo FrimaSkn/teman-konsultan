@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Settings\SettingAbout;
+use App\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
-    public function index()
+    public function index(SettingAbout $settings)
     {
-        return view('frontend.pages.about');
+        return view('frontend.pages.about', [
+            'settings' => $settings,
+        ]);
     }
 }

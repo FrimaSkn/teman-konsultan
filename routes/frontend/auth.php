@@ -19,6 +19,22 @@ use Tabuna\Breadcrumbs\Trail;
  */
 Route::group(['as' => 'auth.'], function () {
     Route::group(['middleware' => 'auth'], function () {
+
+            Route::group([
+                'prefix' => 'free-consultation',
+                'as' => 'free-consultation.',
+            ], function () {
+                Route::get('/', [ConsultationController::class, 'free_consultation'])
+                    ->name('index');
+
+                Route::get('messages', [ConsultationController::class, 'messages'])
+                    ->name('messages');
+
+                Route::post('store', [ConsultationController::class, 'store'])
+                    ->name('store');
+            });
+
+
         // Authentication
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 

@@ -47,20 +47,6 @@ use App\Http\Controllers\Frontend\ConsultationController;
     Route::post('hubungi-kami', [ContactUsController::class, 'store'])
         ->name('contact-us.store');
 
-    Route::group([
-        'prefix' => 'free-consultation',
-        'as' => 'free-consultation.',
-    ], function () {
-        Route::get('/', [ConsultationController::class, 'free_consultation'])
-            ->name('index');
-
-        Route::get('messages', [ConsultationController::class, 'messages'])
-            ->name('messages');
-
-        Route::post('store', [ConsultationController::class, 'store'])
-            ->name('store');
-    });
-
     Route::get('terms', [TermsController::class, 'index'])
         ->name('pages.terms')
         ->breadcrumbs(function (Trail $trail) {

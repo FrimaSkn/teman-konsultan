@@ -33,19 +33,30 @@
                     <div>021 - 488 8888</div>
                 </div>
                 <div class="flex items-center gap-6 mt-6 max-lg:order-2">
-                    <img class="h-7" src="{{ asset('img/icons/ig.png') }}" alt="">
-                    <img class="h-7" src="{{ asset('img/icons/linkedin.png') }}" alt="">
-                    <img class="h-7" src="{{ asset('img/icons/fb.png') }}" alt="">
-                    <img class="h-7" src="{{ asset('img/icons/yt.png') }}" alt="">
-                    <img class="h-7" src="{{ asset('img/icons/tiktok.png') }}" alt="">
+                    <a href="https://www.instagram.com/temankonsultan/" target="_blank" rel="noopener noreferrer">
+                        <img class="h-7" src="{{ asset('img/icons/ig.png') }}" alt="">
+                    </a>
+                    <a href="https://www.linkedin.com/company/temankonsultan" target="_blank" rel="noopener noreferrer">
+                        <img class="h-7" src="{{ asset('img/icons/linkedin.png') }}" alt="">
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61576359022399 " target="_blank" rel="noopener noreferrer">
+                        <img class="h-7" src="{{ asset('img/icons/fb.png') }}" alt="">
+                    </a>
+                    <a href="https://www.youtube.com/@teman.konsultan" target="_blank" rel="noopener noreferrer">
+                        <img class="h-7" src="{{ asset('img/icons/yt.png') }}" alt="">
+                    </a>
+                    <a href="https://www.tiktok.com/@teman.konsultan" target="_blank" rel="noopener noreferrer">
+                        <img class="h-7" src="{{ asset('img/icons/tiktok.png') }}" alt="">
+                    </a>
                 </div>
             </div>
 
             {{-- head office --}}
             <div class="leading-tight text-white max-lg:order-4">
-                GP Plaza, 2nd, 3nd and 12th floor, <br>
-                Jl. Gelora II No. 1 (Palmerah) - Slipi <br>
-                Jakarta Pusat, INDONESIA <br>
+                18 Parc Place, SCBD Tower B Lt. 2 <br>
+                Jl. Jend. Sudirman Kav. 52-53 <br>
+                Senayan, Kebayoran Baru <br>
+                Jakarta Selatan 12190
             </div>
 
             {{-- WORKSHOP --}}
@@ -82,7 +93,7 @@
                 </div>
                 <div class="flex items-center gap-1 text-white uppercase group">
                     <i data-lucide="chevron-right" class="size-5 stroke-white group-hover:stroke-secondary"></i>
-                    <a href="{{ route('frontend.free-consultation.index') }}" class="text-sm group-hover:text-secondary text-nowrap">free consultation</a>
+                    <a href="{{ route('frontend.auth.free-consultation.index') }}" class="text-sm group-hover:text-secondary text-nowrap">free consultation</a>
                 </div>
             </div>
         </div>

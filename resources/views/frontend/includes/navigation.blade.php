@@ -12,10 +12,12 @@
                     <div class="w-px h-4 bg-black"></div>
                     <a rel="alternate" hreflang="id" href="{{ LaravelLocalization::getLocalizedURL('id', null, [], true) }}" class="text-sm {{ LaravelLocalization::getCurrentLocale() == 'id' ? 'px-2 py-px uppercase bg-primary rounded-md font-medium text-white':''}}">IDN</a>
                 </div>
-                <a href="{{ route('frontend.free-consultation.index') }}"
-                    class="px-4 py-2 text-sm font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
-                            {{ Route::is('frontend.free-consultation.*') || Route::is('frontend.free-consultation.index') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
-                >free consultation</a>
+                @auth
+                    <a href="{{ route('frontend.auth.free-consultation.index') }}"
+                        class="px-4 py-2 text-sm font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
+                                {{ Route::is('frontend.auth.free-consultation.*') || Route::is('frontend.auth.free-consultation.index') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
+                    >free consultation</a>
+                @endauth
                 @guest
                     <a href="{{ route('frontend.auth.login') }}"
                         class="px-4 py-2 text-sm font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
@@ -48,7 +50,7 @@
                 </li>
                 <li>
                     <div x-data="{ open: false }" x-on:click.away="open = false">
-                        <button x-on:click="open = !open" class="menu-item">Jasa Kami</button>
+                        <button x-on:click="open = !open" class="menu-item">@lang('Our Services')</button>
                         <div
                             x-show="open"
                             class="absolute inset-x-0 bg-white top-[7.4rem] shadow"
@@ -62,7 +64,7 @@
                             >
                             <div class="tabs-container" x-data="{ tab: '{{ $services->first()->slug }}' }">
                                 <div class="tabs-menu">
-                                    <div class="mb-2 ml-4 font-medium uppercase text-primary">Jasa Kami</div>
+                                    <div class="mb-2 ml-4 font-medium uppercase text-primary">@lang('Our Services')</div>
                                     <ul class="tab-item">
                                         @foreach ($services as $category)
                                             <li x-on:click.prevent="tab = '{{ $category->slug }}'" x-bind:class="{ 'active': tab === '{{ $category->slug }}' }" class="text-gray-700 cursor-pointer text-nowrap">
@@ -88,16 +90,16 @@
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">Harga</a>
+                    <a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">@lang('Pricing')</a>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.*') }}">Artikel</a>
+                    <a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.*') }}">@lang('Articles')</a>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">Tentang Kami</a>
+                    <a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">@lang('About Us')</a>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.contact-us') }}" class="menu-item {{ activeMenu('frontend.contact-us') }}">Hubungi Kami</a>
+                    <a href="{{ route('frontend.contact-us') }}" class="menu-item {{ activeMenu('frontend.contact-us') }}">@lang('Contact Us')</a>
                 </li>
             </ul>
         </div>
@@ -127,12 +129,12 @@
                     <ul class="container mx-auto *:text-center divide-y-2 divide-amber-100 *:py-3">
                         <li><a href="{{ route('frontend.home') }}" class="menu-item {{ activeMenu('frontend.home') }}">@lang('Home')</a></li>
                         <li>
-                            <a href="#" class="flex items-center justify-center gap-1 menu-item">Jasa Kami <i data-lucide="chevron-right" class="size-4"></i></a>
+                            <a href="#" class="flex items-center justify-center gap-1 menu-item">@lang('Our Services') <i data-lucide="chevron-right" class="size-4"></i></a>
                         </li>
-                        <li><a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">Harga</a></li>
-                        <li><a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.index') }}">Artikel</a></li>
-                        <li><a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">Tentang Kami</a></li>
-                        <li><a href="{{ route('frontend.contact-us') }}" class="menu-item {{ activeMenu('frontend.contact-us') }}">Hubungi Kami</a></li>
+                        <li><a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">@lang('Pricing')</a></li>
+                        <li><a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.index') }}">@lang('Articles')</a></li>
+                        <li><a href="{{ route('frontend.about') }}" class="menu-item {{ activeMenu('frontend.about') }}">@lang('About Us')</a></li>
+                        <li><a href="{{ route('frontend.contact-us') }}" class="menu-item {{ activeMenu('frontend.contact-us') }}">@lang('Contact Us')</a></li>
                     </ul>
 
                     <div class="container flex flex-col items-center gap-2 mt-4">
@@ -160,13 +162,14 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <a href="{{ route('frontend.auth.free-consultation.index') }}"
+                                    class="px-3 py-1.5 text-xs font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
+                                    {{ Route::is('frontend.auth.free-consultation.*') || Route::is('frontend.auth.free-consultation.index') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
+                                >free consultation
+                            </a>
                         @endguest
 
-                        <a href="{{ route('frontend.free-consultation.index') }}"
-                                class="px-3 py-1.5 text-xs font-medium leading-none uppercase rounded-lg hover:bg-opacity-90 text-nowrap
-                                {{ Route::is('frontend.free-consultation.*') || Route::is('frontend.free-consultation.index') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
-                            >free consultation
-                        </a>
                     </div>
                 </div>
             </template>

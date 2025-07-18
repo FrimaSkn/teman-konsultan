@@ -139,6 +139,14 @@
                     >
                     {{ __('Home Settings') }}
                 </x-utils.link>
+                <x-utils.link
+                    :href="route('admin.settings.about')"
+                    class="c-sidebar-nav-link"
+                    :active="activeClass(Route::is('admin.settings.about'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-list"
+                    >
+                    {{ __('About Settings') }}
+                </x-utils.link>
             </li>
 
             <li class="c-sidebar-nav-title">@lang('System')</li>

@@ -151,9 +151,18 @@ Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
     Route::get('home', function () {
         return view('backend.settings.home');
     })
-        ->name('home')
-        ->breadcrumbs(function (Trail $trail) {
-            $trail->parent('admin.dashboard')
-                  ->push(__('Home Settings'), route('admin.settings.home'));
-        });
+    ->name('home')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('admin.dashboard')
+                ->push(__('Home Settings'), route('admin.settings.home'));
+    });
+
+    Route::get('about', function () {
+        return view('backend.settings.about');
+    })
+    ->name('about')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('admin.dashboard')
+                ->push(__('About Settings'), route('admin.settings.about'));
+    });
 });
