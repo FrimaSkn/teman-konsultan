@@ -24,7 +24,7 @@
     "src": "node_modules/@coreui/icons/fonts/CoreUI-Icons-Free.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DdtS_2sF.css",
+    "file": "assets/app-XctF1Pnt.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -67,12 +67,12 @@
     ]
   },
   "resources/sass/backend/app.scss": {
-    "file": "assets/app-BD99svmJ.css",
+    "file": "assets/app-D7hn7xdP.css",
     "src": "resources/sass/backend/app.scss",
     "isEntry": true
   },
   "resources/sass/frontend/app.scss": {
-    "file": "assets/app-L5QgrmXa.css",
+    "file": "assets/app-C4ag3rV_.css",
     "src": "resources/sass/frontend/app.scss",
     "isEntry": true
   },
