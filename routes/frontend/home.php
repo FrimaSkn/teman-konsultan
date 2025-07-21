@@ -31,10 +31,7 @@ use App\Http\Controllers\Frontend\ConsultationController;
         Route::get('/', [PostController::class, 'index'])
             ->name('index');
 
-        // Route::get('{slug}', [PostController::class, 'show'])
-        //     ->name('show');
-
-        Route::get('/show', [PostController::class, 'show'])
+        Route::get('{slug}', [PostController::class, 'show'])
             ->name('show');
     });
 

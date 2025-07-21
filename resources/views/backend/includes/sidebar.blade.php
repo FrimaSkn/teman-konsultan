@@ -45,7 +45,7 @@
                     class="c-sidebar-nav-link"
                     :href="route('admin.post.index')"
                     :active="activeClass(Route::is('admin.post.*'), 'c-active')"
-                    icon="c-sidebar-nav-icon cil-speedometer"
+                    icon="c-sidebar-nav-icon cil-description"
                     :text="__('Post')" />
             </li>
 
@@ -129,7 +129,7 @@
             </li>
 
 
-            <li class="c-sidebar-nav-title">@lang('Settings')</li>
+            <li class="c-sidebar-nav-title">@lang('Setting Pages')</li>
             <li class="c-sidebar-nav-item">
                 <x-utils.link
                     :href="route('admin.settings.home')"
@@ -139,13 +139,23 @@
                     >
                     {{ __('Home Settings') }}
                 </x-utils.link>
+
                 <x-utils.link
                     :href="route('admin.settings.about')"
                     class="c-sidebar-nav-link"
                     :active="activeClass(Route::is('admin.settings.about'), 'c-active')"
-                    icon="c-sidebar-nav-icon cil-list"
+                    icon="c-sidebar-nav-icon cil-industry"
                     >
                     {{ __('About Settings') }}
+                </x-utils.link>
+
+                <x-utils.link
+                    :href="route('admin.settings.general')"
+                    class="c-sidebar-nav-link"
+                    :active="activeClass(Route::is('admin.settings.general'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-settings"
+                    >
+                    {{ __('General Settings') }}
                 </x-utils.link>
             </li>
 

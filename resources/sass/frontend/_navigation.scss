@@ -1,13 +1,13 @@
 @layer components {
     header {
-        @apply sticky z-[999] py-4 bg-white shadow xl:pt-8 xl:pb-6 top-0;
+        @apply sticky z-[999] py-4 bg-white shadow xl:py-6 top-0;
 
         nav {
             @apply container flex items-center lg:items-end justify-between gap-4;
 
             .logo {
                 img {
-                    @apply max-md:w-1/2;
+                    @apply max-md:w-full;
                 }
             }
 

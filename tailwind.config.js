@@ -1,11 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 
 export default {
+    darkMode: 'false',
     content: [
         "./resources/views/frontend/**/*.blade.php",
         './resources/views/components/frontend/**/*.blade.php',
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./resources/views/vendor/pagination/*.blade.php",
     ],
     theme: {
         extend: {
@@ -32,6 +34,7 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [
+    ],
 }
 

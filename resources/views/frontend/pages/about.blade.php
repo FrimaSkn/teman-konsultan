@@ -7,7 +7,7 @@
 
     <div class="flex justify-between gap-2 px-4 py-4 text-white lg:container md:items-center max-md:flex-col md:px-8 md:py-6 lg:px-16 lg:py-6 bg-primary" data-motion="inview-faderight-stg">
         <h2 data-animate="inview-faderight-stg" class="text-sm md:text-base">@lang("Trust your company's business needs to us")</h2>
-        <a data-animate="inview-faderight-stg" href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden w-max max-md:text-sm">
+        <a href="{{ route('frontend.contact-us', '#form-contact') }}" data-animate="inview-faderight-stg" href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden w-max max-md:text-sm">
             <span class="flex items-center font-medium text-primary text-nowrap">
                 <span>@lang("Get a quote")</span>
                 <i data-lucide="chevron-right" class="max-md:size-4"></i>

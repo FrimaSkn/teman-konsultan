@@ -10,7 +10,7 @@
         @if (array_key_exists('price', $getFristPaket) || array_key_exists('min_contract', $getFristPaket))
             <div>
                 @if (array_key_exists('price', $getFristPaket))
-                    <div class="text-xl font-semibold leading-tight uppercase">Haraga paket</div>
+                    <div class="text-xl font-semibold leading-tight uppercase">Harga paket</div>
                 @endif
 
                 @if (array_key_exists('min_contract', $getFristPaket) && isset($getFristPaket['min_contract']))

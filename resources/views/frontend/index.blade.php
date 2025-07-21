@@ -23,7 +23,7 @@
                         <h3 class="text-lg leading-none md:text-3xl">{{ translate($settings->hero_title) }}</h3>
                         <div class="w-[15%] h-1 md:h-1.5 mt-2 md:mt-4 bg-secondary"></div>
                         <p class="mt-4 text-sm md:mt-7 max-md:leading-none md:text-base">{{ translate($settings->hero_desc) }}</p>
-                        <a href="{{ route('frontend.contact-us') }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center mt-2 max-md:text-sm md:mt-4">
+                        <a href="{{ route('frontend.about') }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center mt-2 max-md:text-sm md:mt-4">
                             <span>@lang('Read more')</span>
                             <i data-lucide="chevron-right" class="max-md:size-4 "></i>
                         </a>
@@ -34,7 +34,7 @@
 
         <div class="flex justify-between gap-2 px-4 py-4 mt-0 text-white lg:container lg:items-center max-lg:flex-col md:px-8 md:py-6 lg:px-16 lg:py-6 bg-primary md:-mt-10 lg:mt-0" data-motion="inview-faderight-stg">
             <h2 data-animate="inview-faderight-stg" class="text-sm uppercase md:text-base">@lang("Trust your company's business needs to us")</h2>
-            <a data-animate="inview-faderight-stg" href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden w-max max-md:text-sm">
+            <a href="{{ route('frontend.contact-us', '#form-contact') }}" data-animate="inview-faderight-stg" href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg overflow-hidden w-max max-md:text-sm">
                 <span class="flex items-center font-medium text-primary text-nowrap">
                     <span>@lang("Get a quote")</span>
                     <i data-lucide="chevron-right" class="max-md:size-4"></i>
@@ -148,18 +148,18 @@
             <div class="inline-block text-xl font-semibold uppercase md:text-3xl text-underline-left" data-motion="inview-faderight" data-animate>@lang('Article')</div>
 
             <div class="grid mt-10 gap-x-4 gap-y-8 md:gap-4 md:grid-cols-3" data-motion="inview-fadeup-stg">
-                @for ($i = 0; $i < 3; $i++)
-                <div data-animate="inview-fadeup-stg">
-                    <div class="bg-center bg-cover aspect-video" style="background-image: url('{{ asset('img/asset-1.jpg') }}"></div>
-                    <div class="text-lg font-medium">Title</div>
-                    <div class="text-sm text-gray-300">Author | Date</div>
-                    <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor.</p>
-                    <a href="" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-white text-nowrap inline-flex items-center mt-4">
-                        <span>@lang('Read more')</span>
-                        <i data-lucide="chevron-right"></i>
-                    </a>
-                </div>
-                @endfor
+                @foreach ($posts as $post)
+                    <div data-animate="inview-fadeup-stg">
+                        <div class="bg-center bg-cover aspect-video" style="background-image: url('{{ $post->getFirstMediaUrl('post_image') }}"></div>
+                        <div class="text-lg font-medium">{{ $post->title }}</div>
+                        <div class="text-sm text-gray-300">{{ $post->user->name . ' | ' . $post->created_at->format('d M Y') }}</div>
+                        <p class="mt-2">{{ $post->excerpt }}</p>
+                        <a href="{{ route('frontend.post.show', $post->slug) }}" class="pl-4 pr-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-white text-nowrap inline-flex items-center mt-4">
+                            <span>@lang('Read more')</span>
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </section>
     </div>

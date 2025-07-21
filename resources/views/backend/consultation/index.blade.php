@@ -37,5 +37,24 @@
             </ul>
         @endif
     </div>
-    {{ $consultations->links() }}
+
+    <div class="pagination">
+        {{ $consultations->links() }}
+    </div>
 @endsection
+
+@push('after-styles')
+    <style>
+        .pagination nav{
+            width: 100%;
+        }
+        .pagination nav div{
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .pagination nav div div {
+            width: auto;
+        }
+    </style>
+@endpush

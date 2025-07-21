@@ -26,7 +26,8 @@ class ServicesTable extends Component implements HasForms, HasTable
             ->query(Services::query())
             ->columns([
                 Tables\Columns\TextColumn::make('category.name')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Service')
                     ->searchable(),

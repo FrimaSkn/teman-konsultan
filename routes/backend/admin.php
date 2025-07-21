@@ -165,4 +165,13 @@ Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         $trail->parent('admin.dashboard')
                 ->push(__('About Settings'), route('admin.settings.about'));
     });
+
+    Route::get('general', function () {
+        return view('backend.settings.general');
+    })
+    ->name('general')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('admin.dashboard')
+                ->push(__('General Settings'), route('admin.settings.general'));
+    });
 });

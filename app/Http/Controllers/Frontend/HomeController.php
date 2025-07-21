@@ -15,10 +15,11 @@ class HomeController
     public function index(SettingHome $settings)
     {
         $services = \App\Models\ServicesCategory::with('services')->get();
-        // dd($settings);
+        $posts = \App\Models\Post::Published()->limit(3)->get();
         return view('frontend.index', [
             'services' => $services,
             'settings' => $settings,
+            'posts' => $posts
         ]);
     }
 }

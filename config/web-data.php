@@ -112,15 +112,7 @@ return [
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Perhitungan & Pelaporan PPh 21',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 23',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 4(2)',
+                            'key' => 'Perhitungan & Pelaporan PPh 21, 23 dan 4(2)',
                             'value' => 'true',
                         ],
                         [
@@ -142,11 +134,11 @@ return [
                     ],
                     'free' => [
                         [
-                            'key' => 'Pendanmpingan EFIN',
+                            'key' => 'Pendampingan EFIN',
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Pendanmpingan Pengukuhan PKP',
+                            'key' => 'Pendampingan Pengukuhan PKP',
                             'value' => 'false',
                         ],
                         [
@@ -227,15 +219,7 @@ return [
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Perhitungan & Pelaporan PPh 21',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 23',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 4(2)',
+                            'key' => 'Perhitungan & Pelaporan PPh 21, 23 dan 4(2)',
                             'value' => 'true',
                         ],
                         [
@@ -257,11 +241,11 @@ return [
                     ],
                     'free' => [
                         [
-                            'key' => 'Pendanmpingan EFIN',
+                            'key' => 'Pendampingan EFIN',
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Pendanmpingan Pengukuhan PKP',
+                            'key' => 'Pendampingan Pengukuhan PKP',
                             'value' => 'false',
                         ],
                         [
@@ -342,15 +326,7 @@ return [
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Perhitungan & Pelaporan PPh 21',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 23',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 4(2)',
+                            'key' => 'Perhitungan & Pelaporan PPh 21, 23 dan 4(2)',
                             'value' => 'true',
                         ],
                         [
@@ -372,11 +348,11 @@ return [
                     ],
                     'free' => [
                         [
-                            'key' => 'Pendanmpingan EFIN',
+                            'key' => 'Pendampingan EFIN',
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Pendanmpingan Pengukuhan PKP',
+                            'key' => 'Pendampingan Pengukuhan PKP',
                             'value' => 'true',
                         ],
                         [
@@ -457,15 +433,7 @@ return [
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Perhitungan & Pelaporan PPh 21',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 23',
-                            'value' => 'true',
-                        ],
-                        [
-                            'key' => 'Perhitungan & Pelaporan PPh 4(2)',
+                            'key' => 'Perhitungan & Pelaporan PPh 21, 23 dan 4(2)',
                             'value' => 'true',
                         ],
                         [
@@ -487,11 +455,11 @@ return [
                     ],
                     'free' => [
                         [
-                            'key' => 'Pendanmpingan EFIN',
+                            'key' => 'Pendampingan EFIN',
                             'value' => 'true',
                         ],
                         [
-                            'key' => 'Pendanmpingan Pengukuhan PKP',
+                            'key' => 'Pendampingan Pengukuhan PKP',
                             'value' => 'true',
                         ],
                         [

@@ -69,7 +69,6 @@ class PostCreate extends Component implements HasForms, Plugin
     public function create()
     {
         $data = $this->form->getState();
-        dd($data);
 
         $record = Post::create($data);
 

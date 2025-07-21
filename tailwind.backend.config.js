@@ -4,7 +4,7 @@ import preset from './vendor/filament/support/tailwind.config.preset';
 
 export default {
     presets: [preset],
-    darkMode: 'classs',
+    darkMode: 'false',
     content: [
         "./resources/views/frontend/**/*.blade.php",
         './resources/views/components/frontend/**/*.blade.php',

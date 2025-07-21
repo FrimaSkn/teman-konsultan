@@ -1,7 +1,7 @@
 <header>
     <nav>
         <a href="{{ url('/') }}" class="logo">
-            <img src="{{ asset('img/brand/logo.png') }}" alt="">
+            <img class="h-12 md:h-20" src="{{ asset('img/brand/logo.png') }}" alt="">
         </a>
 
         {{-- menu desktop --}}

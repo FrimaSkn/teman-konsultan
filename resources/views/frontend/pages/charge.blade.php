@@ -6,7 +6,7 @@
     <section class="py-20 bg-[#e7e8ea]">
         <div class="container">
             <h2 class="block text-3xl font-bold text-center uppercase text-underline text-primary">Harga</h2>
-            <p class="pt-10 mx-auto text-center lg:w-3/5 max-md:text-sm">Berikut adalah Harga Paket Pupular kami, terutama untuk Perusahaan Star Up dan UMKM. Untuk pertanyaan lebih lanjut, ataupun jasa lainnya, konsultasikan langsung ke kami.</p>
+            <p class="pt-10 mx-auto text-center lg:w-3/5 max-md:text-sm">Berikut adalah Harga Paket Pupular kami, terutama untuk Perusahaan Start up dan UMKM. Untuk pertanyaan lebih lanjut, ataupun jasa lainnya, konsultasikan langsung ke kami.</p>
         </div>
 
         <div x-data="{ tab: 'tab1' }" class="space-y-10">

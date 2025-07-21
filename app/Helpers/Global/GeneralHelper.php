@@ -73,3 +73,36 @@ if (!function_exists('translate')) {
         return $value[$locale];
     }
 }
+
+if (!function_exists('mask_wa')) {
+    function mask_wa($number = '')
+    {
+        // Hilangkan tanda plus jika ada
+        $number = ltrim($number, '+');
+
+        // Pisahkan kode negara (2 digit pertama)
+        $countryCode = substr($number, 0, 2);
+        $rest = substr($number, 2);
+
+        // Format sisanya jadi 3-4-4 digit
+        $part1 = substr($rest, 0, 3);
+        $part2 = substr($rest, 3, 4);
+        $part3 = substr($rest, 7, 4);
+
+        return "+" . $countryCode . " " . $part1 . "-" . $part2 . "-" . $part3;
+    }
+}
+
+if (!function_exists('mask_phone')) {
+    function mask_phone($number = '')
+    {
+        $countryCode = substr($number, 0, 3);
+        $rest = substr($number, 3);
+
+        $part1 = substr($rest, 0, 3);
+        $part2 = substr($rest, 3, 4);
+        $part3 = substr($rest, 7, 4);
+
+        return $countryCode . " - " . $part1 . " " . $part2 . " " . $part3;
+    }
+}

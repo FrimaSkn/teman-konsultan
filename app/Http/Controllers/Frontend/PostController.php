@@ -9,12 +9,17 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.post.index');
+        $posts = \App\Models\Post::Published()->paginate(12);
+        return view('frontend.pages.post.index', [
+            'posts' => $posts
+        ]);
     }
 
-    public function show()
+    public function show($slug)
     {
-        // $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
-        return view('frontend.pages.post.show');
+        $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
+        return view('frontend.pages.post.show', [
+            'post' => $post
+        ]);
     }
 }

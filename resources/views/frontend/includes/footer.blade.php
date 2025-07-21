@@ -2,7 +2,7 @@
     <div class="container pt-10 pb-40 mx-auto">
         <div class="grid grid-cols-1 gap-8 lg:gap-1 xl:gap-8 lg:grid-cols-4">
             <div class="space-y-4">
-                <div><img src="{{ asset('img/brand/logo.png') }}" alt="Teman Konsultan"></div>
+                <div><img class="h-12 md:h-20" src="{{ asset('img/brand/logo.png') }}" alt="Teman Konsultan"></div>
                 <div class="w-1/6 h-1 bg-secondary"></div>
             </div>
             <div class="self-end space-y-6 max-lg:order-3">
@@ -22,47 +22,33 @@
             <div>
                 <div class="flex items-center gap-2 text-white">
                     <img class="w-5" src="{{ asset('img/icons/wa.png') }}" alt="">
-                    <div>WhatsApp : <a href="https://wa.me/628978396600" target="_blank">+62 897-8396-600</a></div>
+                    <div>WhatsApp : <a href="https://wa.me/{{ $generalSettings->whatsapp }}" target="_blank">{{ mask_wa($generalSettings->whatsapp) }}</a></div>
                 </div>
                 <div class="flex items-center gap-2 text-white">
                     <img class="w-5" src="{{ asset('img/icons/email.png') }}" alt="">
-                    <div><a href="mailto:info@temankonsultan.com" target="_blank">info@temankonsultan.com</a></div>
+                    <div><a href="mailto:{{ $generalSettings->email }}" target="_blank">{{ $generalSettings->email }}</a></div>
                 </div>
                 <div class="flex items-center gap-2 text-white">
                     <img class="w-5" src="{{ asset('img/icons/call.png') }}" alt="">
-                    <div>021 - 488 8888</div>
+                    <div>{{ mask_phone($generalSettings->phone) }}</div>
                 </div>
-                <div class="flex items-center gap-6 mt-6 max-lg:order-2">
-                    <a href="https://www.instagram.com/temankonsultan/" target="_blank" rel="noopener noreferrer">
-                        <img class="h-7" src="{{ asset('img/icons/ig.png') }}" alt="">
-                    </a>
-                    <a href="https://www.linkedin.com/company/temankonsultan" target="_blank" rel="noopener noreferrer">
-                        <img class="h-7" src="{{ asset('img/icons/linkedin.png') }}" alt="">
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61576359022399 " target="_blank" rel="noopener noreferrer">
-                        <img class="h-7" src="{{ asset('img/icons/fb.png') }}" alt="">
-                    </a>
-                    <a href="https://www.youtube.com/@teman.konsultan" target="_blank" rel="noopener noreferrer">
-                        <img class="h-7" src="{{ asset('img/icons/yt.png') }}" alt="">
-                    </a>
-                    <a href="https://www.tiktok.com/@teman.konsultan" target="_blank" rel="noopener noreferrer">
-                        <img class="h-7" src="{{ asset('img/icons/tiktok.png') }}" alt="">
-                    </a>
+                <div class="flex flex-wrap items-center gap-6 mt-6 max-lg:order-2">
+                    @foreach ($generalSettings->social_media as $sosmed)
+                        <a href="{{ $sosmed['link'] }}" target="_blank" rel="noopener noreferrer">
+                            <img class="h-7" src="{{ asset('/storage/pages/' . $sosmed['icon']) }}" alt="">
+                        </a>
+                    @endforeach
                 </div>
             </div>
 
             {{-- head office --}}
             <div class="leading-tight text-white max-lg:order-4">
-                18 Parc Place, SCBD Tower B Lt. 2 <br>
-                Jl. Jend. Sudirman Kav. 52-53 <br>
-                Senayan, Kebayoran Baru <br>
-                Jakarta Selatan 12190
+                {!! nl2br($generalSettings->addrs_head_office) !!}
             </div>
 
             {{-- WORKSHOP --}}
             <div class="leading-tight text-white max-lg:order-4">
-                Latinos Business District BSD B16/6,
-                Jl. Raya Rawa Buntu, Kel. Rawa Buntu, Kec. Serpong, Tangerang Selatan, Banten 15310
+                {!! nl2br($generalSettings->addrs_workshop) !!}
             </div>
 
             {{-- site map --}}

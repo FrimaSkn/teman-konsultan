@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use App\Domains\Announcement\Services\AnnouncementService;
 use App\Models\Contact;
 use App\Models\ServicesCategory;
+use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Domains\Announcement\Services\AnnouncementService;
 
 /**
  * Class ComposerServiceProvider.
@@ -35,6 +36,11 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(['frontend.includes.navigation'], function ($view) {
             $services = ServicesCategory::with('services')->get();
             $view->with('services', $services);
+        });
+
+        View::composer(['frontend.layouts.app', 'frontend.pages.contact-us'], function ($view) {
+            $generalSettings = new GeneralSettings;
+            $view->with('generalSettings', $generalSettings);
         });
 
         View::composer(['backend.includes.sidebar'], function ($view) {

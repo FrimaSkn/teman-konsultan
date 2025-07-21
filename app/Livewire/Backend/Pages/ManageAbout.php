@@ -90,7 +90,7 @@ class ManageAbout extends Component implements HasForms, Plugin
         $record->fill($data);
         $record->save();
 
-        // return redirect()->route('admin.settings.about')->with('flash_success', 'About Settings updated successfully.');
+        return redirect()->route('admin.settings.about')->with('flash_success', 'About Settings updated successfully.');
     }
 
     public function render(): View
