@@ -185,7 +185,7 @@ return [
                     'title' => 'BASIC',
                     'slug' => 'basic',
                     'sub_title' => 'ACCOUNTING TAX',
-                    'price' => '2 Juta / Bulan',
+                    'price' => '4 Juta / Bulan',
                     'min_contract' => '1 Tahun',
                     'coverage' => [
                         [
