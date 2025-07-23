@@ -149,7 +149,7 @@
                                     @elseif ($fitur['value'] == 'false')
                                         <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
                                     @else
-                                        <div class="text-sm">-</div>
+                                        <div class="text-sm">{{ $fitur['value'] }}</div>
                                     @endif
                                 @endforeach
                             </div>

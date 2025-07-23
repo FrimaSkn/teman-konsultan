@@ -190,11 +190,11 @@ return [
                     'coverage' => [
                         [
                             'key' => 'Jumlah Penghasilan',
-                            'value' => '< Rp 600 Juta / Tahun',
+                            'value' => '< Rp 4,8M / tahun',
                         ],
                         [
                             'key' => 'Jumlah Transaksi',
-                            'value' => '< 250 Transaksi / Tahun',
+                            'value' => '< 600 Transaksi / Tahun',
                         ],
                         [
                             'key' => 'PKP',
@@ -258,11 +258,11 @@ return [
                         ],
                         [
                             'key' => 'Konsultasi & Support Online Harian',
-                            'value' => '1x / bulan',
+                            'value' => '4x / bulan',
                         ],
                         [
                             'key' => 'Konsultasi offline @1 jam',
-                            'value' => 'false',
+                            'value' => '1x / bulan',
                         ],
                     ],
                     'additional' => [
@@ -292,16 +292,16 @@ return [
                     'title' => 'PRO',
                     'slug' => 'pro',
                     'sub_title' => 'ACCOUNTING TAX',
-                    'price' => '2 Juta / Bulan',
+                    'price' => '6 Juta / Bulan',
                     'min_contract' => '1 Tahun',
                     'coverage' => [
                         [
                             'key' => 'Jumlah Penghasilan',
-                            'value' => '< Rp 600 Juta / Tahun',
+                            'value' => '< Rp 6M / Tahun',
                         ],
                         [
                             'key' => 'Jumlah Transaksi',
-                            'value' => '< 250 Transaksi / Tahun',
+                            'value' => '< 1500 Transaksi / Tahun',
                         ],
                         [
                             'key' => 'PKP',
@@ -309,7 +309,7 @@ return [
                         ],
                         [
                             'key' => 'Persediaan',
-                            'value' => 'Ya',
+                            'value' => 'Terbatas < 20 SKU',
                         ],
                         [
                             'key' => 'Perhitungan HPP',
@@ -331,15 +331,15 @@ return [
                         ],
                         [
                             'key' => 'Perhitungan & Pelaporan PPh UMKM',
-                            'value' => 'true',
+                            'value' => 'N/A',
                         ],
                         [
                             'key' => 'Jumlah faktur pajak',
-                            'value' => 'true',
+                            'value' => '< 50 Faktur',
                         ],
                         [
                             'key' => 'Pembuatan Bukti Potong dan Faktur Pajak PPN',
-                            'value' => 'true',
+                            'value' => '2x / bulan',
                         ],
                         [
                             'key' => 'Perhitungan & Pelaporan PPN',
@@ -365,11 +365,11 @@ return [
                         ],
                         [
                             'key' => 'Konsultasi & Support Online Harian',
-                            'value' => '3x / bulan',
+                            'value' => 'Unlimited',
                         ],
                         [
                             'key' => 'Konsultasi offline @1 jam',
-                            'value' => 'true',
+                            'value' => '2x / bulan',
                         ],
                     ],
                     'additional' => [
@@ -399,16 +399,16 @@ return [
                     'title' => 'ENTERPRISE',
                     'slug' => 'enterprise',
                     'sub_title' => 'ACCOUNTING TAX',
-                    'price' => '2 Juta / Bulan',
+                    'price' => '8 Juta / Bulan',
                     'min_contract' => '1 Tahun',
                     'coverage' => [
                         [
                             'key' => 'Jumlah Penghasilan',
-                            'value' => '< Rp 600 Juta / Tahun',
+                            'value' => '< 12M Juta / Tahun',
                         ],
                         [
                             'key' => 'Jumlah Transaksi',
-                            'value' => '< 250 Transaksi / Tahun',
+                            'value' => '< 2500 Transaksi / Tahun',
                         ],
                         [
                             'key' => 'PKP',
@@ -438,15 +438,15 @@ return [
                         ],
                         [
                             'key' => 'Perhitungan & Pelaporan PPh UMKM',
-                            'value' => 'true',
+                            'value' => 'N/A',
                         ],
                         [
                             'key' => 'Jumlah faktur pajak',
-                            'value' => 'true',
+                            'value' => '< 150 Faktur',
                         ],
                         [
                             'key' => 'Pembuatan Bukti Potong dan Faktur Pajak PPN',
-                            'value' => 'true',
+                            'value' => '4x / bulan',
                         ],
                         [
                             'key' => 'Perhitungan & Pelaporan PPN',
@@ -472,11 +472,11 @@ return [
                         ],
                         [
                             'key' => 'Konsultasi & Support Online Harian',
-                            'value' => '3x / bulan',
+                            'value' => 'Unlimited',
                         ],
                         [
                             'key' => 'Konsultasi offline @1 jam',
-                            'value' => 'true',
+                            'value' => '2x / bulan',
                         ],
                     ],
                     'additional' => [
