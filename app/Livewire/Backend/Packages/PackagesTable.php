@@ -25,6 +25,10 @@ class PackagesTable extends Component implements HasForms, HasTable
             ->columns([
                 Tables\Columns\TextColumn::make('category.name')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('nama paket')
+                    ->formatStateUsing(fn ($state) => strtoupper($state))
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -38,7 +42,14 @@ class PackagesTable extends Component implements HasForms, HasTable
                 //
             ])
             ->actions([
-                //
+                Tables\Actions\EditAction::make('edit')
+                    ->url(fn (Package $record): string => route('admin.packages.edit', $record))
+                    ->button()
+                    ->color('info'),
+                Tables\Actions\DeleteAction::make('delete')
+                    ->requiresConfirmation()
+                    ->button()
+                    ->action(fn (Package $record) => $record->delete())
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

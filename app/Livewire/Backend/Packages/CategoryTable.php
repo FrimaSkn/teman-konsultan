@@ -39,10 +39,6 @@ class CategoryTable extends Component implements HasForms, HasTable, Plugin
                 //
             ])
             ->actions([
-                DeleteAction::make('delete')
-                    ->requiresConfirmation()
-                    ->button()
-                    ->action(fn (PackageCategory $record) => $record->delete()),
                 Tables\Actions\EditAction::make()
                     ->form([
                         Forms\Components\Select::make('layout')
@@ -63,6 +59,10 @@ class CategoryTable extends Component implements HasForms, HasTable, Plugin
                     ->button()
                     ->modalHeading('Edit Category')
                     ->modalSubmitActionLabel('Update Category'),
+                DeleteAction::make('delete')
+                    ->requiresConfirmation()
+                    ->button()
+                    ->action(fn (PackageCategory $record) => $record->delete()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

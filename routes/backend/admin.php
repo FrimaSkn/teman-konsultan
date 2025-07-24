@@ -99,6 +99,15 @@ Route::group(['prefix' => 'packages', 'as' => 'packages.'], function () {
                   ->push(__('Create Package'), route('admin.packages.create'));
         });
 
+    Route::get('edit/{package}', [\App\Http\Controllers\Backend\PackageController::class, 'edit'])
+        ->name('edit')
+        ->breadcrumbs(function (Trail $trail, $package) {
+            $trail->parent('admin.packages.index')
+                  ->push(__('Edit Package'), route('admin.packages.edit', $package));
+        });
+
+
+
     // category routes
     Route::get('/category', [\App\Http\Controllers\Backend\PackageCategoryController::class, 'index'])
         ->name('category.index')

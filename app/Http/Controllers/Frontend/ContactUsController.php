@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Mail\ContactForm;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ContactUsController extends Controller
 {
@@ -23,7 +25,9 @@ class ContactUsController extends Controller
             'message' => 'required|string|max:1000',
         ]);
 
-        Contact::create($validated);
+        $store = Contact::create($validated);
+
+        Mail::to('info@temankonsultan.com')->send(new ContactForm($store));
 
         return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }

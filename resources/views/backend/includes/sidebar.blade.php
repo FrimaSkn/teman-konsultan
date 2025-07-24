@@ -73,7 +73,7 @@
                 </ul>
             </li>
 
-            {{-- <li class="c-sidebar-nav-dropdown">
+            <li class="c-sidebar-nav-dropdown">
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-list"
@@ -94,7 +94,7 @@
                             :text="__('Packages')" />
                     </li>
                 </ul>
-            </li> --}}
+            </li>
 
 
 

@@ -79,7 +79,6 @@ return [
                     'sub_title' => 'ACCOUNTING TAX',
                     'price' => '2 Juta / Bulan',
                     'min_contract' => '1 Tahun',
-
                     'coverage' => [
                         [
                             'key' => 'Jumlah Penghasilan',
@@ -1319,7 +1318,7 @@ return [
                         ],
                     ],
                     'pembukuan' => [
-                        'key' => ' Pendampingan Proses Pembukuan',
+                        'key' => 'Pendampingan Proses Pembukuan',
                         'value' => 'Sesuai Konsultasi',
                     ],
                     'support' => [

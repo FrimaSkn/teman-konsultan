@@ -49,6 +49,10 @@ input.fi-checkbox-input:checked {
     }
 }
 
+.fi-dropdown-panel {
+    z-index: 999999;
+}
+
 .list-group {
     .list-group-item {
         &.active {

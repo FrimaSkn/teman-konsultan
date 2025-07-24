@@ -1,8 +1,14 @@
 @props([
-    'data' => null
+    'data' => null,
+    'categorySlug' => null
 ])
+
 @php
-    $getFristPaket = Arr::first($data['paket']);
+    $fillteredData = $data->filter(function ($item) use ($categorySlug) {
+        return $item['category_slug'] === $categorySlug;
+    })->values()->all();
+
+    $getFristPaket= $fillteredData[0] ?? [];
 @endphp
 
 <div class="flex gap-4 max-md:container">
@@ -21,29 +27,32 @@
 
         @if (array_key_exists('meeting', $getFristPaket))
             <div>
-                <div class="font-semibold">Jumlah Pertemuan Offline / Bulan</div>
-                @foreach ($getFristPaket['meeting'] as $meeting)
-                    <div class="text-sm">{{ $meeting['key'] }}</div>
+                @foreach ($getFristPaket['meeting'][app()->getLocale()] ?? [] as $key => $meeting)
+                    @if ($loop->first)
+                        <div class="font-semibold">{{ $key }}</div>
+                    @else
+                        <div class="text-sm">{{ $key }}</div>
+                    @endif
                 @endforeach
             </div>
         @endif
 
         @if (array_key_exists('pembukuan', $getFristPaket))
-            <div>
-                <div class="font-semibold">{{ $getFristPaket['pembukuan']['key'] }}</div>
-            </div>
+            @foreach ($getFristPaket['pembukuan'][app()->getLocale()] ?? [] as $key => $pembukuan)
+                <div class="font-semibold">{{ $key }}</div>
+            @endforeach
         @endif
 
         @if (array_key_exists('support', $getFristPaket))
-            <div>
-                <div class="font-semibold">{{ $getFristPaket['support']['key'] }}</div>
-            </div>
+            @foreach ($getFristPaket['support'][app()->getLocale()] ?? [] as $key => $support)
+                <div class="font-semibold">{{ $key }}</div>
+            @endforeach
         @endif
 
         @if (array_key_exists('coverage', $getFristPaket))
             <div>
-                @foreach ($getFristPaket['coverage'] as $coverage)
-                    <div class="text-sm">{{ $coverage['key'] }}</div>
+                @foreach ($getFristPaket['coverage'][app()->getLocale()] ?? [] as $key => $coverage)
+                    <div class="text-sm">{{ $key }}</div>
                 @endforeach
             </div>
         @endif
@@ -51,8 +60,8 @@
         @if (array_key_exists('fitur', $getFristPaket))
             <div>
                 <div class="font-semibold">FITUR</div>
-                @foreach ($getFristPaket['fitur'] as $fitru)
-                    <div class="text-sm">{{ $fitru['key'] }}</div>
+                @foreach ($getFristPaket['fitur'][app()->getLocale()] ?? [] as $key => $fitur)
+                    <div class="text-sm">{{ $key }}</div>
                 @endforeach
             </div>
         @endif
@@ -60,8 +69,8 @@
         @if (array_key_exists('free', $getFristPaket))
             <div>
                 <div class="font-semibold">FREE</div>
-                @foreach ($getFristPaket['free'] as $free)
-                    <div class="text-sm">{{ $free['key'] }}</div>
+                @foreach ($getFristPaket['free'][app()->getLocale()] ?? [] as $key =>$free)
+                    <div class="text-sm">{{ $key }}</div>
                 @endforeach
             </div>
         @endif
@@ -69,22 +78,22 @@
         @if (array_key_exists('additional', $getFristPaket))
             <div>
                 <div class="font-semibold">Tambahan</div>
-                @foreach ($getFristPaket['additional'] as $additional)
-                    <div class="text-sm">{{ $additional['key'] }}</div>
+                @foreach ($getFristPaket['additional'][app()->getLocale()] ?? [] as $key => $additional)
+                    <div class="text-sm">{{ $key }}</div>
                 @endforeach
             </div>
         @endif
 
-        @if (array_key_exists('note', $data) && isset($data['note']))
+        @if (array_key_exists('note', $getFristPaket) && isset($getFristPaket['note']))
             <div>
-                <small class="italic">* {{ $data['note'] }}</small>
+                <small class="italic">{{ $getFristPaket['note'] }}</small>
             </div>
         @endif
     </div>
 
     <div class="swiper price-swiper md:basis-1/2 lg:basis-[70%]">
         <div class="swiper-wrapper">
-            @foreach ($data['paket'] as $paket)
+            @foreach ($fillteredData as $paket)
             <div class="swiper-slide !w-72">
                 <div class="pb-4 overflow-hidden bg-white shadow rounded-2xl w-72">
                     <div class="py-2.5 bg-primary">
@@ -92,41 +101,47 @@
                             <div class="text-lg font-semibold leading-none text-center text-white uppercase">{{ $paket['title'] }}</div>
                         @endif
                         @if (array_key_exists('sub_title', $paket) || isset($paket['sub_title']))
-                            <div class="text-sm font-semibold leading-none text-center text-white uppercase">{{ $paket['sub_title'] }}</div>
+                            <div class="text-sm font-semibold leading-none text-center text-white uppercase">{{ $paket['sub_title'][app()->getLocale()] ?? '' }}</div>
                         @endif
                     </div>
                     <div class="px-8 py-2 space-y-4">
                         <div>
                             @if (array_key_exists('price', $paket) || isset($paket['price']))
-                                <div class="text-xl font-semibold leading-tight text-center">{{ $paket['price'] }}</div>
+                                <div class="text-xl font-semibold leading-tight text-center">{{ $paket['price'][app()->getLocale()] ?? '' }}</div>
                             @endif
                             @if (array_key_exists('min_contract', $paket) || isset($paket['min_contract']))
-                                <div class="font-semibold leading-tight text-center">{{ $paket['min_contract'] }}</div>
+                                <div class="font-semibold leading-tight text-center">{{ $paket['min_contract'][app()->getLocale()] ?? '' }}</div>
                             @endif
                         </div>
 
                         @if (array_key_exists('meeting', $paket))
                             <div class="text-center">
-                                @foreach ($paket['meeting'] as $meeting)
-                                    <div class="text-sm p-0.5 mx-auto my-1">{{ $meeting['value'] }}</div>
+                                @foreach ($paket['meeting'][app()->getLocale()] ?? [] as $meeting)
+                                    @if ($meeting == null )
+                                        <div class="text-sm p-0.5 mx-auto my-1"></div>
+                                    @else
+                                        <div class="text-sm p-0.5 mx-auto my-1">{{ $meeting }}</div>
+                                    @endif
                                 @endforeach
                             </div>
                         @endif
 
                         @if (array_key_exists('pembukuan', $paket))
-                            @if ($paket['pembukuan']['value'] == 'true')
-                                <div class="pt-10 text-center">
-                                    <div class="p-0.5  mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
-                                </div>
-                            @else
-                                <div class="pt-10 text-center">
-                                    <div class="text-sm">{{ $paket['pembukuan']['value'] }}</div>
-                                </div>
-                            @endif
+                            @foreach ($paket['pembukuan'][app()->getLocale()] ?? [] as $pembukuan)
+                                @if ($paket['pembukuan'] == 'true')
+                                    <div class="pt-10 text-center">
+                                        <div class="p-0.5  mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
+                                    </div>
+                                @else
+                                    <div class="pt-10 text-center">
+                                        <div class="text-sm">{{ $pembukuan }}</div>
+                                    </div>
+                                @endif
+                            @endforeach
                         @endif
 
                         @if (array_key_exists('support', $paket))
-                            @if ($paket['support']['value'] == 'true')
+                            @if ($paket['support'] == 'true')
                                 <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
                             @else
                                 <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
@@ -135,21 +150,21 @@
 
                         @if (array_key_exists('coverage', $paket))
                             <div class="text-center">
-                                @foreach ($paket['coverage'] as $coverage)
-                                    <div class="text-sm">{{ $coverage['value'] }}</div>
+                                @foreach ($paket['coverage'][app()->getLocale()] ?? [] as $coverage)
+                                    <div class="text-sm">{{ $coverage }}</div>
                                 @endforeach
                             </div>
                         @endif
 
                         @if (array_key_exists('fitur', $paket))
                             <div class="text-center pt-7">
-                                @foreach ($paket['fitur'] as $fitur)
-                                    @if ($fitur['value'] == 'true')
+                                @foreach ($paket['fitur'][app()->getLocale()] ?? [] as $fitur)
+                                    @if ($fitur == 'true')
                                         <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
-                                    @elseif ($fitur['value'] == 'false')
+                                    @elseif ($fitur == 'false')
                                         <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
                                     @else
-                                        <div class="text-sm">{{ $fitur['value'] }}</div>
+                                        <div class="text-sm">{{ $fitur }}</div>
                                     @endif
                                 @endforeach
                             </div>
@@ -157,13 +172,13 @@
 
                         @if (array_key_exists('free', $paket))
                             <div class="text-center pt-[1.3rem]">
-                                @foreach ($paket['free'] as $free)
-                                    @if ($free['value'] == 'true')
+                                @foreach ($paket['free'][app()->getLocale()] ?? [] as $free)
+                                    @if ($free == 'true')
                                         <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
-                                    @elseif ($free['value'] == 'false')
+                                    @elseif ($free == 'false')
                                         <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
                                     @else
-                                        <div class="text-sm">{{ $free['value'] }}</div>
+                                        <div class="text-sm">{{ $free }}</div>
                                     @endif
                                 @endforeach
                             </div>
@@ -171,10 +186,10 @@
 
                         @if (array_key_exists('additional', $paket))
                             <div class="pt-[1.5rem] text-center">
-                                @foreach ($paket['additional'] as $additional)
-                                    @if ($additional['value'] == 'true')
+                                @foreach ($paket['additional'][app()->getLocale()] ?? [] as $additional)
+                                    @if ($additional == 'true')
                                         <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
-                                    @elseif ($additional['value'] == 'false')
+                                    @elseif ($additional == 'false')
                                         <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
                                     @else
                                         <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4 opacity-0"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>

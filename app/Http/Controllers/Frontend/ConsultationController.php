@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Consultation;
 use Illuminate\Http\Request;
+use App\Mail\ConsultationForm;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ConsultationController extends Controller
 {
@@ -45,8 +47,10 @@ class ConsultationController extends Controller
             'message' => $validated['message'],
         ];
 
-        Consultation::create($store);
+        $store = Consultation::create($store);
 
-        return redirect()->route('frontend.free-consultation.messages')->with('success', 'Your consultation request has been sent successfully!');
+        Mail::to('info@temankonsultan.com')->send(new ConsultationForm($store));
+
+        return redirect()->route('frontend.auth.free-consultation.messages')->with('success', 'Your consultation request has been sent successfully!');
     }
 }

@@ -30,8 +30,14 @@ class PackageCategory extends Model
             ->saveSlugsTo('slug');
     }
 
+    // is active scope
+    public function scopePublished($query)
+    {
+        return $query->where('is_active', true);
+    }
+
     public function packages()
     {
-        return $this->hasMany(Package::class);
+        return $this->hasMany(Package::class, 'category_id');
     }
 }
