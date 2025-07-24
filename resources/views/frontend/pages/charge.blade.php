@@ -25,12 +25,6 @@
                     <div x-cloak x-show="tab === '{{ $category->slug }}'" class="text-center"><x-frontend.charge.default :data="$packages" categorySlug="{{ $category->slug }}"/></div>
                 @endif
             @endforeach
-            {{-- <div x-cloak x-show="tab === 'tab1'" class=""><x-frontend.charge.slider :data="$packages" categorySlug="akuntansi-perpajakan"/></div>
-            <div x-cloak x-show="tab === 'tab2'" class="text-center"><x-frontend.charge.default :data="$packages" categorySlug="akuntansi"/></div>
-            <div x-cloak x-show="tab === 'tab3'" class="text-center"><x-frontend.charge.default :data="config('web-data.charges.perpajakan_individual')"/></div>
-            <div x-cloak x-show="tab === 'tab4'" class="text-center"><x-frontend.charge.default :data="config('web-data.charges.perpajakan_perusahaan')"/></div>
-            <div x-cloak x-show="tab === 'tab5'" class="text-center"><x-frontend.charge.default :data="config('web-data.charges.virtual_manager')"/></div>
-            <div x-cloak x-show="tab === 'tab6'"><x-frontend.charge.slider :data="$packages" categorySlug="konsultasi" /></div> --}}
         </div>
     </section>
 @endsection
