@@ -141,11 +141,20 @@
                         @endif
 
                         @if (array_key_exists('support', $paket))
-                            @if ($paket['support'] == 'true')
+                            @foreach ($paket['support'][app()->getLocale()] ?? [] as $support)
+                                @if ($support == 'true')
+                                    <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
+                                @elseif ($support == 'false')
+                                    <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
+                                @else
+                                    <div class="text-sm text-center">{{ $support }}</div>
+                                @endif
+                            @endforeach
+                            {{-- @if ($paket['support'] == 'true')
                                 <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
                             @else
                                 <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
-                            @endif
+                            @endif --}}
                         @endif
 
                         @if (array_key_exists('coverage', $paket))
