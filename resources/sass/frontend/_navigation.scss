@@ -5,11 +5,11 @@
         nav {
             @apply container flex items-center lg:items-end justify-between gap-4;
 
-            .logo {
-                img {
-                    @apply max-md:w-full;
-                }
-            }
+            // .logo {
+            //     img {
+            //         @apply max-md:w-full;
+            //     }
+            // }
 
             .menu {
                 @apply hidden gap-6 lg:flex flex-col items-end;
