@@ -157,8 +157,14 @@
                                     <div class="px-4 py-2 bg-gray-100 text-nowrap">
                                         <div class="font-semibold">{{ $logged_in_user->name }}</div>
                                     </div>
-                                    <div class="px-4 py-2">
-                                        <div class="flex items-center gap-1 cursor-pointer hover:text-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    <div class="px-4 py-2 divide-y">
+                                        <div class="py-2">
+                                            <a href="{{ route('frontend.user.account') }}" class="flex items-center gap-1 cursor-pointer hover:text-primary">
+                                                <i class="size-4" data-lucide="user-round"></i>
+                                                @lang('My Account')
+                                            </a>
+                                        </div>
+                                        <div class="flex items-center gap-1 py-2 cursor-pointer hover:text-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             <i class="size-4" data-lucide="log-out"></i>
                                             @lang('Logout')
                                             <x-forms.post :action="route('frontend.auth.logout')" id="logout-form" class="d-none" />
