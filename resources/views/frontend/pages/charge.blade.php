@@ -18,11 +18,11 @@
 
             @foreach ($categories as $category)
                 @if ($category->layout == 'slider')
-                    <div x-cloak x-show="tab === '{{ $category->slug }}'" class=""><x-frontend.charge.slider :data="$packages" categorySlug="{{ $category->slug }}"/></div>
+                    <div x-cloak x-show="tab === '{{ $category->slug }}'" class=""><x-frontend.charge.slider :data="$category->packages" categorySlug="{{ $category->slug }}"/></div>
                 @endif
 
                 @if ($category->layout == 'default')
-                    <div x-cloak x-show="tab === '{{ $category->slug }}'" class="text-center"><x-frontend.charge.default :data="$packages" categorySlug="{{ $category->slug }}"/></div>
+                    <div x-cloak x-show="tab === '{{ $category->slug }}'" class="text-center"><x-frontend.charge.default :data="$category->packages" categorySlug="{{ $category->slug }}"/></div>
                 @endif
             @endforeach
         </div>

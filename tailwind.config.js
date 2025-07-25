@@ -5,6 +5,7 @@ export default {
     content: [
         "./resources/views/frontend/**/*.blade.php",
         './resources/views/components/frontend/**/*.blade.php',
+        './resources/views/components/utils/**/*.blade.php',
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./resources/views/vendor/pagination/*.blade.php",

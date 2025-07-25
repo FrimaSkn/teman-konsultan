@@ -3,18 +3,34 @@
     'categorySlug' => null,
 ])
 @php
-    $fillteredData = $data->filter(function ($item) use ($categorySlug) {
-         return $item['category_slug'] === $categorySlug;
-    })->values()->all();
+    $packages = [];
+    foreach ($data as $package) {
+        $wrapped = [
+            'title' => $package->title,
+            'slug' => $package->slug,
+            'note' => $package->category->note ?? null,
+        ];
+        $mapped = Arr::mapWithKeys(json_decode($package->payload), function ($value,  $key) {
+            return $value->data;
+        });
+
+        $pushed = Arr::map($mapped, function ($value, $key) use (&$wrapped) {
+            return $wrapped[$key] = $value;
+        });
+
+        $packages[] = json_decode((string) json_encode($wrapped), true);
+    }
+
+    $getFristPaket = $packages[0] ?? [];
 @endphp
 
 <div class="container mt-10 space-y-8">
-    @foreach ($fillteredData as $paket)
+    @foreach ($packages as $paket)
         <div class="w-full px-8 py-6 overflow-x-auto text-left bg-white shadow rounded-3xl">
             <div class="flex justify-between md:items-center max-md:flex-col max-md:gap-4">
                 <h3 class="text-xl font-semibold uppercase text-primary">
                     <span>
-                        {{ count($fillteredData) > 1 ? $loop->iteration . '. ' : '' }}
+                        {{ count($packages) > 1 ? $loop->iteration . '. ' : '' }}
                     </span>
                     <span>{{ $paket['title'] }}</span>
                 </h3>

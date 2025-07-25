@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Rules\Captcha;
 use App\Models\Contact;
 use App\Mail\ContactForm;
 use Illuminate\Http\Request;
@@ -23,12 +24,19 @@ class ContactUsController extends Controller
             'phone' => 'required|string|max:15',
             'subject' => 'required|string|max:255',
             'message' => 'required|string|max:1000',
+            'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
+        ],[
+            'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
         ]);
 
-        $store = Contact::create($validated);
+        try {
+            $store = Contact::create($validated);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => __('Failed to send your message. Please try again later.')]);
+        }
 
-        Mail::to('info@temankonsultan.com')->send(new ContactForm($store));
+        // Mail::to('info@temankonsultan.com')->send(new ContactForm($store));
 
-        return redirect()->back()->with('success', 'Your message has been sent successfully!');
+        return redirect()->back()->with('success', __('Your message has been sent successfully!'));
     }
 }

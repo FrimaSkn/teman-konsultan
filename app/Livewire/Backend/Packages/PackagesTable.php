@@ -2,16 +2,18 @@
 
 namespace App\Livewire\Backend\Packages;
 
-use App\Models\Package;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Tables;
-use Filament\Tables\Concerns\InteractsWithTable;
-use Filament\Tables\Contracts\HasTable;
-use Filament\Tables\Table;
+use App\Models\Package;
+use App\Models\PackageCategory;
 use Livewire\Component;
+use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Tables\Concerns\InteractsWithTable;
 
 class PackagesTable extends Component implements HasForms, HasTable
 {
@@ -24,10 +26,12 @@ class PackagesTable extends Component implements HasForms, HasTable
             ->query(Package::query())
             ->columns([
                 Tables\Columns\TextColumn::make('category.name')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('nama paket')
                     ->formatStateUsing(fn ($state) => strtoupper($state))
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -39,7 +43,9 @@ class PackagesTable extends Component implements HasForms, HasTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('category_id')
+                    ->label('Kategori')
+                    ->options(PackageCategory::all()->pluck('name', 'id'))
             ])
             ->actions([
                 Tables\Actions\EditAction::make('edit')

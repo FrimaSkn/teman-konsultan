@@ -4,11 +4,25 @@
 ])
 
 @php
-    $fillteredData = $data->filter(function ($item) use ($categorySlug) {
-        return $item['category_slug'] === $categorySlug;
-    })->values()->all();
+    $packages = [];
+    foreach ($data as $package) {
+        $wrapped = [
+            'title' => $package->title,
+            'slug' => $package->slug,
+            'note' => $package->category->note ?? null,
+        ];
+        $mapped = Arr::mapWithKeys(json_decode($package->payload), function ($value,  $key) {
+            return $value->data;
+        });
 
-    $getFristPaket= $fillteredData[0] ?? [];
+        $pushed = Arr::map($mapped, function ($value, $key) use (&$wrapped) {
+            return $wrapped[$key] = $value;
+        });
+
+        $packages[] = json_decode((string) json_encode($wrapped), true);
+    }
+
+    $getFristPaket = $packages[0] ?? [];
 @endphp
 
 <div class="flex gap-4 max-md:container">
@@ -93,7 +107,7 @@
 
     <div class="swiper price-swiper md:basis-1/2 lg:basis-[70%]">
         <div class="swiper-wrapper">
-            @foreach ($fillteredData as $paket)
+            @foreach ($packages as $paket)
             <div class="swiper-slide !w-72">
                 <div class="pb-4 overflow-hidden bg-white shadow rounded-2xl w-72">
                     <div class="py-2.5 bg-primary">
@@ -150,11 +164,6 @@
                                     <div class="text-sm text-center">{{ $support }}</div>
                                 @endif
                             @endforeach
-                            {{-- @if ($paket['support'] == 'true')
-                                <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
-                            @else
-                                <div class="p-0.5 mx-auto my-1 bg-red-500 rounded-full size-4"><i data-lucide="x" class="w-full h-full stroke-white"></i></div>
-                            @endif --}}
                         @endif
 
                         @if (array_key_exists('coverage', $paket))
@@ -167,7 +176,7 @@
 
                         @if (array_key_exists('fitur', $paket))
                             <div class="text-center pt-7">
-                                @foreach ($paket['fitur'][app()->getLocale()] ?? [] as $fitur)
+                                @foreach ($paket['fitur'][app()->getLocale()] ?? [] as $key => $fitur)
                                     @if ($fitur == 'true')
                                         <div class="p-0.5 mx-auto my-1 bg-green-500 rounded-full size-4"><i data-lucide="check" class="w-full h-full stroke-white"></i></div>
                                     @elseif ($fitur == 'false')

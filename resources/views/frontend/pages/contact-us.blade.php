@@ -52,7 +52,7 @@
                 <x-forms.post :action="route('frontend.contact-us.store')" class="my-14 md:my-20">
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">Nama lengkap</label>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Full Name')</label>
                             <input type="text" id="name" name="name" value="{{ old('name') }}"
                                 class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-600' }}"
@@ -64,7 +64,7 @@
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 uppercase">EMAIL</label>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Email')</label>
                             <input type="email" id="email" name="email" value="{{ old('email') }}"
                                 class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                 {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }}"
@@ -76,7 +76,7 @@
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
-                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 uppercase">NOMOR WHATSAPP / HP</label>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Whatsapp Number / HP')</label>
                             <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
                                 class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                 {{ $errors->has('phone') ? 'border-red-500' : 'border-gray-600' }}"
@@ -88,7 +88,7 @@
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
-                            <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 uppercase">Subject</label>
+                            <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Subject')</label>
                             <input type="text" id="subject" name="subject" value="{{ old('subject') }}"
                                 class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                 {{ $errors->has('subject') ? 'border-red-500' : 'border-gray-600' }}"
@@ -100,7 +100,7 @@
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="relative col-span-3 my-3">
-                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 uppercase">pesan</label>
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Message')</label>
                             <textarea id="message" name="message" rows="6"
                             class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                             {{ $errors->has('message') ? 'border-red-500' : 'border-gray-600' }}"
@@ -110,6 +110,17 @@
                             <span class="text-xs text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    @if(config('boilerplate.access.captcha.registration'))
+                        <div class="init-captcha">
+                            @captcha
+                            <input type="hidden" name="captcha_status" value="true" />
+                        </div><!--col-->
+                    @endif
+
+                    @error('g-recaptcha-response')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
+                    @enderror
 
                     <button class="pl-8 pr-6 pt-1 pb-1.5 uppercase bg-secondary float-right rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center" type="submit">
                         <span>@lang('Submit')</span>

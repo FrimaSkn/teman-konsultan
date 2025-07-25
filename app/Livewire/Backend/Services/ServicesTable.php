@@ -6,11 +6,13 @@ use Filament\Tables;
 use Livewire\Component;
 use App\Models\Services;
 use Filament\Tables\Table;
+use App\Models\ServicesCategory;
 use Illuminate\Contracts\View\View;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -41,7 +43,9 @@ class ServicesTable extends Component implements HasForms, HasTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('category_id')
+                    ->label('Kategori')
+                    ->options(ServicesCategory::all()->pluck('name', 'id'))
             ])
             ->actions([
                 Tables\Actions\EditAction::make('edit')

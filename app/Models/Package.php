@@ -13,7 +13,10 @@ class Package extends Model
     use HasFactory, HasSlug, HasTranslations;
 
     protected $guarded = [];
+
     public $translatable = ['title'];
+
+    protected $with = ['category'];
 
     /**
      * Get the options for generating the slug.

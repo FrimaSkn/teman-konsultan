@@ -210,10 +210,21 @@
     "Enquiry Form": "Form Enquiry",
     "Full Name": "Nama Lengkap",
     "Whatsapp Number": "Nomor Whatsapp",
+    "Whatsapp Number / HP": "NOMOR WHATSAPP / HP",
+    "Select Area" : "PILIH AREA",
+    "Other": "Lainnya",
+    "CONSULTATION DETAILS": "DETAIL KONSULTASI",
     "Subject": "Subjek",
     "Message": "Pesan",
     "Submit": "Kirim",
     "Vision": "Visi Kami",
     "Mission": "Misi Kami",
-    "Value": "Value Kami"
+    "Value": "Value Kami",
+    "Thank you": "Terima kasih",
+    "Your message has been sent successfully!": "Pesan Anda telah berhasil dikirim!",
+    "Failed to send your message. Please try again later.": "Gagal mengirim pesan Anda. Silakan coba lagi nanti.",
+    "Your consultation request has been sent successfully!": "Permintaan konsultasi Anda telah berhasil dikirim!",
+    "Failed to send your consultation request. Please try again later.": "Gagal mengirim permintaan konsultasi Anda. Silakan coba lagi nanti.",
+    "Free Consultation": "Konsultasi Gratis",
+    "Free Consultation Form": "Formulir Konsultasi Gratis"
 }
