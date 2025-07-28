@@ -17,7 +17,7 @@
                         <x-forms.post :action="route('frontend.auth.register')">
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
-                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">nama lengkap</label>
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Full Name')</label>
                                     <input type="text" id="name" name="name" value="{{ old('name') }}" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                         {{ $errors->has('name') ? 'border-red-500' : 'border-gray-600' }}" placeholder="" required />
                                     @error('name')
@@ -28,7 +28,7 @@
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 uppercase">EMAIL</label>
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Email')</label>
                                     <input type="email" id="email" name="email" value="{{ old('email') }}" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                         {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }}" placeholder="" required />
                                     @error('email')
@@ -39,7 +39,7 @@
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
-                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 uppercase">nomor whatsapp / hp</label>
+                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Whatsapp Number / HP')</label>
                                     <input type="text" id="phone" name="phone" value="{{ old('phone') }}" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                         {{ $errors->has('phone') ? 'border-red-500' : 'border-gray-600' }}" placeholder="" required />
                                     @error('phone')
@@ -50,7 +50,7 @@
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
-                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 uppercase">password</label>
+                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('Password')</label>
                                     <input type="password" id="password" name="password" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                         {{ $errors->has('password') ? 'border-red-500' : 'border-gray-600' }}" required />
                                     @error('password')
@@ -61,7 +61,7 @@
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
-                                    <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 uppercase">retype password</label>
+                                    <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang('retype password')</label>
                                     <input type="password" id="password_confirmation" name="password_confirmation" class="shadow-xs bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                                         {{ $errors->has('password_confirmation') ? 'border-red-500' : 'border-gray-600' }}" required />
                                     @error('password_confirmation')
