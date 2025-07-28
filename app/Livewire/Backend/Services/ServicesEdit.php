@@ -42,7 +42,7 @@ class ServicesEdit extends Component implements HasForms, Plugin
                     ->maxLength(255)
                     ->translatable()
                     ->label('Service Name'),
-                Forms\Components\TextArea::make('description')
+                Forms\Components\Textarea::make('description')
                     ->nullable()
                     ->maxLength(1000)
                     ->translatable()
