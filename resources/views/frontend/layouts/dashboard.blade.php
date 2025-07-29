@@ -7,12 +7,19 @@
     <title>{{ appName() }} | @yield('title')</title>
     <meta name="description" content="@yield('meta_description', appName())">
     <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+
     @yield('meta')
+
+    <x-utils.favicon />
+
     @stack('before-styles')
+
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     @vite(['resources/sass/frontend/dashboard.scss', 'resources/js/frontend/app.js'])
+
     <livewire:styles />
+
     @stack('after-styles')
 </head>
 <body>

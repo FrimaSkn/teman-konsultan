@@ -9,6 +9,8 @@
     <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
     @yield('meta')
 
+    <x-utils.favicon />
+
     @stack('before-styles')
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
