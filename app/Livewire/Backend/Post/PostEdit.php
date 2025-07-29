@@ -32,10 +32,6 @@ class PostEdit extends Component implements HasForms, Plugin
         return $form
             ->schema([
                  Section::make()->schema([
-                    Forms\Components\TextInput::make('user_id')
-                        ->label('Author')
-                        ->default(auth()->user()->id)
-                        ->readOnly(),
                     Forms\Components\TextInput::make('title')
                         ->required()
                         ->maxLength(255)
@@ -71,7 +67,6 @@ class PostEdit extends Component implements HasForms, Plugin
     public function save()
     {
         $data = $this->form->getState();
-
         $this->record->update($data);
 
         return redirect()->route('admin.post.index')->with('flash_success', 'Article created successfully.');

@@ -30,10 +30,6 @@ class PostCreate extends Component implements HasForms, Plugin
         return $form
             ->schema([
                 Section::make()->schema([
-                    Forms\Components\TextInput::make('user_id')
-                        ->label('Author')
-                        ->default(auth()->user()->id)
-                        ->readOnly(),
                     Forms\Components\TextInput::make('title')
                         ->required()
                         ->maxLength(255)
@@ -69,6 +65,7 @@ class PostCreate extends Component implements HasForms, Plugin
     public function create()
     {
         $data = $this->form->getState();
+        $data['user_id'] = auth()->id(); // Set the user_id to the currently authenticated user
 
         $record = Post::create($data);
 
