@@ -36,7 +36,7 @@
     </div><!--app-->
 
     <div class="fixed z-50 bottom-2 right-2">
-        <a href="https://wa.me/628978396600" target="_blank">
+        <a href="https://wa.me/{{ $generalSettings->whatsapp }}" target="_blank">
             {{-- <img class="transition-all w-72 hover:animate-pulse hover:scale-110" src="{{ asset('img/icons/floating-wa.png') }}" alt=""> --}}
             <div x-data="{ open: false }" x-on:mouseenter="open = true" x-on:mouseleave="open = false" class="relative flex items-center transition-all hover:scale-110 group">
                 <div x-show="open" x-cloak
