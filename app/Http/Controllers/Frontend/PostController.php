@@ -17,7 +17,7 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
+        $post = \App\Models\Post::FindBySlugOrFail($slug);
         return view('frontend.pages.post.show', [
             'post' => $post
         ]);

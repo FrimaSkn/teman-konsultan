@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
-use App\Domains\Auth\Models\User;
 use Spatie\Sluggable\HasSlug;
+use App\Domains\Auth\Models\User;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Spatie\Sluggable\HasTranslatableSlug;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model implements HasMedia
 {
-    use HasFactory, HasSlug, HasTranslations, InteractsWithMedia;
+    use HasFactory, HasTranslations, InteractsWithMedia, HasTranslatableSlug;
 
     protected $fillable = [
         'user_id',
@@ -26,7 +27,7 @@ class Post extends Model implements HasMedia
         'status',
     ];
 
-    public $translatable = ['title', 'excerpt', 'content'];
+    public $translatable = ['title', 'excerpt', 'content', 'slug'];
 
     /**
      * Get the options for generating the slug.
@@ -38,6 +39,16 @@ class Post extends Model implements HasMedia
             ->saveSlugsTo('slug');
     }
 
+    public function scopeFindBySlugOrFail($query, string $slug): Model
+    {
+        return $query->where(function ($query) use ($slug) {
+            foreach (['en', 'id'] as $locale) {
+                $query->orWhereJsonContains("slug->$locale", $slug);
+            }
+        })->firstOrFail();
+    }
+
+
     public function registerMediaCollections(): void
     {
         $this
@@ -45,10 +56,10 @@ class Post extends Model implements HasMedia
         ->useDisk('public_post');
     }
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     public function scopePublished($query)
     {
