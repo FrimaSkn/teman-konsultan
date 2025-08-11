@@ -1,10 +1,10 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination, EffectFade, Autoplay, EffectCreative } from 'swiper/modules';
+import { Navigation, Pagination, EffectFade, Autoplay, Scrollbar } from 'swiper/modules';
 
 import 'swiper/css/bundle';
 
 const HomeBanner = new Swiper('.home-banner-swiper', {
-    modules: [Navigation, EffectFade, Autoplay],
+    modules: [Navigation, EffectFade, Autoplay, Pagination],
     loop: true,
       autoplay: {
         delay: 4000,
@@ -13,6 +13,10 @@ const HomeBanner = new Swiper('.home-banner-swiper', {
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
     },
     speed: 1000,
     effect: 'fade',
@@ -49,7 +53,7 @@ const HomeBanner = new Swiper('.home-banner-swiper', {
 // });
 
 const priceSwiper = new Swiper('.price-swiper', {
-    modules: [Navigation, Pagination, Autoplay],
+    modules: [Navigation, Pagination, Autoplay, Scrollbar],
     slidesPerView: "auto",
     spaceBetween: 10,
     navigation: {
@@ -60,5 +64,10 @@ const priceSwiper = new Swiper('.price-swiper', {
         el: ".swiper-pagination",
         clickable: true,
     },
+    scrollbar: {
+        el: ".swiper-scrollbar",
+        hide: false,
+        draggable: true,
+      },
 });
 

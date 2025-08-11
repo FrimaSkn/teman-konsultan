@@ -7,6 +7,17 @@
             font-size: 12px;
         }
     }
+
+    .swiper-pagination {
+        .swiper-pagination-bullet {
+            @apply bg-white size-3 shadow-sm opacity-100;
+
+            &-active {
+                @apply bg-secondary size-3 shadow-sm;
+            }
+        }
+    }
+
 }
 
 .testimonial-swiper.swiper {
@@ -26,11 +37,23 @@
 }
 
 .price-swiper.swiper {
+    padding-bottom: 2rem;
+
     .swiper-button-next, .swiper-button-prev {
         @apply border-2 border-gray-700 size-7;
 
         &::after {
             @apply text-gray-700 text-base font-semibold;
+        }
+    }
+
+    .swiper-scrollbar {
+        bottom: 0 !important;
+        height: 0.5rem !important;
+        @apply bg-gray-400;
+
+        .swiper-scrollbar-drag {
+            @apply bg-secondary;
         }
     }
 }
