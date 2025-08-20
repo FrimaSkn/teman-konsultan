@@ -1,7 +1,19 @@
 {
+  "_bootstrap-D3E7A29E.js": {
+    "file": "assets/bootstrap-D3E7A29E.js",
+    "name": "bootstrap",
+    "imports": [
+      "_bootstrap-DWfKOCZz.js",
+      "_sweetalert2-DuZSYcrD.js"
+    ]
+  },
   "_bootstrap-DWfKOCZz.js": {
     "file": "assets/bootstrap-DWfKOCZz.js",
     "name": "bootstrap"
+  },
+  "_lucide-C8eaRqat.js": {
+    "file": "assets/lucide-C8eaRqat.js",
+    "name": "lucide"
   },
   "_sweetalert2-DuZSYcrD.js": {
     "file": "assets/sweetalert2-DuZSYcrD.js",
@@ -39,20 +51,36 @@
     ]
   },
   "resources/js/frontend/app.js": {
-    "file": "assets/app-ydBupzed.js",
+    "file": "assets/app-MizTRlFK.js",
     "name": "app",
     "src": "resources/js/frontend/app.js",
     "isEntry": true,
     "imports": [
+      "_bootstrap-D3E7A29E.js",
+      "_bootstrap-DWfKOCZz.js",
+      "_sweetalert2-DuZSYcrD.js"
+    ]
+  },
+  "resources/js/frontend/dashboard/app.js": {
+    "file": "assets/app-CwhXrmmo.js",
+    "name": "app",
+    "src": "resources/js/frontend/dashboard/app.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap-D3E7A29E.js",
+      "_lucide-C8eaRqat.js",
       "_bootstrap-DWfKOCZz.js",
       "_sweetalert2-DuZSYcrD.js"
     ]
   },
   "resources/js/frontend/plugins.js": {
-    "file": "assets/plugins-DQBB9O-I.js",
+    "file": "assets/plugins-0jHg6HE9.js",
     "name": "plugins",
     "src": "resources/js/frontend/plugins.js",
     "isEntry": true,
+    "imports": [
+      "_lucide-C8eaRqat.js"
+    ],
     "css": [
       "assets/plugins-CJ-KzOvo.css"
     ]
@@ -72,12 +100,12 @@
     "isEntry": true
   },
   "resources/sass/frontend/app.scss": {
-    "file": "assets/app-BpgQkzS9.css",
+    "file": "assets/app-TvZ6g6uq.css",
     "src": "resources/sass/frontend/app.scss",
     "isEntry": true
   },
   "resources/sass/frontend/dashboard.scss": {
-    "file": "assets/dashboard-DwDell8u.css",
+    "file": "assets/dashboard-DjGxsEtk.css",
     "src": "resources/sass/frontend/dashboard.scss",
     "isEntry": true
   },
