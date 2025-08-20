@@ -1,5 +1,9 @@
 <nav class="bg-white shadow-sm navbar navbar-expand-md navbar-light">
     <div class="container">
+        <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary">
+            <i data-lucide="align-left"></i>
+        </button>
+
         <x-utils.link
             :href="route('frontend.home')"
             :text="appName()"
