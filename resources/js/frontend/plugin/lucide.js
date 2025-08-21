@@ -1,4 +1,4 @@
-import { createIcons, Menu, Facebook, Instagram, Linkedin, ChevronRight, Check, X, LogOut, UserRound, AlignLeft } from 'lucide';
+import { createIcons, Menu, Facebook, Instagram, Linkedin, ChevronRight, Check, X, LogOut, UserRound, AlignLeft, MessageCircleMore  } from 'lucide';
 
 const icons = () => {
     createIcons({
@@ -12,7 +12,8 @@ const icons = () => {
         X,
         LogOut,
         UserRound,
-        AlignLeft
+        AlignLeft,
+        MessageCircleMore
       }
     });
 }

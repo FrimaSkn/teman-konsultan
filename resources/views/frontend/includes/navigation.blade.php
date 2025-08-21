@@ -54,7 +54,7 @@
                 </li>
                 <li>
                     <div x-data="{ open: false }" x-on:click.away="open = false">
-                        <button x-on:click="open = !open" class="menu-item">@lang('Our Services')</button>
+                        <button x-on:click="open = !open" class="menu-item {{ activeMenu('frontend.services.*') }}">@lang('Our Services')</button>
                         <div
                             x-show="open"
                             class="absolute inset-x-0 bg-white top-[7.4rem] shadow"
@@ -81,10 +81,10 @@
                                     @foreach ($services as $category)
                                         @foreach ($category->services as $service)
                                             <div x-show="tab === '{{ $category['slug'] }}'" class="p-1 cursor-pointer hover:bg-gray-100">
-                                                <div class="leading-none">
+                                                <a href="{{ route('frontend.services.page', $service['slug']) }}" class="leading-none">
                                                     <h2 class="font-semibold">{{ $service['name'] }}</h2>
                                                     <p class="text-sm text-gray-600">{{ $service['description'] }}</p>
-                                                </div>
+                                                </a>
                                             </div>
                                         @endforeach
                                     @endforeach
