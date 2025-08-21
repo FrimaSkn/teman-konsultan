@@ -70,6 +70,11 @@ if (!function_exists('translate')) {
 
         $locale = session()->get('locale') ?? config('app.locale');
 
+        // Check if the value is an array and contains the locale key
+        if (! is_array($value)){
+            $value = json_decode(json_encode($value), true);
+        }
+
         return $value[$locale];
     }
 }
@@ -104,5 +109,50 @@ if (!function_exists('mask_phone')) {
         $part3 = substr($rest, 7, 4);
 
         return $countryCode . " - " . $part1 . " " . $part2 . " " . $part3;
+    }
+}
+
+if (!function_exists('getClass')) {
+    function getClass($level = '', $alignment = '')
+    {
+        $class = '';
+        // if (property_exists($content->data, 'level')) {
+            switch ($level) {
+                case 'h1':
+                    $class = 'text-xl md:text-3xl';
+                    break;
+                case 'h2':
+                    $class = 'text-lg md:text-2xl';
+                    break;
+                case 'h3':
+                    $class = 'text-base md:text-xl';
+                    break;
+                case 'h4':
+                    $class = 'text-sm md:text-lg';
+                    break;
+                default:
+                    $class = '';
+                    break;
+            }
+        // }
+
+        // if (property_exists($content->data, 'alignment')) {
+            switch ($alignment) {
+                case 'left':
+                    $class .= ' text-left justify-start';
+                    break;
+                case 'center':
+                    $class .= ' text-center justify-center';
+                    break;
+                case 'right':
+                    $class .= ' text-right justify-end';
+                    break;
+                default:
+                    $class .= '';
+                    break;
+            }
+        // }
+
+        return $class;
     }
 }

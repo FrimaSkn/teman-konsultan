@@ -1,0 +1,1 @@
+import"./bootstrap-D3E7A29E.js";import"./lucide-CW-lK50u.js";import"./bootstrap-DWfKOCZz.js";import"./sweetalert2-DuZSYcrD.js";console.log("Loading dashboard app...");$(document).ready(function(){$("#sidebarCollapse").on("click",function(){$("#sidebar").toggleClass("active")})});

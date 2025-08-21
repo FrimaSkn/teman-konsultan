@@ -17,6 +17,7 @@ class Services extends Model
         'name',
         'slug',
         'description',
+        'page_content',
     ];
 
     public $translatable = ['name', 'description'];

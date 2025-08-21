@@ -48,6 +48,11 @@ class ServicesTable extends Component implements HasForms, HasTable
                     ->options(ServicesCategory::all()->pluck('name', 'id'))
             ])
             ->actions([
+                Tables\Actions\EditAction::make('page')
+                    ->label('Page')
+                    ->url(fn (Services $record): string => route('admin.services.page', $record))
+                    ->button()
+                    ->color('primary'),
                 Tables\Actions\EditAction::make('edit')
                     ->url(fn (Services $record): string => route('admin.services.edit', $record))
                     ->button()

@@ -3,7 +3,7 @@
 @section('title', __('Hubungi Kami'))
 
 @section('content')
-    <x-frontend.hero-section :image="asset('img/asset-5.jpg')" />
+    <x-frontend.hero-section :image="'/storage/pages/'.$settings->banner_contact" />
     <section class="container pt-20">
         <div class="text-xl font-semibold text-center uppercase md:text-3xl text-underline" data-motion="inview-fadedown" data-animate>@lang('Contact Us')</div>
 

@@ -50,7 +50,7 @@
     .swiper-scrollbar {
         bottom: 0 !important;
         height: 0.5rem !important;
-        @apply bg-gray-400;
+        @apply bg-gray-400 cursor-grab;
 
         .swiper-scrollbar-drag {
             @apply bg-secondary;

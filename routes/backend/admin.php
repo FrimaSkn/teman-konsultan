@@ -35,6 +35,7 @@ Route::group(['prefix' => 'post', 'as' => 'post.'], function () {
         });
 });
 
+// Services and Services Category routes
 Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', [\App\Http\Controllers\Backend\ServicesController::class, 'index'])
         ->name('index')
@@ -62,6 +63,13 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
 
     Route::put('update/{service}', [\App\Http\Controllers\Backend\ServicesController::class, 'update'])
         ->name('update');
+
+    Route::get('page/{service}', [\App\Http\Controllers\Backend\ServicesController::class, 'page'])
+        ->name('page')
+        ->breadcrumbs(function (Trail $trail, $service) {
+            $trail->parent('admin.services.index')
+                  ->push(__('Page'), route('admin.services.page', $service));
+        });
 });
 
 Route::group(['prefix' => 'services-category', 'as' => 'services-category.'], function () {
@@ -83,6 +91,7 @@ Route::group(['prefix' => 'services-category', 'as' => 'services-category.'], fu
         ->name('store');
 });
 
+// Packages and Packages Category routes
 Route::group(['prefix' => 'packages', 'as' => 'packages.'], function () {
     // package routes
     Route::get('/', [\App\Http\Controllers\Backend\PackageController::class, 'index'])

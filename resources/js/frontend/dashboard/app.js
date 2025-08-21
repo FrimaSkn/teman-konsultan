@@ -6,6 +6,19 @@
 
 import '../../bootstrap';
 
+import '../plugin/lucide';
+
+console.log('Loading dashboard app...');
+
+$(document).ready(function() {
+  $("#sidebarCollapse").on("click", function() {
+    $("#sidebar").toggleClass("active");
+  });
+});
+
+
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

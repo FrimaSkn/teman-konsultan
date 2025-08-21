@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\TermsController;
 use App\Http\Controllers\Frontend\ChargeController;
+use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\ConsultationController;
 
@@ -20,6 +21,11 @@ use App\Http\Controllers\Frontend\ConsultationController;
         ->breadcrumbs(function (Trail $trail) {
             $trail->push(__('Home'), route('frontend.home'));
         });
+
+
+    // services
+    Route::get('services/{slug}', [ServicesController::class, 'page'])
+        ->name('services.page');
 
     Route::get('harga', [ChargeController::class, 'index'])
         ->name('harga');

@@ -6,14 +6,17 @@ use App\Rules\Captcha;
 use App\Models\Contact;
 use App\Mail\ContactForm;
 use Illuminate\Http\Request;
+use App\Settings\GeneralSettings;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 class ContactUsController extends Controller
 {
-    public function index()
+    public function index(GeneralSettings $settings)
     {
-        return view('frontend.pages.contact-us');
+        return view('frontend.pages.contact-us', [
+            'settings' => $settings
+        ]);
     }
 
     public function store(Request $request)

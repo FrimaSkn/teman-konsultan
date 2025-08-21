@@ -25,4 +25,11 @@ class ServicesController extends Controller
             'service' => $service,
         ]);
     }
+
+    public function page(Services $service)
+    {
+        return view('backend.services.page', [
+            'service' => $service,
+        ]);
+    }
 }

@@ -1,7 +1,19 @@
 {
+  "_bootstrap-D3E7A29E.js": {
+    "file": "assets/bootstrap-D3E7A29E.js",
+    "name": "bootstrap",
+    "imports": [
+      "_bootstrap-DWfKOCZz.js",
+      "_sweetalert2-DuZSYcrD.js"
+    ]
+  },
   "_bootstrap-DWfKOCZz.js": {
     "file": "assets/bootstrap-DWfKOCZz.js",
     "name": "bootstrap"
+  },
+  "_lucide-CW-lK50u.js": {
+    "file": "assets/lucide-CW-lK50u.js",
+    "name": "lucide"
   },
   "_sweetalert2-DuZSYcrD.js": {
     "file": "assets/sweetalert2-DuZSYcrD.js",
@@ -24,7 +36,7 @@
     "src": "node_modules/@coreui/icons/fonts/CoreUI-Icons-Free.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Dbma1-IH.css",
+    "file": "assets/app-I-EEivHp.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -39,20 +51,36 @@
     ]
   },
   "resources/js/frontend/app.js": {
-    "file": "assets/app-ydBupzed.js",
+    "file": "assets/app-MizTRlFK.js",
     "name": "app",
     "src": "resources/js/frontend/app.js",
     "isEntry": true,
     "imports": [
+      "_bootstrap-D3E7A29E.js",
+      "_bootstrap-DWfKOCZz.js",
+      "_sweetalert2-DuZSYcrD.js"
+    ]
+  },
+  "resources/js/frontend/dashboard/app.js": {
+    "file": "assets/app-WoXOWaBB.js",
+    "name": "app",
+    "src": "resources/js/frontend/dashboard/app.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap-D3E7A29E.js",
+      "_lucide-CW-lK50u.js",
       "_bootstrap-DWfKOCZz.js",
       "_sweetalert2-DuZSYcrD.js"
     ]
   },
   "resources/js/frontend/plugins.js": {
-    "file": "assets/plugins-DQBB9O-I.js",
+    "file": "assets/plugins-1BEG-rZ6.js",
     "name": "plugins",
     "src": "resources/js/frontend/plugins.js",
     "isEntry": true,
+    "imports": [
+      "_lucide-CW-lK50u.js"
+    ],
     "css": [
       "assets/plugins-CJ-KzOvo.css"
     ]
@@ -67,17 +95,17 @@
     ]
   },
   "resources/sass/backend/app.scss": {
-    "file": "assets/app-Y056IVas.css",
+    "file": "assets/app-BFlHNkAa.css",
     "src": "resources/sass/backend/app.scss",
     "isEntry": true
   },
   "resources/sass/frontend/app.scss": {
-    "file": "assets/app-BpgQkzS9.css",
+    "file": "assets/app-V_HNLghS.css",
     "src": "resources/sass/frontend/app.scss",
     "isEntry": true
   },
   "resources/sass/frontend/dashboard.scss": {
-    "file": "assets/dashboard-DwDell8u.css",
+    "file": "assets/dashboard-DjGxsEtk.css",
     "src": "resources/sass/frontend/dashboard.scss",
     "isEntry": true
   },
