@@ -69,7 +69,7 @@
 
     @else
         <section class="container h-[60svh]">
-            <div class="flex items-center h-full text-xl font-semibold">
+            <div class="flex items-center justify-center h-full text-xl font-semibold text-center">
                 @lang('Data Tidak Tersedia')
             </div>
         </section>
