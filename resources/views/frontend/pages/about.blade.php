@@ -3,7 +3,7 @@
 @section('title', __('Tentang Kami'))
 
 @section('content')
-    <x-frontend.hero-section :image="asset('img/asset-1.jpg')" />
+    <x-frontend.hero-section :image="'/storage/pages/'.$settings->banner" />
 
     <div class="flex justify-between gap-2 px-4 py-4 text-white lg:container md:items-center max-md:flex-col md:px-8 md:py-6 lg:px-16 lg:py-6 bg-primary" data-motion="inview-faderight-stg">
         <h2 data-animate="inview-faderight-stg" class="text-sm md:text-base">@lang("Trust your company's business needs to us")</h2>

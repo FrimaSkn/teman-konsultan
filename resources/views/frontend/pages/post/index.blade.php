@@ -3,7 +3,7 @@
 @section('title', __('Artikel'))
 
 @section('content')
-    <x-frontend.hero-section :image="asset('img/asset-5.jpg')" />
+    <x-frontend.hero-section :image="'/storage/pages/'.$settings->banner_article" />
     <section class="container py-10 md:py-20">
         <div class="text-xl font-semibold text-center uppercase md:text-3xl text-underline">@lang('Article')</div>
 
