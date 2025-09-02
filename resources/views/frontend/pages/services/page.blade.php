@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title', $service->name)
+@section('meta_description', $service->description)
 
 @php
     if ($service->page_content !== null) {

@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Tentang Kami'))
+@section('meta_description', strip_tags(translate($settings->content)))
 
 @section('content')
     <x-frontend.hero-section :image="'/storage/pages/'.$settings->banner" />
