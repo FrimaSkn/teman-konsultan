@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    
+
     public function payment()
     {
         $this->setupMidtransConfig();
@@ -56,4 +57,24 @@ class OrderController extends Controller
         \Midtrans\Config::$is3ds = config('midtrans.is_3ds');
     }
 
+
+    public function package(Request $request)
+    {
+        $data = json_decode($request->input('package'));
+        // dd($data);
+
+        $package = Package::where('id', $data->id)
+            ->where('slug', $data->slug)
+            ->firstOrFail();
+
+        $sub_package = json_decode($package->payload);
+
+        // where type is table on array
+        $sub_package = collect($sub_package)->where('type', 'table')->first();
+
+        dd($sub_package->data->table[$data->sub_package_key]);
+
+        // Logic to handle the package view
+        return view('frontend.order.package', compact('package'));
+    }
 }

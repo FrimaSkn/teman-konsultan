@@ -6,6 +6,7 @@
     $packages = [];
     foreach ($data as $package) {
         $wrapped = [
+            'id' => $package->id,
             'title' => $package->title,
             'slug' => $package->slug,
             'note' => $package->category->note ?? null,
@@ -74,13 +75,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($paket['table'] as $tableRow)
+                        @foreach ($paket['table'] as $key => $tableRow)
                             <tr class="border-b border-gray-200">
                                 @foreach ($tableRow['data']['table'][app()->getLocale()] ?? [] as $column)
                                     <td class="px-4 py-2 font-semibold">{!! $column !!}</td>
                                 @endforeach
                                 <td class="py-2 text-right">
-                                    <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
+                                    @php
+                                        $dataOrder = [
+                                            'id' => $paket['id'],
+                                            'title' => $paket['title'],
+                                            'slug' => $paket['slug'],
+                                            'sub_package_key' => $key,
+                                        ];
+                                        // dataOrder to stirng
+                                        $dataOrder = json_encode($dataOrder);
+                                    @endphp
+                                    {{-- <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center"> --}}
+                                    <a href="{{ route('frontend.order.package', ['package' => $dataOrder]) }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
                                         <span>{{ $tableRow['data']['button_text'][app()->getLocale()] ?? '' }}</span>
                                         <i data-lucide="chevron-right"></i>
                                     </a>
