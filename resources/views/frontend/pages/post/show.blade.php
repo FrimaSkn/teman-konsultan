@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Artikel'))
+@section('meta_description', $post->excerpt)
 
 @section('content')
     {{-- <x-frontend.hero-section :image="asset('img/asset-5.jpg')" /> --}}

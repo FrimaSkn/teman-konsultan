@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Home'))
+@section('meta_description', strip_tags(translate($settings->about_description)))
 
 @section('content')
     <div>
