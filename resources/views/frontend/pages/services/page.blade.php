@@ -1,9 +1,5 @@
 @extends('frontend.layouts.app')
 
-@section('title', $service->name)
-
-@section('meta_description', strip_tags($service->description))
-
 @php
     if ($service->page_content !== null) {
         $contents = json_decode($service->page_content);
@@ -18,7 +14,17 @@
             $banner = "/storage/service/" . $banner;
         }
     }
+
+    if (isset($service->meta_seo) && $service->meta_seo != null) {
+        $metaSeo = json_decode($service->meta_seo, true)[0] ?? [];
+
+        $metaTitle = translate($metaSeo['data']['meta_title']);
+        $metaDescription = translate($metaSeo['data']['meta_description']);
+    }
 @endphp
+@section('title', $metaTitle ?? $service->name)
+@section('meta_description', $metaDescription ?? strip_tags($service->description))
+
 
 
 @push('after-styles')
