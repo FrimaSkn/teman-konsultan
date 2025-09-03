@@ -166,12 +166,14 @@ class ServicesPage extends Component implements HasForms, Plugin
                             ->schema([
                                 Forms\Components\TextInput::make('meta_title')
                                     ->label('Meta Title')
+                                    ->required()
                                     ->translatable()
                                     ->columnSpanFull(),
                                 Forms\Components\Textarea::make('meta_description')
                                     ->label('Meta Description')
                                     ->maxLength(160)
                                     ->helperText('Max 160 characters')
+                                    ->required()
                                     ->translatable()
                                     ->columnSpanFull(),
                             ]),
