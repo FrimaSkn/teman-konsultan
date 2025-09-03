@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title', $service->name)
+
 @section('meta_description', strip_tags($service->description))
 
 @php

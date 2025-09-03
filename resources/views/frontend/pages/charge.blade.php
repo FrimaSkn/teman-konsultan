@@ -3,7 +3,6 @@
 @section('title', __('Harga'))
 @section('meta_description', 'Berikut adalah Harga Paket Pupular kami, terutama untuk Perusahaan Start up dan UMKM. Untuk pertanyaan lebih lanjut, ataupun jasa lainnya, konsultasikan langsung ke kami.')
 
-
 @section('content')
     <section class="py-20 bg-[#e7e8ea]">
         <div class="container">
