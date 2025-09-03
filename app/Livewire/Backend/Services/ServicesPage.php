@@ -157,11 +157,13 @@ class ServicesPage extends Component implements HasForms, Plugin
             ->model($this->record);
     }
 
-    public function save(): void
+    public function save()
     {
         $data = $this->form->getState();
 
         $this->record->update($data);
+
+        return redirect()->route('admin.services.page', $this->record)->with('flash_success', 'Page Service updated successfully.');
     }
 
     public function render(): View

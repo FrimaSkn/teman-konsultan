@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ appName() }} | @yield('title')</title>
     <meta name="description" content="@yield('meta_description', appName())">
-    <meta name="author" content="@yield('meta_author', 'Frimzz')">
+    <meta name="author" content="@yield('meta_author', 'designcub3')">
     @yield('meta')
 
     <x-utils.favicon />

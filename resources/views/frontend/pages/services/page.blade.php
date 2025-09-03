@@ -1,7 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', $service->name)
-@section('meta_description', $service->description)
+
+@section('meta_description', strip_tags($service->description))
 
 @php
     if ($service->page_content !== null) {
