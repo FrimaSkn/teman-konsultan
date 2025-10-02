@@ -31,50 +31,7 @@
 
 
     <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>{{ appName() }}</h3>
-                <strong>TK</strong>
-            </div>
-
-            <ul class="list-unstyled components">
-                {{-- <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-taxi"></i>
-                        Richiedi
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                    </ul>
-                </li> --}}
-
-                <li class="active">
-                    <a href="#">
-                        <i class="fas fa-book"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Subcription
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Transaksi
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
+        @include('frontend.includes.sidebar')
         <!-- Page Content  -->
         <div id="app">
             @include('frontend.includes.nav')

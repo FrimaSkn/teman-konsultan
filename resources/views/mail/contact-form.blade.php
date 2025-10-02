@@ -1,6 +1,8 @@
 <x-mail::message>
 # ENQUIRY
 
+<br>
+
 <table>
     <tr>
         <td><strong>Subject</strong></td>
@@ -29,6 +31,8 @@
     </tr>
 </table>
 
+<br>
+<br>
 
 Thanks,<br>
 {{ config('app.name') }}

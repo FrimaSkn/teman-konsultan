@@ -108,6 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
     protected $with = [
         'permissions',
         'roles',
+        'cartItems',
     ];
 
     /**
@@ -129,10 +130,10 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         $this->notify(new VerifyEmail);
     }
 
-    public function hasVerifiedEmail()
-    {
-        return true;
-    }
+    // public function hasVerifiedEmail()
+    // {
+    //     return true;
+    // }
 
     /**
      * Return true or false if the user can impersonate an other user.

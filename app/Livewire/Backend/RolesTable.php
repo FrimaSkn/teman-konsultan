@@ -48,7 +48,7 @@ class RolesTable extends DataTableComponent
                 })
                 ->html()
                 ->sortable(),
-            Column::make(__('Name'))
+            Column::make(__('Name'), 'name')
                 ->sortable(),
             Column::make(__('Permissions'))
                 ->label(fn ($row) => $row->permissions_label),

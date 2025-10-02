@@ -1,6 +1,7 @@
 <?php
 
 use Tabuna\Breadcrumbs\Trail;
+use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\Frontend\ConsultationController;
 use App\Domains\Auth\Http\Controllers\Frontend\Auth\LoginController;
 use App\Domains\Auth\Http\Controllers\Frontend\Auth\SocialController;
@@ -24,6 +25,7 @@ Route::group(['as' => 'auth.'], function () {
             Route::group([
                 'prefix' => 'free-consultation',
                 'as' => 'free-consultation.',
+                'middleware' => [config('boilerplate.access.middleware.verified')],
             ], function () {
                 Route::get('/', [ConsultationController::class, 'free_consultation'])
                     ->name('index');

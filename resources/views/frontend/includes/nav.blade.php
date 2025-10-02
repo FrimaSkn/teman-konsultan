@@ -1,18 +1,24 @@
 <nav class="bg-white shadow-sm navbar navbar-expand-md navbar-light">
     <div class="container">
-        <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary">
-            <i data-lucide="align-left"></i>
-        </button>
+        <div class="d-flex align-items-center">
+            <div style="height: 40px; width: 40px;">
+                <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary">
+                    <i data-lucide="align-left"></i>
+                </button>
+            </div>
 
-        <x-utils.link
-            :href="route('frontend.home')"
-            :text="appName()"
-            class="navbar-brand" />
+            <x-utils.link
+                :href="route('frontend.home')"
+                :text="appName()"
+                class=" navbar-brand" />
+        </div>
+
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+    </div><!--container-->
+    <div class="container">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="ml-auto navbar-nav">
                 @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
@@ -109,7 +115,7 @@
                 @endguest
             </ul>
         </div><!--navbar-collapse-->
-    </div><!--container-->
+    </div>
 </nav>
 @if (config('boilerplate.frontend_breadcrumbs'))
     @include('frontend.includes.partials.breadcrumbs')

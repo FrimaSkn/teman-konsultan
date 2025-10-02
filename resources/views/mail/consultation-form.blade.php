@@ -1,6 +1,8 @@
 <x-mail::message>
 # FREE CONSULTATION FORM
 
+<br>
+
 <table>
     <tr>
         <td><strong>Subject</strong></td>
@@ -33,6 +35,9 @@
         <td>{{ $consultation->message }}</td>
     </tr>
 </table>
+
+<br>
+<br>
 
 Thanks,<br>
 {{ config('app.name') }}

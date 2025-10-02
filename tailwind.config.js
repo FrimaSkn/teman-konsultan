@@ -8,6 +8,7 @@ export default {
         './resources/views/components/utils/**/*.blade.php',
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./resources/**/*.blade.php",
         "./resources/views/vendor/pagination/*.blade.php",
     ],
     theme: {

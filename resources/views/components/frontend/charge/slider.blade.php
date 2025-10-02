@@ -7,6 +7,7 @@
     $packages = [];
     foreach ($data as $package) {
         $wrapped = [
+            'id' => $package->id,
             'title' => $package->title,
             'slug' => $package->slug,
             'note' => $package->category->note ?? null,
@@ -23,6 +24,7 @@
     }
 
     $getFristPaket = $packages[0] ?? [];
+    // dd($getFristPaket);
 @endphp
 
 <div class="flex gap-4 max-md:container">
@@ -124,7 +126,23 @@
                                 <div class="text-xl font-semibold leading-tight text-center">{{ $paket['price'][app()->getLocale()] ?? '' }}</div>
                             @endif
                             @if (array_key_exists('min_contract', $paket) || isset($paket['min_contract']))
-                                <div class="font-semibold leading-tight text-center">{{ $paket['min_contract'][app()->getLocale()] ?? '' }}</div>
+                                @if ($paket['min_contract'] == 12)
+                                    <div class="font-semibold leading-tight text-center capitalize">1 @lang('year')</div>
+                                @else
+                                    @switch($paket['contract_type'])
+                                        @case('daily')
+                                            <div class="font-semibold leading-tight text-center capitalize">{{ $paket['min_contract'] }} @lang('day')</div>
+                                            @break
+                                        @case('monthly')
+                                            <div class="font-semibold leading-tight text-center capitalize">{{ $paket['min_contract'] }} @lang('month')</div>
+                                            @break
+                                        @case('yearly')
+                                            <div class="font-semibold leading-tight text-center capitalize">{{ $paket['min_contract'] }} @lang('year')</div>
+                                            @break
+                                        @default
+
+                                    @endswitch
+                                @endif
                             @endif
                         </div>
 
@@ -216,12 +234,20 @@
                             </div>
                         @endif
 
-                        <div class="flex justify-center">
-                            <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-2 pb-2.5 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center mt-4 justify-center w-full">
-                                <span>ambil paket</span>
-                                <i data-lucide="chevron-right" class="size-4"></i>
-                            </a>
-                        </div>
+                        @if ($paket['button_type'] == 'order')
+                            <x-frontend.charge.include.btn-form :paket="$paket" :key="$key" type="slider" minContract="{{ $paket['min_contract'] ?? 1 }}" contractType="{{ $paket['contract_type'] ?? null }}" />
+                        @endif
+
+
+                        @if ($paket['button_type'] == 'contact')
+                            <div class="flex justify-center">
+                                <a href="{{ route('frontend.contact-us', '#form-contact') }}"
+                                    class="pl-4 pr-2 pt-2 pb-2.5 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center mt-4 justify-center w-full">
+                                    <span>@lang('Contact Us')</span>
+                                    <i data-lucide="chevron-right" class="size-4"></i>
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

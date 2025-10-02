@@ -22,4 +22,9 @@ trait UserRelationship
     {
         return $this->hasMany(Post::class);
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany(\App\Models\CartItem::class, 'user_id', 'id');
+    }
 }

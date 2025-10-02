@@ -2,52 +2,184 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Package;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Payment;
+use App\Models\Subscription;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
 
-    public function payment()
+    public function payment($order_number)
     {
         $this->setupMidtransConfig();
 
-        $transaction_details = [
-            'order_id' => uniqid(),
-            'gross_amount' => 10000,
-        ];
-
-        $item_details = [
-            [
-                'id' => 'item1',
-                'price' => 10000,
-                'quantity' => 1,
-                'name' => 'Adidas f50'
-            ]
-        ];
-
-        $customer_details = [
-            'first_name'    => 'John',
-            'last_name'     => 'Doe',
-            'email'         => 'john@doe.com',
-            'phone'         => '081234567890',
-        ];
-
-        $transaction = [
-            'transaction_details' => $transaction_details,
-            'item_details' => $item_details,
-            'customer_details' => $customer_details,
-        ];
-
         try {
+            $order = Order::with('orderItems')->where('order_number', $order_number)->firstOrFail();
+
+            $user = auth()->user();
+
+
+            $transaction_details = [
+                'order_id' => $order->order_number,
+                'gross_amount' => $order->total_amount,
+            ];
+
+            $item_details = [];
+
+            foreach ($order->orderItems as $item) {
+                $package = Package::where('id', $item->package_id)->first();
+                $item_details[] = [
+                    'id' => $item->package_id,
+                    'price' => $item->price,
+                    'quantity' => $item->quantity,
+                    'name' => $package->title . ' - ' . $package->category->name,
+                ];
+            }
+
+            $customer_details = [
+                'first_name'    => $user->name,
+                'email'         => $user->email,
+                'phone'         => $user->phone,
+            ];
+
+            $transaction = [
+                'transaction_details' => $transaction_details,
+                'item_details' => $item_details,
+                'customer_details' => $customer_details,
+            ];
+
             $snapToken = \Midtrans\Snap::getSnapToken($transaction);
-            return view('frontend.order.payment', compact('snapToken'));
+            return view('frontend.order.payment', compact('snapToken', 'order'));
+
         } catch (\Exception $e) {
-            return $e->getMessage();
+            dd($e->getMessage());
+            return redirect()->route('frontend.user.transaction.index');
+
         }
     }
 
+    public function paymentStore(Request $request)
+    {
+        $data = $request->all();
+
+        $order = Order::where('order_number', $data['order_id'])->firstOrFail();
+        $order->status = 'paid';
+        $order->save();
+
+        $payment = $this->createPayment($data);
+
+        $this->createSubscription($order->orderItems);
+
+        return response()->json(['success' => true, 'message' => 'Payment successful', 'data' => $payment]);
+    }
+
+    public function paymentStatus(Request $request)
+    {
+        $order = Order::where('order_number', $request->input('order_id'))->firstOrFail();
+
+        if ($order->status != 'paid') {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', 'https://api.sandbox.midtrans.com/v2/' . $order->order_number . '/status', [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Basic ' . base64_encode(config('midtrans.server_key') . ':'),
+                ],
+            ]);
+
+            $data = json_decode($response->getBody()->getContents());
+
+            if ($data->status_code == 200) {
+                if (in_array($data->transaction_status, ['capture', 'settlement'])) {
+                    $order->status = 'paid';
+                    $order->save();
+
+                    $payment = $this->createPayment((array) $data);
+
+                    $this->createSubscription($order->orderItems);
+
+                    return response()->json(['status' => $order->status]);
+                }
+            }else{
+                return response()->json(['status' => $order->status]);
+            }
+
+        }
+
+        return response()->json(['status' => $order->status]);
+    }
+
+    public function finishPayment($order_id)
+    {
+        $order = Order::where('order_number', $order_id)->firstOrFail();
+
+        if ($order->status != 'paid') {
+            return redirect()->route('frontend.order.payment', $order->order_number);
+        }
+
+        return view('frontend.order.finish', [
+            'order' => $order
+        ]);
+    }
+
+    public function createPayment($data)
+    {
+        $result = Payment::create([
+            'order_number' => $data['order_id'],
+            'fraud_status' => $data['fraud_status'],
+            'gross_amount' => $data['gross_amount'],
+            'payment_type' => $data['payment_type'],
+            'transaction_id' => $data['transaction_id'],
+            'transaction_status' => $data['transaction_status'],
+            'transaction_time' => $data['transaction_time'],
+            'url' => $data['pdf_url'] ?? null,
+            'status_code' => $data['status_code'] ?? null,
+            'status_message' => $data['status_message'] ?? null,
+            'va_numbers' => isset($data['va_numbers']) ? json_encode($data['va_numbers']) : null,
+        ]);
+
+        return $result;
+    }
+
+    public function createSubscription($items)
+    {
+        foreach ($items as $item) {
+            $data = [
+                'user_id' => auth()->id(),
+                'order_item' => $item->id,
+                'subscription_number' => 'SUBS-' . strtoupper(uniqid()),
+                'status' => 'active',
+                'contract_type' => $item->contract_type
+            ];
+
+            switch ($item->contract_type) {
+                case 'daily':
+                    $data['started_at'] = Carbon::now();
+                    $data['ended_at'] = Carbon::now()->addDays($item->quantity);
+                    break;
+                case 'monthly':
+                    $data['started_at'] = Carbon::now();
+                    $data['ended_at'] = Carbon::now()->addMonths($item->quantity);
+                    break;
+                case 'yearly':
+                    $data['started_at'] = Carbon::now();
+                    $data['ended_at'] = Carbon::now()->addYears($item->quantity);
+                    break;
+                case 'periode':
+                    break;
+                case 'once':
+                    break;
+                default:
+                    break;
+            }
+
+            Subscription::create($data);
+        }
+    }
 
     protected function setupMidtransConfig()
     {
@@ -56,7 +188,6 @@ class OrderController extends Controller
         \Midtrans\Config::$isSanitized = config('midtrans.is_sanitized');
         \Midtrans\Config::$is3ds = config('midtrans.is_3ds');
     }
-
 
     public function package(Request $request)
     {
@@ -69,10 +200,28 @@ class OrderController extends Controller
 
         $sub_package = json_decode($package->payload);
 
-        // where type is table on array
-        $sub_package = collect($sub_package)->where('type', 'table')->first();
+        if ($data->type != 'table' && $data->type != 'list') {
+            # code...
+            dd($sub_package);
+        }else{
+            $sub_package = collect($sub_package)->where('type', $data->type)->first();
 
-        dd($sub_package->data->table[$data->sub_package_key]);
+            switch ($data->type) {
+                case 'table':
+                    # code...
+                    dd($sub_package->data->table[$data->sub_package_key]);
+                    break;
+                case 'list':
+                    # code...
+                    dd($sub_package->data->list[$data->sub_package_key]);
+                    break;
+
+                default:
+                    # code...
+                    dd('Type not found');
+                    break;
+            }
+        }
 
         // Logic to handle the package view
         return view('frontend.order.package', compact('package'));

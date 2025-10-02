@@ -32,4 +32,14 @@ class Package extends Model
     {
         return $this->belongsTo(PackageCategory::class, 'category_id');
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany(\App\Models\CartItem::class, 'package_id', 'id');
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(\App\Models\OrderItem::class, 'package_id', 'id');
+    }
 }

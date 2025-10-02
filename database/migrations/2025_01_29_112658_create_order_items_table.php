@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('order_number')->unique();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('status');
-            $table->integer('total_price');
+            $table->enum('status', ['pending', 'paid', 'cancelled', 'comfrimed'])->default('pending');
+            $table->integer('total_price')->nullable();
             $table->timestamps();
         });
 
@@ -25,11 +25,19 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->string('category');
-            $table->string('package_name');
-            $table->string('package_description');
+            $table->foreignId('package_id')->constrained()->onDelete('cascade');
+            $table->text('payload')->nullable();
             $table->integer('quantity');
-            $table->char('unit', 10);
-            $table->integer('price');
+            $table->integer('price')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('cart_items', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('package_id')->constrained()->onDelete('cascade');
+            $table->text('payload')->nullable();
+            $table->integer('quantity');
             $table->timestamps();
         });
 
@@ -37,21 +45,21 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->string('invoice_number')->unique();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->integer('total_price');
             $table->date('due_date');
             $table->timestamps();
         });
 
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('invoice_id')->constrained()->onDelete('cascade');
-            $table->string('payment_number')->unique();
-            $table->string('status');
-            $table->integer('total_price');
-            $table->string('snap_token');
-            $table->timestamps();
-        });
+        // Schema::create('payments', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('invoice_id')->constrained()->onDelete('cascade');
+        //     $table->string('payment_number')->unique();
+        //     $table->string('status');
+        //     $table->integer('total_price');
+        //     $table->string('snap_token');
+        //     $table->timestamps();
+        // });
 
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
@@ -72,8 +80,9 @@ return new class extends Migration
     {
         Schema::dropIfExists('order_items');
         Schema::dropIfExists('orders');
+        Schema::dropIfExists('cart_items');
         Schema::dropIfExists('invoices');
-        Schema::dropIfExists('payments');
+        // Schema::dropIfExists('payments');
         Schema::dropIfExists('subscriptions');
     }
 };

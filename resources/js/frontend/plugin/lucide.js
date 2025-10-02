@@ -1,4 +1,20 @@
-import { createIcons, Menu, Facebook, Instagram, Linkedin, ChevronRight, Check, X, LogOut, UserRound, AlignLeft, MessageCircleMore  } from 'lucide';
+import {
+        createIcons,
+        Menu,
+        Facebook,
+        Instagram,
+        Linkedin,
+        ChevronRight,
+        Check, X,
+        LogOut,
+        UserRound,
+        AlignLeft,
+        MessageCircleMore,
+        CirclePlus,
+        CircleMinus,
+        ShoppingCart,
+        CircleCheckBig
+    } from 'lucide';
 
 const icons = () => {
     createIcons({
@@ -13,7 +29,11 @@ const icons = () => {
         LogOut,
         UserRound,
         AlignLeft,
-        MessageCircleMore
+        MessageCircleMore,
+        CirclePlus,
+        CircleMinus,
+        ShoppingCart,
+        CircleCheckBig
       }
     });
 }

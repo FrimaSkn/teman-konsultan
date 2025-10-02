@@ -28,4 +28,37 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
         });
 
     Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::group(['prefix' => 'transaction', 'as' => 'transaction.'], function () {
+        Route::get('/', [\App\Http\Controllers\Frontend\User\TransactionController::class, 'index'])
+            ->name('index')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('frontend.user.dashboard')
+                    ->push(__('Transactions'), route('frontend.user.transaction.index'));
+            });
+
+        Route::get('/{order}', [\App\Http\Controllers\Frontend\User\TransactionController::class, 'show'])
+            ->name('show')
+            ->breadcrumbs(function (Trail $trail, $order) {
+                $trail->parent('frontend.user.transaction')
+                    ->push(__('Transaction') . ' #' . $order->order_number, route('frontend.user.transaction.show', $order));
+            });
+    });
+
+    Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function () {
+        Route::get('/', [\App\Http\Controllers\Frontend\User\SubcriptionController::class, 'index'])
+            ->name('index')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('frontend.user.dashboard')
+                    ->push(__('Transactions'), route('frontend.user.transaction.index'));
+            });
+
+        Route::get('/{order}', [\App\Http\Controllers\Frontend\User\SubcriptionController::class, 'show'])
+            ->name('show')
+            ->breadcrumbs(function (Trail $trail, $order) {
+                $trail->parent('frontend.user.transaction')
+                    ->push(__('Transaction') . ' #' . $order->order_number, route('frontend.user.transaction.show', $order));
+            });
+    });
+
 });

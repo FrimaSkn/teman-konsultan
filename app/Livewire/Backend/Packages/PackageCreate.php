@@ -7,6 +7,7 @@ use App\Models\Package;
 use Filament\Forms\Get;
 use Livewire\Component;
 use Filament\Forms\Form;
+use Filament\Support\RawJs;
 use Illuminate\Support\Str;
 use Filament\Contracts\Plugin;
 use App\Models\PackageCategory;
@@ -41,7 +42,7 @@ class PackageCreate extends Component implements HasForms, Plugin
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (?string $state) {
                         $data = PackageCategory::find($state);
-                        $this->layout = $data->layout ?? 'default';
+                        $this->layout = $data->layout ?? null;
                     })
                     ->label('Category')
                     ->options(PackageCategory::all()->pluck('name', 'id'))
@@ -55,12 +56,7 @@ class PackageCreate extends Component implements HasForms, Plugin
                     ->label('')
                     ->blocks([
                         Builder\Block::make('table')
-                            ->hidden(function () {
-                                if ($this->layout === 'default') {
-                                    return false;
-                                }
-                                return true;
-                            })
+                            ->visible(fn () => $this->layout === 'default')
                             ->schema([
                                 Builder::make('table')
                                     ->label('')
@@ -68,28 +64,51 @@ class PackageCreate extends Component implements HasForms, Plugin
                                          Builder\Block::make('row')
                                             ->schema([
                                                 Forms\Components\KeyValue::make('table')
-                                                ->label('')
-                                                ->keyLabel('Nama Kolom')
-                                                ->translatable(),
+                                                    ->label('')
+                                                    ->keyLabel('Nama Kolom')
+                                                    ->translatable(),
+                                                Forms\Components\Fieldset::make('Minimum kontrak')
+                                                    ->schema([
+                                                        Forms\Components\TextInput::make('min_contract')
+                                                            ->label('Kontrak')
+                                                            ->required(),
+                                                        Forms\Components\Select::make('contract_type')
+                                                            ->options([
+                                                                'daily' => 'Hari',
+                                                                'monthly' => 'Bulan',
+                                                                'yearly' => 'Tahun',
+                                                                'periode' => 'Periode',
+                                                                'once' => 'One Time',
+                                                            ])
+                                                            ->required(),
+                                                    ]),
                                                 Forms\Components\Fieldset::make('Action Button')
                                                     ->schema([
-                                                        Forms\Components\TextInput::make('button_text')
-                                                            ->required()
-                                                            ->translatable(),
+                                                        Forms\Components\Select::make('button_type')
+                                                            ->options([
+                                                                'order' => 'Order',
+                                                                'contact' => 'Contact Us',
+                                                            ])
+                                                            ->live(onBlur: false)
+                                                            ->required(),
+                                                        Forms\Components\TextInput::make('package_price')
+                                                            ->label('Harga Paket')
+                                                            ->visible(fn (Get $get) => $get('button_type') === 'order')
+                                                            ->mask(RawJs::make('$money($input)'))
+                                                            ->stripCharacters(',')
+                                                            ->numeric()
+                                                            ->required(),
                                                         Forms\Components\TextInput::make('button_url')
-                                                            ->label('URL')
+                                                            ->label('Redirect URL')
+                                                            ->visible(fn (Get $get) => $get('button_type') === 'contact')
+                                                            ->default('#')
                                                             ->required(),
                                                 ])
                                             ]),
                                     ])->cloneable()
                             ]),
                         Builder\Block::make('list')
-                            ->hidden(function () {
-                                if ($this->layout === 'default') {
-                                    return false;
-                                }
-                                return true;
-                            })
+                            ->visible(fn () => $this->layout === 'default')
                             ->schema([
                                 Forms\Components\Repeater::make('list')
                                     ->schema([
@@ -100,14 +119,41 @@ class PackageCreate extends Component implements HasForms, Plugin
                                         Forms\Components\TextInput::make('value')
                                             ->label('')
                                             ->translatable(),
+                                        Forms\Components\Fieldset::make('Minimum kontrak')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('min_contract')
+                                                    ->label('Kontrak')
+                                                    ->required(),
+                                                Forms\Components\Select::make('contract_type')
+                                                    ->options([
+                                                        'daily' => 'Hari',
+                                                        'monthly' => 'Bulan',
+                                                        'yearly' => 'Tahun',
+                                                        'periode' => 'Periode',
+                                                        'once' => 'One Time',
+                                                    ])
+                                                    ->required(),
+                                            ]),
                                         Forms\Components\Fieldset::make('button')
                                             ->schema([
-                                                Forms\Components\TextInput::make('button_text')
-                                                    ->label('Teks Tombol')
-                                                    ->required()
-                                                    ->translatable(),
+                                                Forms\Components\Select::make('button_type')
+                                                    ->options([
+                                                        'order' => 'Order',
+                                                        'contact' => 'Contact Us',
+                                                    ])
+                                                    ->live(onBlur: false)
+                                                    ->required(),
+                                                Forms\Components\TextInput::make('package_price')
+                                                    ->label('Harga Paket')
+                                                    ->visible(fn (Get $get) => $get('button_type') === 'order')
+                                                    ->mask(RawJs::make('$money($input)'))
+                                                    ->stripCharacters(',')
+                                                    ->numeric()
+                                                    ->required(),
                                                 Forms\Components\TextInput::make('button_url')
-                                                    ->label('URL')
+                                                    ->label('Redirect URL')
+                                                    ->visible(fn (Get $get) => $get('button_type') === 'contact')
+                                                    ->default('#')
                                                     ->required(),
                                             ]),
 
@@ -124,12 +170,7 @@ class PackageCreate extends Component implements HasForms, Plugin
                             ]),
                         Builder\Block::make('price')
                             ->label('Harga paket')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\TextInput::make('price')
                                     ->label('Harga')
@@ -138,91 +179,58 @@ class PackageCreate extends Component implements HasForms, Plugin
                             ]),
                         Builder\Block::make('minimum_contract')
                             ->label('Minimum kontrak')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
                             ->schema([
                                 Forms\Components\TextInput::make('min_contract')
                                     ->label('Kontrak')
-                                    ->required()
-                                    ->translatable(),
-                            ]),
+                                    ->required(),
+                                Forms\Components\Select::make('contract_type')
+                                    ->options([
+                                        'daily' => 'Hari',
+                                        'monthly' => 'Bulan',
+                                        'yearly' => 'Tahun',
+                                        'periode' => 'Periode',
+                                        'once' => 'One Time',
+                                    ])
+                                    ->required(),
+                            ])->columns(2),
                         Builder\Block::make('coverage')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\KeyValue::make('coverage')
                                     ->translatable()
                             ]),
                         Builder\Block::make('fitur')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\KeyValue::make('fitur')
                                     ->translatable(),
                             ]),
                         Builder\Block::make('free')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\KeyValue::make('free')
                                     ->translatable(),
                             ]),
                         Builder\Block::make('additional')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\KeyValue::make('additional')
                                     ->translatable(),
                             ]),
                         Builder\Block::make('meeting')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\KeyValue::make('meeting')
                                     ->translatable(),
                             ]),
                         Builder\Block::make('pembukuan')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\KeyValue::make('pembukuan')
                                     ->translatable(),
                             ]),
                         Builder\Block::make('support')
-                            ->hidden(function () {
-                                if ($this->layout !== 'slider') {
-                                    return true;
-                                }
-                                return false;
-                            })
+                            ->visible(fn () => $this->layout === 'slider')
                             ->schema([
                                 Forms\Components\KeyValue::make('support')
                                     ->translatable(),
@@ -230,11 +238,25 @@ class PackageCreate extends Component implements HasForms, Plugin
                             ]),
                         Builder\Block::make('button')
                             ->schema([
-                                Forms\Components\TextInput::make('button_text')
-                                    ->required()
-                                    ->translatable(),
+                                Forms\Components\Select::make('button_type')
+                                    ->options([
+                                        'order' => 'Order',
+                                        'contact' => 'Contact Us',
+                                    ])
+                                    ->live(onBlur: false)
+                                    ->required(),
+                                Forms\Components\TextInput::make('package_price')
+                                    ->label('Harga Paket')
+                                    ->visible(fn (Get $get) => $get('button_type') === 'order')
+                                    ->mask(RawJs::make('$money($input)'))
+                                    ->stripCharacters(',')
+                                    ->numeric()
+                                    ->required(),
                                 Forms\Components\TextInput::make('button_url')
-                                    ->label('URL'),
+                                    ->label('Redirect URL')
+                                    ->visible(fn (Get $get) => $get('button_type') === 'contact')
+                                    ->default('#')
+                                    ->required(),
                             ]),
                         Builder\Block::make('text_editor')
                             ->label('Teks Editor')
@@ -243,12 +265,7 @@ class PackageCreate extends Component implements HasForms, Plugin
                                     ->required()
                                     ->translatable(),
                             ])
-                            ->hidden(function () {
-                                if ($this->layout === 'default') {
-                                    return false;
-                                }
-                                return true;
-                            }),
+                            ->visible(fn () => $this->layout === 'default'),
                 ])->blockNumbers(false)
             ])
             ->statePath('data')

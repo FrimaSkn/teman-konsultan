@@ -3,34 +3,32 @@
 return [
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | Class Namespace
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
-    | This value sets the root namespace for Livewire component classes in
-    | your application. This value effects component auto-discovery and
-    | any livewire file helper commands, like `artisan make:livewire`.
-    |
-    | After changing this item, run: `php artisan livewire:discover`
+    | This value sets the root class namespace for Livewire component classes in
+    | your application. This value will change where component auto-discovery
+    | finds components. It's also referenced by the file creation commands.
     |
     */
 
-    // 'class_namespace' => 'App\\Http\\Livewire',
     'class_namespace' => 'App\\Livewire',
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | View Path
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
-    | This value sets the path for Livewire component views. This effects
-    | File manipulation helper commands like `artisan make:livewire`
+    | This value is used to specify where Livewire component Blade templates are
+    | stored when running file creation commands like `artisan make:livewire`.
+    | It is also used if you choose to omit a component's render() method.
     |
     */
 
     'view_path' => resource_path('views/livewire'),
 
-     /*
+    /*
     |---------------------------------------------------------------------------
     | Layout
     |---------------------------------------------------------------------------
@@ -134,7 +132,7 @@ return [
         'progress_bar_color' => '#2299dd',
     ],
 
-     /*
+    /*
     |---------------------------------------------------------------------------
     | HTML Morph Markers
     |---------------------------------------------------------------------------
@@ -147,7 +145,7 @@ return [
 
     'inject_morph_markers' => true,
 
-     /*
+    /*
     |---------------------------------------------------------------------------
     | Pagination Theme
     |---------------------------------------------------------------------------
@@ -159,5 +157,4 @@ return [
     */
 
     'pagination_theme' => 'tailwind',
-
 ];

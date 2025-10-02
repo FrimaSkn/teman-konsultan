@@ -38,7 +38,7 @@ class UpdateUserPasswordRequest extends FormRequest
                         ->mixedCase()
                         ->letters()
                         ->numbers()
-                        ->symbols()
+                        // ->symbols()
                         ->uncompromised(5),
                 ],
         ];

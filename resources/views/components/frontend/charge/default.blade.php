@@ -21,8 +21,6 @@
 
         $packages[] = json_decode((string) json_encode($wrapped), true);
     }
-
-    $getFristPaket = $packages[0] ?? [];
 @endphp
 
 <div class="container mt-10 space-y-8">
@@ -38,26 +36,40 @@
                 @if (isset($paket['sub_title']))
                     <div class="font-medium leading-none">{{ $paket['sub_title'][app()->getLocale()] ?? '' }}</div>
                 @endif
-                @if (isset($paket['button_text']) && isset($paket['button_url']))
-                    <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
-                        <span>{{ $paket['button_text'][app()->getLocale()] ?? '' }}</span>
-                        <i data-lucide="chevron-right"></i>
-                    </a>
+
+                @if (isset($paket['button_type']))
+                    @if ($paket['button_type'] == 'order')
+                        <x-frontend.charge.include.btn-form :paket="$paket" :type="'default'" minContract="{{ $paket['min_contract'] ?? 1 }}" contractType="{{ $paket['contract_type'] ?? null }}"  />
+                    @endif
+
+                    @if ($paket['button_type'] == 'contact')
+                        <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
+                            <span>@lang('Contact Us')</span>
+                            <i data-lucide="chevron-right"></i>
+                        </a>
+                    @endif
                 @endif
             </div>
 
             @if (isset($paket['list']))
                 <table class="w-full mt-4">
                     <tbody>
-                        @foreach ($paket['list'] as $list)
+                        @foreach ($paket['list'] as $key => $list)
                             <tr class="border-b border-gray-200">
                                 <td class="px-4 py-2 font-semibold">{!! $list['key'][app()->getLocale()] ?? '' !!}</td>
                                 <td class="px-4 py-2 font-semibold">{!! $list['value'][app()->getLocale()] ?? '' !!}</td>
                                 <td class="py-2 text-right">
-                                    <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
-                                        <span>{{ $list['button_text'][app()->getLocale()] ?? '' }}</span>
-                                        <i data-lucide="chevron-right"></i>
-                                    </a>
+
+                                    @if ($list['button_type'] == 'order')
+                                        <x-frontend.charge.include.btn-form :paket="$paket" :key="$key" :type="'list'" minContract="{{ $list['min_contract'] ?? 1 }}" contractType="{{ $list['contract_type'] ?? null }}" />
+                                    @endif
+
+                                    @if ($list['button_type'] == 'contact')
+                                        <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
+                                            <span>@lang('Contact Us')</span>
+                                            <i data-lucide="chevron-right"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -81,21 +93,16 @@
                                     <td class="px-4 py-2 font-semibold">{!! $column !!}</td>
                                 @endforeach
                                 <td class="py-2 text-right">
-                                    @php
-                                        $dataOrder = [
-                                            'id' => $paket['id'],
-                                            'title' => $paket['title'],
-                                            'slug' => $paket['slug'],
-                                            'sub_package_key' => $key,
-                                        ];
-                                        // dataOrder to stirng
-                                        $dataOrder = json_encode($dataOrder);
-                                    @endphp
-                                    {{-- <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center"> --}}
-                                    <a href="{{ route('frontend.order.package', ['package' => $dataOrder]) }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
-                                        <span>{{ $tableRow['data']['button_text'][app()->getLocale()] ?? '' }}</span>
-                                        <i data-lucide="chevron-right"></i>
-                                    </a>
+                                     @if ($tableRow['data']['button_type'] == 'order')
+                                        <x-frontend.charge.include.btn-form :paket="$paket" :key="$key" :type="'table'" minContract="{{ $tableRow['data']['min_contract'] ?? 1 }}" contractType="{{ $tableRow['data']['contract_type'] ?? null }}" />
+                                    @endif
+
+                                    @if ($tableRow['data']['button_type'] == 'contact')
+                                        <a href="{{ route('frontend.contact-us', '#form-contact') }}" class="pl-4 pr-2 pt-1 pb-1.5 w-56 h-12 uppercase bg-secondary rounded-xl hover:bg-opacity-90 text-primary font-medium text-nowrap inline-flex items-center justify-center">
+                                            <span>@lang('Contact Us')</span>
+                                            <i data-lucide="chevron-right"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

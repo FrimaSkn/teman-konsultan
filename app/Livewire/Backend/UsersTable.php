@@ -120,7 +120,7 @@ class UsersTable extends DataTableComponent
                         return __('Unknown');
                     }
                 }),
-            Column::make(__('Name'))
+            Column::make(__('Name'), 'name')
                 ->sortable(),
             Column::make(__('E-mail'), 'email')
                 ->sortable(),

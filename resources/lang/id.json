@@ -228,5 +228,13 @@
     "Your consultation request has been sent successfully!": "Permintaan konsultasi Anda telah berhasil dikirim!",
     "Failed to send your consultation request. Please try again later.": "Gagal mengirim permintaan konsultasi Anda. Silakan coba lagi nanti.",
     "Free Consultation": "Konsultasi Gratis",
-    "Free Consultation Form": "Formulir Konsultasi Gratis"
+    "Free Consultation Form": "Formulir Konsultasi Gratis",
+    "Take Package": "Ambil Paket",
+    "Don’t have an account yet? Register here": "Belum punya akun? Daftar di sini",
+    "Already have an account? Login here": "Sudah punya akun? Masuk di sini",
+    "year": "tahun",
+    "day": "hari",
+    "month": "bulan",
+    "hour": "jam",
+    "minute": "menit"
 }
