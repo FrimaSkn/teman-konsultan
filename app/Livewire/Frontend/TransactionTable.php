@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Rappasoft\LaravelLivewireTables\Views\Columns\IncrementColumn;
 
 class TransactionTable extends DataTableComponent
 {
-    // protected $model = Order::class;
+    protected $model = Order::class;
 
     public function builder(): \Illuminate\Database\Eloquent\Builder
     {
@@ -25,6 +26,10 @@ class TransactionTable extends DataTableComponent
     public function columns(): array
     {
         return [
+            IncrementColumn::make('#'),
+            Column::make("Id", "id")
+                ->deselected()
+                ->sortable(),
             Column::make("Order number", "order_number")
                 ->searchable()
                 ->sortable(),

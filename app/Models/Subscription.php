@@ -18,4 +18,9 @@ class Subscription extends Model
         'started_at',
         'ended_at',
     ];
+
+    public function orderItem()
+    {
+        return $this->belongsTo(OrderItem::class, 'order_item', 'id');
+    }
 }

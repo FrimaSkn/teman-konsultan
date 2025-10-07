@@ -95,7 +95,7 @@
     ]
   },
   "resources/sass/backend/app.scss": {
-    "file": "assets/app-C3RHhpws.css",
+    "file": "assets/app-DfhTxS1O.css",
     "src": "resources/sass/backend/app.scss",
     "isEntry": true
   },
@@ -105,7 +105,7 @@
     "isEntry": true
   },
   "resources/sass/frontend/dashboard.scss": {
-    "file": "assets/dashboard-DGLTzH9k.css",
+    "file": "assets/dashboard-BfZvPpDX.css",
     "src": "resources/sass/frontend/dashboard.scss",
     "isEntry": true
   },

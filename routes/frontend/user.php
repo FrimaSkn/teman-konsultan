@@ -37,11 +37,11 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
                     ->push(__('Transactions'), route('frontend.user.transaction.index'));
             });
 
-        Route::get('/{order}', [\App\Http\Controllers\Frontend\User\TransactionController::class, 'show'])
+        Route::get('/{order_number}', [\App\Http\Controllers\Frontend\User\TransactionController::class, 'show'])
             ->name('show')
-            ->breadcrumbs(function (Trail $trail, $order) {
-                $trail->parent('frontend.user.transaction')
-                    ->push(__('Transaction') . ' #' . $order->order_number, route('frontend.user.transaction.show', $order));
+            ->breadcrumbs(function (Trail $trail, $order_number) {
+                $trail->parent('frontend.user.transaction.index')
+                    ->push("Detail", route('frontend.user.transaction.show', $order_number));
             });
     });
 

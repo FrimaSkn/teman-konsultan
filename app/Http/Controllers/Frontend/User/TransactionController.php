@@ -15,4 +15,12 @@ class TransactionController extends Controller
             'transactions' => $transactions
         ]);
     }
+
+    public function show($order_number)
+    {
+        $order = Order::where('order_number', $order_number)->firstOrFail();
+        return view('frontend.user.transaction.show', [
+            'order' => $order
+        ]);
+    }
 }

@@ -11,4 +11,9 @@ class SubcriptionController extends Controller
     {
         return view('frontend.user.subscription.index');
     }
+
+    public function show()
+    {
+        return view('frontend.user.subscription.show');
+    }
 }
