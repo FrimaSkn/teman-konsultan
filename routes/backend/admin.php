@@ -193,3 +193,19 @@ Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
                 ->push(__('General Settings'), route('admin.settings.general'));
     });
 });
+
+Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function () {
+    Route::get('/', [\App\Http\Controllers\Backend\SubscriptionController::class, 'index'])
+        ->name('index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('subscription'), route('admin.subscription.index'));
+        });
+
+    Route::get('create', [\App\Http\Controllers\Backend\SubscriptionController::class, 'create'])
+        ->name('create')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.subscription.index')
+                  ->push(__('Create subscription'), route('admin.subscription.create'));
+        });
+});

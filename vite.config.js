@@ -34,6 +34,8 @@ export default defineConfig({
             '~@coreui/icons/css/free.min.css': path.resolve(__dirname, 'node_modules/@coreui/icons/css/free.min.css'), // CoreUI Icons
             'sweetalert2': path.resolve(__dirname, 'node_modules/sweetalert2'),
             vue: 'vue/dist/vue.esm-bundler.js',
+            'select2': path.resolve(__dirname, 'node_modules/select2/dist/js/select2.full.min.js'),
+            '~select2/dist/css/select2.min.css': path.resolve(__dirname, 'node_modules/select2/dist/css/select2.min.css'),
         }
     },
 })

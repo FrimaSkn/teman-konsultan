@@ -96,6 +96,15 @@
                 </ul>
             </li>
 
+            <li class="c-sidebar-nav-title">@lang('subscription')</li>
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.subscription.index')"
+                    :active="activeClass(Route::is('admin.subscription.*'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-description"
+                    :text="__('Subscription')" />
+            </li>
 
 
             <li class="c-sidebar-nav-title">@lang('Messages')</li>

@@ -93,7 +93,7 @@
 
     <div>
         @if ($totalPrice == 0)
-            No items selected,
+            <div class="flex items-center justify-center w-full text-3xl font-bold text-center h-[50vh]">@lang('No Item')</div>
         @else
             <div class="flex items-center justify-between px-4 py-2">
                 <div class="text-lg font-semibold">

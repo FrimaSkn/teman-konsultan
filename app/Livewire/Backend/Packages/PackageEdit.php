@@ -81,6 +81,7 @@ class PackageEdit extends Component implements HasForms, Plugin
                                                                 'yearly' => 'Tahun',
                                                                 'periode' => 'Periode',
                                                                 'once' => 'One Time',
+                                                                'package' => 'Package',
                                                             ])
                                                             ->required(),
                                                     ]),
@@ -133,6 +134,7 @@ class PackageEdit extends Component implements HasForms, Plugin
                                                         'yearly' => 'Tahun',
                                                         'periode' => 'Periode',
                                                         'once' => 'One Time',
+                                                        'package' => 'Package',
                                                     ])
                                                     ->required(),
                                             ]),
@@ -192,6 +194,7 @@ class PackageEdit extends Component implements HasForms, Plugin
                                         'yearly' => 'Tahun',
                                         'periode' => 'Periode',
                                         'once' => 'One Time',
+                                        'package' => 'Package',
                                     ])
                                     ->required(),
                             ])->columns(2),

@@ -87,40 +87,40 @@ class Cart extends Component
         }
     }
 
-    static function itemDetail($item)
-    {
-        $data = json_decode($item);
+    // static function itemDetail($item)
+    // {
+    //     $data = json_decode($item);
 
-        $package = Package::where('id', $data->package_id)
-            ->where('slug', $data->slug)
-            ->firstOrFail();
+    //     $package = Package::where('id', $data->package_id)
+    //         ->where('slug', $data->slug)
+    //         ->firstOrFail();
 
-        $sub_package = json_decode($package->payload);
+    //     $sub_package = json_decode($package->payload);
 
-        if ($data->type != 'table' && $data->type != 'list') {
-            return $sub_package;
-        }else{
-            $sub_package = collect($sub_package)->where('type', $data->type)->first();
+    //     if ($data->type != 'table' && $data->type != 'list') {
+    //         return $sub_package;
+    //     }else{
+    //         $sub_package = collect($sub_package)->where('type', $data->type)->first();
 
-            switch ($data->type) {
-                case 'table':
-                    # code...
-                    dd($sub_package->data->table[$data->sub_package_key]);
-                    break;
-                case 'list':
-                    # code...
-                    dd($sub_package->data->list[$data->sub_package_key]);
-                    break;
+    //         switch ($data->type) {
+    //             case 'table':
+    //                 # code...
+    //                 dd($sub_package->data->table[$data->sub_package_key]);
+    //                 break;
+    //             case 'list':
+    //                 # code...
+    //                 dd($sub_package->data->list[$data->sub_package_key]);
+    //                 break;
 
-                default:
-                    # code...
-                    dd('Type not found');
-                    break;
-            }
-        }
+    //             default:
+    //                 # code...
+    //                 dd('Type not found');
+    //                 break;
+    //         }
+    //     }
 
-        return $data;
-    }
+    //     return $data;
+    // }
 
     public function updateQuantity($id, $quantity)
     {

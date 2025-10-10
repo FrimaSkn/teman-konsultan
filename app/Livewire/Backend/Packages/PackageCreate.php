@@ -79,6 +79,7 @@ class PackageCreate extends Component implements HasForms, Plugin
                                                                 'yearly' => 'Tahun',
                                                                 'periode' => 'Periode',
                                                                 'once' => 'One Time',
+                                                                'package' => 'Package',
                                                             ])
                                                             ->required(),
                                                     ]),
@@ -131,6 +132,7 @@ class PackageCreate extends Component implements HasForms, Plugin
                                                         'yearly' => 'Tahun',
                                                         'periode' => 'Periode',
                                                         'once' => 'One Time',
+                                                        'package' => 'Package',
                                                     ])
                                                     ->required(),
                                             ]),
@@ -190,6 +192,7 @@ class PackageCreate extends Component implements HasForms, Plugin
                                         'yearly' => 'Tahun',
                                         'periode' => 'Periode',
                                         'once' => 'One Time',
+                                        'package' => 'Package',
                                     ])
                                     ->required(),
                             ])->columns(2),

@@ -6,8 +6,8 @@ export default {
     presets: [preset],
     darkMode: 'false',
     content: [
-        "./resources/views/frontend/**/*.blade.php",
-        './resources/views/components/frontend/**/*.blade.php',
+        "./resources/views/backend/**/*.blade.php",
+        './resources/views/components/backend/**/*.blade.php',
         "./resources/**/*.js",
         "./resources/**/*.vue",
         './app/Filament/**/*.php',

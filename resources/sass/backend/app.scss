@@ -3,7 +3,8 @@
 // Coreui
 @import '~@coreuicss';
 @import '~@coreui/icons/css/free.min.css';
-// @import 'sweetalert2/dist/sweetalert2.min.css';
+// @import '~sweetalert2/dist/sweetalert2.min.css';
+@import '~select2/dist/css/select2.min.css';
 
 @config '../../../tailwind.backend.config.js';
 
@@ -24,10 +25,6 @@
 .fi-ta-row {
     @apply hover:bg-gray-100;
 }
-
-// [data-field-wrapper] .fi-input-wrp-input * {
-//         @apply border-gray-300 border rounded-md;
-// }
 
 input.fi-checkbox-input:checked {
     background-color: blue !important;
@@ -67,3 +64,53 @@ input.fi-checkbox-input:checked {
         }
     }
 }
+
+#table-perPage.form-control {
+    min-width: 3.8rem;
+    width: 100%;
+}
+
+#subscription-form {
+    [type='text'],
+    input:where(:not([type])),
+    [type='email'], [type='url'],
+    [type='password'],
+    [type='number'],
+    [type='date'],
+    [type='datetime-local'],
+    [type='month'],
+    [type='search'],
+    [type='tel'],
+    [type='time'],
+    [type='week'],
+    [multiple], textarea, select
+     {
+        height: calc(1.5em + 0.5rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.5;
+        background-clip: padding-box;
+        border: 1px solid;
+        color: #768192;
+        background-color: #fff;
+        border-color: #d8dbe0;
+        border-radius: 0.25rem;
+    }
+
+    .form-group .form-control {
+        height: calc(1.5em + 0.5rem + 2px);
+        padding: 0.1rem 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.5;
+        background-clip: padding-box;
+        border: 1px solid;
+        color: #768192;
+        background-color: #fff;
+        border-color: #d8dbe0;
+        border-radius: 0.25rem;
+
+    }
+}
+
