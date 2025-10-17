@@ -7,6 +7,8 @@ use App\Models\Package;
 use Livewire\Component;
 use App\Models\CartItem;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use App\Exceptions\GeneralException;
 
 class Cart extends Component
 {
@@ -247,31 +249,42 @@ class Cart extends Component
         unset($this->items[$key]);
         $data = auth()->user()->cartItems->where('id', $id)->first();
         $data->delete();
+
+        $count = CartItem::select('id')->where('user_id', auth()->id())->get();
+
+        $this->dispatch('setCartCount', $count->count());
     }
 
     public function checkout()
     {
-        $order = Order::create([
+        DB::beginTransaction();
+        try {
+             $order = Order::create([
             'user_id' => auth()->id(),
-            'order_number' => uniqid(),
-            'total_amount' =>  $this->totalAmount,
-        ]);
-
-        foreach ($this->items as $item) {
-            $order->orderItems()->create([
-                'package_id' => $item['package_id'],
-                'payload' => json_encode([
-                    'package_id' => $item['package_id'],
-                    'type' => $item['type'],
-                    'sub_package_key' => $item['sub_package_key'],
-                ]),
-                'contract_type' => $item['contract_type'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
+                'order_number' => uniqid(),
+                'total_amount' =>  $this->totalAmount,
             ]);
 
-            CartItem::where('id', $item['id'])->delete();
+            foreach ($this->items as $item) {
+                $order->orderItems()->create([
+                    'package_id' => $item['package_id'],
+                    'payload' => json_encode([
+                        'package_id' => $item['package_id'],
+                        'type' => $item['type'],
+                        'sub_package_key' => $item['sub_package_key'],
+                    ]),
+                    'contract_type' => $item['contract_type'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['price'],
+                ]);
+
+                CartItem::where('id', $item['id'])->delete();
+            }
+        }catch (\Throwable $th) {
+            DB::rollBack();
+            throw new GeneralException(__('There was a problem creating this order & subscription. Please try again.'));
         }
+        DB::commit();
 
         return redirect()->route('frontend.order.payment', $order->order_number);
     }

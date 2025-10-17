@@ -23,7 +23,10 @@
                         {{ Route::is('frontend.auth.*') || Route::is('frontend.auth.login') ? 'bg-secondary text-primary' : 'bg-primary text-secondary' }}"
                     >login</a>
                 @else
-                    <a href="{{ route('frontend.cart.index') }}" class="self-center">
+                    <a href="{{ route('frontend.cart.index') }}" class="relative self-center">
+                        @if ($logged_in_user->cartItems()->count() > 0)
+                            <span id="cart-count" class="absolute inline-flex items-center justify-center text-[10px] font-semibold text-white bg-red-500 rounded-full -top-3 -right-2 p-0.5 size-4">{{ $logged_in_user->cartItems()->count() }}</span>
+                        @endif
                         <i class="{{ Route::is('frontend.cart.*') || Route::is('frontend.cart.index') ? 'text-secondary' : 'text-primary' }}" data-lucide="shopping-cart"></i>
                     </a>
 
@@ -203,6 +206,14 @@
                     icons()
                 },
             }))
+        });
+
+        document.addEventListener('setCartCount', function (event) {
+            if (event.detail[0] > 0) {
+                $('#cart-count').html(event.detail[0]);
+            }else {
+                $('#cart-count').hide();
+            }
         });
 
     </script>

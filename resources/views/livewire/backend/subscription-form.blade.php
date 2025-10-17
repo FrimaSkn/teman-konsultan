@@ -53,6 +53,33 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="price" class="font-medium">Start Date</label>
+                <div class="datepicker date input-group">
+                    <input type="text" placeholder="Choose Date" class="form-control date-input" id="started_at">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="price" class="font-medium">End Date</label>
+                <div class="datepicker date input-group">
+                    <input type="text" placeholder="Choose Date" class="form-control date-input" id="ended_at">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="form-group">
         <label for="price" class="font-medium">Price</label>
         <input type="number" id="price" class="form-control" placeholder="Price" value="0" wire:model.blur="price" wire:loading.attr="disabled">
@@ -60,9 +87,10 @@
 
     <div class="form-group">
         <label for="total-amount" class="font-medium">Total Amount</label>
-        <input type="number" id="total-amount" class="form-control" placeholder="Total Amount" value="0" wire:model.blur="total_amount" wire:loading.attr="disabled">
+        <input type="number" id="total-amount" class="form-control" placeholder="Total Amount" value="0" wire:model.blur="total_amount" readonly wire:loading.attr="disabled">
     </div>
 
+    <button wire:loading.attr="disabled" wire:click="submit" class="float-right btn btn-sm btn-primary" type="submit">@lang('Create Subscription')</button>
 </div>
 
 @push('after-scripts')
@@ -91,7 +119,7 @@
             // Package
             let package = $('#select-package').select2({
                 data: [
-                    {id: -1, text: '--- Please select a package ---', selected: 'selected', search:'', hidden:true }
+                    {id: -1, text: '--- Please select a package ---', selected: '', search:'', hidden:true }
                 ],
             });
             package.prop('disabled', true);
@@ -102,7 +130,7 @@
                 package.prop('disabled', false);
                 package.select2({
                     data: data
-                })
+                });
             });
             package.on('select2:select', function (e) {
                 let data = e.params.data;
@@ -125,13 +153,49 @@
                     data: data,
                     templateResult: function (d) { return $(d.text); },
                     templateSelection: function (d) { return $(d.text); },
-                })
+                });
             });
 
             subPackage.on('select2:select', function (e) {
                 let data = e.params.data;
                 @this.set('sub_package_key', data.id);
                 @this.set('sub_package_type', data.type);
+            });
+
+
+            // Date
+            let started_at = $('#started_at').datepicker({
+                autoclose: true,
+                format: "dd/mm/yyyy"
+            });
+
+            let ended_at = $('#ended_at').datepicker({
+                autoclose: true,
+                format: "dd/mm/yyyy"
+            });
+
+            document.addEventListener('setDate', function (event) {
+                let data = event.detail[0];
+                started_at.datepicker('update', new Date(data.started_at));
+                ended_at.datepicker('update', new Date(data.ended_at));
+            });
+
+            document.addEventListener('clearDate', function (event) {
+                let data = event.detail[0];
+                started_at.datepicker('clearDates');
+                ended_at.datepicker('clearDates');
+            });
+
+            started_at.on('changeDate', function (e) {
+                if (started_at.val()){
+                    @this.set('started_at', moment(started_at.val(), 'DD/MM/YYYY').format('YYYY-MM-DD'));
+                }
+            });
+
+            ended_at.on('changeDate', function (e) {
+                if (ended_at.val()) {
+                    @this.set('ended_at', moment(ended_at.val(), 'DD/MM/YYYY').format('YYYY-MM-DD'));
+                }
             });
         }
     </script>

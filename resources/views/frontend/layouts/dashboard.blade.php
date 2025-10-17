@@ -17,7 +17,7 @@
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    @vite(['resources/sass/frontend/dashboard.scss', 'resources/js/frontend/dashboard/app.js'])
+    @vite(['resources/sass/frontend/dashboard.scss', 'resources/js/frontend/dashboard/app.js', 'resources/vendor/fontawesome/app.scss'])
 
         <livewire:styles />
 

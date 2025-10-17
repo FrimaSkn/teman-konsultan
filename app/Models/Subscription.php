@@ -20,6 +20,8 @@ class Subscription extends Model
         'ended_at',
     ];
 
+    protected $with = ['user', 'orderItem'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

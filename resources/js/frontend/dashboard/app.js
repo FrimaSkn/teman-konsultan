@@ -8,6 +8,7 @@ import '../../bootstrap';
 
 import '../plugin/lucide';
 
+
 console.log('Loading dashboard app...');
 
 $(document).ready(function() {

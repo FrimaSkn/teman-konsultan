@@ -27,4 +27,9 @@ trait UserRelationship
     {
         return $this->hasMany(\App\Models\CartItem::class, 'user_id', 'id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(\App\Models\Order::class);
+    }
 }

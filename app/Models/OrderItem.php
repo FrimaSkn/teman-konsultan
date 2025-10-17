@@ -29,4 +29,9 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Package::class, 'package_id', 'id');
     }
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class);
+    }
 }

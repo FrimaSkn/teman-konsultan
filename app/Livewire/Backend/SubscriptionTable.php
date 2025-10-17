@@ -12,6 +12,11 @@ class SubscriptionTable extends DataTableComponent
 {
     protected $model = Subscription::class;
 
+    public function builder(): \Illuminate\Database\Eloquent\Builder
+    {
+        return Subscription::query()->orderBy('created_at', 'desc');
+    }
+
     public function configure(): void
     {
         $this->setPrimaryKey('id');
@@ -70,7 +75,11 @@ class SubscriptionTable extends DataTableComponent
                         return 'N/A';
                     }
 
-                    if (Carbon::now()->format('Y-m-d') <= $subscription->ended_at && Carbon::now()->format('Y-m-d') >= $subscription->started_at) {
+                    if (Carbon::now()->format('Y-m-d') < $subscription->started_at  ) {
+                        $subscription->status = 'Pending';
+                        return '<span class="pt-1 badge badge-pill badge-secondary">' . $subscription->status . '</span>';
+
+                    }elseif (Carbon::now()->format('Y-m-d') <= $subscription->ended_at && Carbon::now()->format('Y-m-d') >= $subscription->started_at){
                         $subscription->status = 'Active';
                         return '<span class="pt-1 badge badge-pill badge-success">' . $subscription->status . '</span>';
                     }else{
@@ -120,6 +129,10 @@ class SubscriptionTable extends DataTableComponent
                 })
                 ->html()
                 ->sortable(),
+            Column::make("Created at", "created_at")
+                ->sortable(),
+            Column::make(__('Actions'))
+                ->label(fn($row) => view('backend.subscription.includes.actions', ['model' => $row]))
         ];
     }
 }

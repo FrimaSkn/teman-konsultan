@@ -13,13 +13,13 @@
         </li>
         <li class="{{ activeMenu('frontend.user.subscription.*') }}">
             <a href="{{ route('frontend.user.subscription.index') }}">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fa fa-bookmark"></i>
                 Subcription
             </a>
         </li>
         <li class="{{ activeMenu('frontend.user.transaction.*') }}">
             <a href="{{ route('frontend.user.transaction.index') }}">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fa fa-credit-card"></i>
                 Transaksi
             </a>
         </li>

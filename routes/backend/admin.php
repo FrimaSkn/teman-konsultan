@@ -208,4 +208,27 @@ Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function () 
             $trail->parent('admin.subscription.index')
                   ->push(__('Create subscription'), route('admin.subscription.create'));
         });
+
+    Route::get('edit/{subscription}', [\App\Http\Controllers\Backend\SubscriptionController::class, 'edit'])
+        ->name('edit')
+        ->breadcrumbs(function (Trail $trail, $subscription) {
+            $trail->parent('admin.subscription.index')
+                  ->push(__('Edit subscription'), route('admin.subscription.edit', $subscription));
+        });
+});
+
+Route::group(['prefix' => 'transaction', 'as' => 'transaction.'], function () {
+    Route::get('/', [\App\Http\Controllers\Backend\TransactionController::class, 'index'])
+        ->name('index')
+        ->breadcrumbs(function (Trail $trail) {
+            $trail->parent('admin.dashboard')
+                  ->push(__('Transactions'), route('admin.transaction.index'));
+        });
+
+    Route::get('show/{transaction}', [\App\Http\Controllers\Backend\TransactionController::class, 'show'])
+        ->name('show')
+        ->breadcrumbs(function (Trail $trail, $transaction) {
+            $trail->parent('admin.transaction.index')
+                  ->push(__('Transaction Details'), route('admin.transaction.show', $transaction));
+        });
 });

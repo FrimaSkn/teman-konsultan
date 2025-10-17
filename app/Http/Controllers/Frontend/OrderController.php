@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\Subscription;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -66,13 +67,19 @@ class OrderController extends Controller
     {
         $data = $request->all();
 
-        $order = Order::where('order_number', $data['order_id'])->firstOrFail();
-        $order->status = 'paid';
-        $order->save();
+        DB::beginTransaction();
+        try {
+            $order = Order::where('order_number', $data['order_id'])->firstOrFail();
+            $order->status = 'paid';
+            $order->save();
 
-        $payment = $this->createPayment($data);
+            $payment = $this->createPayment($data);
 
-        $this->createSubscription($order->orderItems);
+            $this->createSubscription($order->orderItems);
+        }catch (\Exception $e) {
+            DB::rollBack();
+        }
+        DB::commit();
 
         return response()->json(['success' => true, 'message' => 'Payment successful', 'data' => $payment]);
     }
@@ -95,12 +102,18 @@ class OrderController extends Controller
 
             if ($data->status_code == 200) {
                 if (in_array($data->transaction_status, ['capture', 'settlement'])) {
-                    $order->status = 'paid';
-                    $order->save();
 
-                    $payment = $this->createPayment((array) $data);
-
-                    $this->createSubscription($order->orderItems);
+                    DB::beginTransaction();
+                    try {
+                        $order->status = 'paid';
+                        $order->save();
+                        $payment = $this->createPayment((array) $data);
+                        $this->createSubscription($order->orderItems);
+                    }catch (\Exception $e) {
+                        DB::rollBack();
+                        return response()->json(['status' => $order->status]);
+                    }
+                    DB::commit();
 
                     return response()->json(['status' => $order->status]);
                 }

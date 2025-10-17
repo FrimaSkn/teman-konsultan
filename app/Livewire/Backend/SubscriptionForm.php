@@ -2,17 +2,24 @@
 
 namespace App\Livewire\Backend;
 
+use Carbon\Carbon;
+use App\Models\Order;
+use App\Models\Package;
 use Livewire\Component;
+use Illuminate\Support\Arr;
+use App\Models\Subscription;
 use App\Models\PackageCategory;
 use App\Domains\Auth\Models\User;
-use App\Models\Package;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use App\Exceptions\GeneralException;
 
 class SubscriptionForm extends Component
 {
     public $users, $categories, $packages;
     public $user_id, $category_id, $package_id, $sub_package_key, $sub_package_type;
     public $price, $contract_type, $min_contract, $quantity, $total_amount;
+    public $ended_at;
+    public $started_at;
 
     public function mount()
     {
@@ -24,8 +31,8 @@ class SubscriptionForm extends Component
     public function updated($property)
     {
         if ($property == 'category_id') {
-            $this->package_id = null;
             $this->resetSubPackage();
+            $this->package_id = null;
             $this->getPackages($this->category_id);
         }
 
@@ -41,6 +48,10 @@ class SubscriptionForm extends Component
 
         if ($property == 'price' || $property == 'quantity') {
             $this->getTotalAmount();
+        }
+
+        if ($property == 'quantity' || $property == 'contract_type') {
+            $this->getDate();
         }
     }
 
@@ -61,7 +72,7 @@ class SubscriptionForm extends Component
 
     public function getPackageDetail($id)
     {
-        if ($id == null) {
+        if ($id == null || $id == '-1') {
             return;
         }
         $package = Package::find($id);
@@ -81,6 +92,7 @@ class SubscriptionForm extends Component
             $this->min_contract = $contract->data->min_contract;
             $this->quantity = $contract->data->min_contract;
             $this->getTotalAmount();
+            $this->getDate();
         }else {
             return;
         }
@@ -88,11 +100,12 @@ class SubscriptionForm extends Component
 
     public function getSubPackages($id)
     {
-        if ($id == null) {
+        if ($id == null || $id == '-1') {
+            $this->resetSubPackage();
             return;
         }
 
-        $package = Package::find($id);
+        $package = Package::findOrFail($id);
         $payload = json_decode($package->payload);
 
         foreach ($payload as $key => $value) {
@@ -143,12 +156,13 @@ class SubscriptionForm extends Component
 
     public function getSubPackageDetail($type)
     {
-        $package = Package::find($this->package_id);
-        $payload = json_decode($package->payload);
 
-        if ($this->sub_package_key == null) {
+        if ($this->sub_package_key == null || $this->sub_package_key == '-1') {
+            $this->resetSubPackage();
             return;
         }else {
+            $package = Package::find($this->package_id);
+            $payload = json_decode($package->payload);
             if ($type == 'table') {
                 $data = collect($payload)->where('type', $type)->first();
                 $this->price = $data->data->table[$this->sub_package_key]->data->package_price;
@@ -168,13 +182,44 @@ class SubscriptionForm extends Component
 
 
 
-
+        $this->getDate();
         $this->getTotalAmount();
     }
 
     public function getTotalAmount()
     {
         $this->total_amount = $this->price * $this->quantity;
+    }
+
+    public function getDate()
+    {
+        switch ($this->contract_type) {
+            case 'daily':
+                $this->started_at = Carbon::now()->format('Y-m-d');
+                $this->ended_at = Carbon::now()->addDays($this->quantity)->format('Y-m-d');
+                break;
+            case 'monthly':
+                $this->started_at = Carbon::now()->format('Y-m-d');
+                $this->ended_at = Carbon::now()->addMonths($this->quantity)->format('Y-m-d');
+                break;
+            case 'yearly':
+                $this->started_at = Carbon::now()->format('Y-m-d');
+                $this->ended_at = Carbon::now()->addYears($this->quantity)->format('Y-m-d');
+                break;
+            case 'periode':
+                break;
+            case 'once':
+                break;
+            default:
+                break;
+        }
+
+        $data = [
+            'started_at' => $this->started_at,
+            'ended_at' => $this->ended_at
+        ];
+
+        $this->dispatch('setDate', $data);
     }
 
     public function resetSubPackage()
@@ -185,6 +230,58 @@ class SubscriptionForm extends Component
         $this->quantity = null;
         $this->contract_type = null;
         $this->total_amount = null;
+        $this->started_at = null;
+        $this->ended_at = null;
+        $this->dispatch('clearDate');
+    }
+
+    public function submit()
+    {
+        DB::beginTransaction();
+        try {
+            $order = Order::create([
+                'user_id' => $this->user_id,
+                'order_number' => uniqid(),
+                'status' => 'paid',
+                'total_amount' =>  $this->total_amount,
+            ]);
+
+            $orderItem = $order->orderItems()->create([
+                'package_id' => $this->package_id,
+                'payload' => json_encode([
+                    'package_id' => $this->package_id,
+                    'type' => $this->sub_package_type ?? null,
+                    'sub_package_key' => $this->sub_package_key ?? null,
+                ]),
+                'contract_type' => $this->contract_type,
+                'quantity' => $this->quantity,
+                'price' => $this->price,
+            ]);
+
+            $this->createSubscription($orderItem);
+
+        }catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
+            throw new GeneralException(__('There was a problem creating this order & subscription. Please try again.'));
+        }
+        DB::commit();
+        return redirect()->route('admin.subscriptions.index')->with('flash_success',__('The subscription was successfully created.'));
+    }
+
+    public function createSubscription($item)
+    {
+            $data = [
+                'user_id' => $this->user_id,
+                'order_item' => $item->id,
+                'subscription_number' => 'SUBS-' . strtoupper(uniqid()),
+                'status' => 'active',
+                'contract_type' => $item->contract_type,
+                'started_at' => $this->started_at,
+                'ended_at' => $this->ended_at,
+            ];
+
+            Subscription::create($data);
     }
 
     public function render()
