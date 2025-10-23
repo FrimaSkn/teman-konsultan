@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
 
 Route::group(['middleware' => 'auth', 'prefix' => 'order', 'as' => 'order.'], function() {
