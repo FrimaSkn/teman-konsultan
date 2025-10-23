@@ -56,13 +56,7 @@ Route::group([
 
 // Route Callback
 Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
-    $body = '{
-    "event": "PAYMENT.TEST",
-    "data": {
-        "test": "OK"
-    }
-    }';
-    Route::any('callback', [CallbackController::class, 'paymentCallback'], ['body' => $body])->name('payment.callback');
+    Route::any('callback', [CallbackController::class, 'paymentCallback'])->name('payment.callback');
 });
 
 Route::get('/FJ23irehsd3SDFSdfh', function() {

@@ -25,6 +25,14 @@ class CallbackController extends Controller
 
     public function paymentCallback(Request $request)
     {
+        $body = '{
+            "event": "PAYMENT.TEST",
+            "data": {
+                "test": "OK"
+            }
+            }';
+        return response()->json($body, 200);
+
         if (!empty($request->all())) {
             $data = $request->all();
 
