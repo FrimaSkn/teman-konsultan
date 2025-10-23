@@ -96,6 +96,7 @@ class PaymentService extends BaseService
                 'payload' =>  $data['payload'],
             ]);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
             throw new \Exception('There was a problem updating this payment. Please try again.');
         }

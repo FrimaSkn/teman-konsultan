@@ -91,10 +91,6 @@ class CallbackController extends Controller
 
         $this->paymentUpdate($order->payment->transaction_id, $order->payment);
 
-        $this->paymentService->update($order->payment, [
-            'status' => 'FAILED',
-        ]);
-
         return redirect()->route('frontend.user.transaction.index');
     }
 
