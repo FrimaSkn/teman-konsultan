@@ -17,11 +17,16 @@ class Order extends Model
         'total_amount'
     ];
 
-    protected $with = ['orderItems'];
+    protected $with = ['orderItems', 'payment'];
 
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'order_number', 'order_number');
     }
 
     public function user()

@@ -5,7 +5,8 @@ use App\Http\Controllers\Frontend\OrderController;
 
 Route::group(['middleware' => 'auth', 'prefix' => 'order', 'as' => 'order.'], function() {
     Route::get('package', [OrderController::class, 'package'])->name('package');
-    Route::get('payment/{order_number}', [OrderController::class, 'payment'])->name('payment');
+    Route::get('{order_number}', [OrderController::class, 'index'])->name('index');
+    Route::get('payment/{order_number}', [OrderController::class, 'payment_pivot'])->name('payment');
     Route::get('payment/{order_number}/status', [OrderController::class, 'status'])->name('payment.status');
     Route::post('payment/store', [OrderController::class, 'paymentStore'])->name('payment.store');
     Route::get('finish-payment/{order_id}', [OrderController::class, 'finishPayment'])->name('finish');
@@ -20,4 +21,8 @@ Route::group(['middleware' => 'auth'], function() {
     });
 });
 
-// cart
+// Route::group(['middleware' => 'auth', 'prefix' => 'payment', 'as' => 'payment.'], function() {
+//     Route::post('callback', function (Request $request) {
+//         return response()->json(['message' => 'success']);
+//     });
+// });

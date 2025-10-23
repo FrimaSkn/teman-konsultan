@@ -11,18 +11,17 @@ class Payment extends Model
 
     protected $fillable = [
         'order_number',
-        'fraud_status',
-        'gross_amount',
-        'payment_type',
         'transaction_id',
-        'transaction_status',
-        'transaction_time',
-        'url',
-        'status_code',
-        'status_message',
-        'va_numbers',
+        'currency',
+        'amount',
+        'status',
+        'payment_url',
+        'payload'
+
     ];
 
-
-
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

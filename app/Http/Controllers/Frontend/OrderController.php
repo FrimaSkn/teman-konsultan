@@ -2,17 +2,66 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Package;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\Subscription;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Services\Api\pivotService;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Services\PaymentService;
+use Illuminate\Validation\Rules\Can;
 
 class OrderController extends Controller
 {
+    protected $apiService;
+    protected $paymentService;
+
+
+    public function __construct(PaymentService $paymentService, pivotService $apiService)
+    {
+        $this->paymentService = $paymentService;
+        $this->apiService = $apiService;
+    }
+
+    public function index($order_number)
+    {
+        $order = Order::with('orderItems')->where('order_number', $order_number)->firstOrFail();
+
+        return view('frontend.order.index', [
+            'order' => $order
+        ]);
+    }
+
+    public function payment_pivot($order_number)
+    {
+        $order = Order::with('orderItems')->where('order_number', $order_number)->firstOrFail();
+
+        $response = $this->apiService->redirectPayment($order);
+
+        if ($response->getStatusCode() == 200) {
+            $body = $response->getData();
+            $data = $body->data;
+
+            $payload = json_encode($body);
+
+            $this->paymentService->store([
+                'order_number' => $data->clientReferenceId,
+                'transaction_id' => $data->id,
+                'currency' => $data->amount->currency,
+                'amount' => $data->amount->value,
+                'status' => $data->status,
+                'payment_url' => $data->paymentUrl,
+                'payload' => $payload,
+            ]);
+
+            return redirect()->to($data->paymentUrl);
+        }else {
+            return redirect()->back()->with('error', "The request was invalid, or an error occurred in downstream provider");
+        }
+    }
 
     public function payment($order_number)
     {

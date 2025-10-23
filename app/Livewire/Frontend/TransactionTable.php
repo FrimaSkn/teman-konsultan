@@ -39,7 +39,8 @@ class TransactionTable extends DataTableComponent
                         'pending' => '<span class="pt-1 badge badge-pill badge-secondary">Pending</span>',
                         'paid' => '<span class="pt-1 badge badge-pill badge-success">Paid</span>',
                         'failed' => '<span class="pt-1 badge badge-pill badge-danger">Failed</span>',
-                        'cancelled' => '<span class="pt-1 badge badge-pill badge-warning">Cancelled</span>',
+                        'expired' => '<span class="pt-1 badge badge-pill badge-danger">Expired</span>',
+                        'cancelled' => '<span class="pt-1 badge badge-pill badge-danger">Cancelled</span>',
                     ];
 
                     return $status[$value] ?? $value;
