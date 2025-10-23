@@ -58,7 +58,3 @@ Route::group([
 Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
     Route::any('callback', [CallbackController::class, 'paymentCallback'])->name('payment.callback');
 });
-
-Route::get('/FJ23irehsd3SDFSdfh', function() {
-    $exitCode = Artisan::call('token:cron');
-});
