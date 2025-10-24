@@ -24,9 +24,9 @@ class SubscriptionService extends BaseService
         DB::beginTransaction();
 
         try {
-            foreach ($data as $key => $value) {
+            foreach ($data['order_items'] as $key => $value) {
                 $item = [
-                    'user_id' => auth()->id(),
+                    'user_id' => $data['user_id'],
                     'order_item' => $value['id'],
                     'subscription_number' => 'SUBS-' . strtoupper(uniqid()),
                     'status' => 'active',
@@ -47,10 +47,16 @@ class SubscriptionService extends BaseService
                         $item['ended_at'] = Carbon::now()->addYears($value['quantity']);
                         break;
                     case 'periode':
+                        $item['started_at'] = NULL;
+                        $item['ended_at'] = NULL;
                         break;
                     case 'once':
+                        $item['started_at'] = NULL;
+                        $item['ended_at'] = NULL;
                         break;
                     default:
+                        $item['started_at'] = NULL;
+                        $item['ended_at'] = NULL;
                         break;
                 }
 

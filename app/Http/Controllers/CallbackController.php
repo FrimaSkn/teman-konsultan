@@ -29,16 +29,20 @@ class CallbackController extends Controller
     public function paymentCallback(Request $request)
     {
         $response = $request->all();
-        Log::info("Payment callback received: " . json_encode($response));
+
+        // response to string
+        $log = json_encode($response);
+
+        Log::info("Payment callback received: " . $log);
 
         // if array key clientReferenceId exists
         if (array_key_exists('clientReferenceId', $request['data'])) {
             $order = $this->orderService->getByOrderNumber($request['data']['clientReferenceId']);
-
+            // dd($order->toArray());
             switch ($response['data']['status']) {
                 case 'PAID':
                     $this->orderService->updateStatus($order, 'paid');
-                    $this->subscriptionService->store($order->orderItems->toArray());
+                    $this->subscriptionService->store($order->toArray());
                     break;
                 case 'FAILED':
                     $this->orderService->updateStatus($order, 'failed');
@@ -60,7 +64,9 @@ class CallbackController extends Controller
             $this->paymentCallbackUpdate($order->payment, $response);
         }
 
-        return response()->json(['message' => 'Callback processed successfully'], 200);
+        return response()->json([
+            'message' => 'Callback processed successfully'
+        ], 200);
     }
 
     public function successReturnUrl($order_number)

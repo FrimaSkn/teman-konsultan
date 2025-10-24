@@ -4,9 +4,68 @@ x-api-key: y6KXINCGtuLb2PZ7P053w4UXosEWmwP5
 
 
 {
-  "event": "PAYMENT.TEST",
+  "event": "PAYMENT.PAID",
   "data": {
-    "test": "OK"
+    "id": "bca0b57a-391e-4f6f-bfef-8cd37492ee5b",
+    "clientReferenceId": "68f9da4794caf",
+    "amount": {
+      "value": 10001,
+      "currency": "IDR"
+    },
+    "autoConfirm": true,
+    "mode": "REDIRECT",
+    "redirectUrl": {
+      "successReturnUrl": "https://merchant.com/success",
+      "failureReturnUrl": "https://merchant.com/failed",
+      "expirationReturnUrl": "https://merchant.com/expired"
+    },
+    "paymentType": "SINGLE",
+    "paymentMethod": {
+      "type": "CARD"
+    },
+    "statementDescriptor": "Reforza Pivot",
+    "saveForFutureUse": false,
+    "showSavedPayment": false,
+    "status": "PAID",
+    "createdAt": "2025-06-24T09:49:13Z",
+    "updatedAt": "2025-06-24T09:56:40.020691396Z",
+    "expiryAt": "2025-12-30T23:59:00Z",
+    "paymentUrl": "https://pay-stg.pivot-payment.com/detail?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYmNhMGI1N2EtMzkxZS00ZjZmLWJmZWYtOGNkMzc0OTJlZTViIiwiaXNzIjoiYmFja2VuZC1wb3J0YWwiLCJleHAiOjE3NjcxMzkxNDB9.yvVXKEgcbJucCACggQLaFZQmnqkzvDAfK56kcNY625o",
+    "chargeDetails": [
+      {
+        "id": "cf2842f4-e263-4643-8bc9-af682a5060cd",
+        "paymentSessionId": "bca0b57a-391e-4f6f-bfef-8cd37492ee5b",
+        "paymentSessionClientReferenceId": "1750758552",
+        "amount": {
+          "value": 10001,
+          "currency": "IDR"
+        },
+        "statementDescriptor": "Reforza Pivot",
+        "status": "SUCCESS",
+        "authorizedAmount": {
+          "value": 10001,
+          "currency": "IDR"
+        },
+        "capturedAmount": {
+          "value": 10001,
+          "currency": "IDR"
+        },
+        "isCaptured": true,
+        "createdAt": "2025-06-24T09:49:12.861006Z",
+        "updatedAt": "2025-06-24T09:56:40.020691Z",
+        "paidAt": "2025-06-24T09:56:39Z",
+        "fdsRiskAssessment": {
+          "score": "0",
+          "level": "very low",
+          "recommendation": "Approve",
+          "status": "PASSED",
+          "evaluatedAt": "2025-06-24T09:56:39Z"
+        }
+      }
+    ],
+    "metadata": {
+      "invoiceNo": "INV001"
+    }
   }
 }
 
