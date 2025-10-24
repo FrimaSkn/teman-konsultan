@@ -40,6 +40,19 @@
                                 <div class="font-semibold">{{ $logged_in_user->name }}</div>
                             </div>
                             <div class="px-4 py-2 divide-y">
+                                @if ($logged_in_user->isAdmin())
+                                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-1 cursor-pointer hover:text-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                                        {{ __('Administration') }}
+                                    </a>
+                                @endif
+
+                                @if ($logged_in_user->isUser())
+                                    <a href="{{ route('frontend.user.dashboard') }}" class="flex items-center gap-1 cursor-pointer hover:text-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                                        {{ __('Dashboard') }}
+                                    </a>
+                                @endif
                                 <div class="py-2">
                                     <a href="{{ route('frontend.user.account') }}" class="flex items-center gap-1 cursor-pointer hover:text-primary">
                                         <i class="size-4" data-lucide="user-round"></i>
