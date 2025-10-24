@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\CallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,7 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
+
+Route::group(['prefix' => 'payment'], function () {
+    Route::any('callback', [CallbackController::class, 'paymentCallback'])->name('payment.callback');
+});

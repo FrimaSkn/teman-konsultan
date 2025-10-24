@@ -28,7 +28,10 @@ class CallbackController extends Controller
 
     public function paymentCallback(Request $request)
     {
-        $response = response()->json(['message' => 'Callback received'], 200);
+        $response = response()->json([
+            'message' => 'Callback received',
+            'headers' => $request->headers->all(),
+            'data' => $request->all()], 200);
         return $response->getData();
 
         if (!empty($request->all())) {

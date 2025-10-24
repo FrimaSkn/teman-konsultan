@@ -55,6 +55,6 @@ Route::group([
 });
 
 // Route Callback
-Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'payment'], function () {
     Route::any('callback', [CallbackController::class, 'paymentCallback'])->name('payment.callback');
 });

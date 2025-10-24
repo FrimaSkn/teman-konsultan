@@ -1,0 +1,9 @@
+POST https://temankonsultan.test/api/payment/callback
+Content-Type: application/json
+
+{
+  "event": "PAYMENT.TEST",
+  "data": {
+    "test": "OK"
+  }
+}
