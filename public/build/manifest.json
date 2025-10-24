@@ -36,7 +36,7 @@
     "src": "node_modules/@coreui/icons/fonts/CoreUI-Icons-Free.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CSv8Z-UG.css",
+    "file": "assets/app-DddxRXPi.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -100,7 +100,7 @@
     "isEntry": true
   },
   "resources/sass/frontend/app.scss": {
-    "file": "assets/app-DrFhvJoC.css",
+    "file": "assets/app-BZOcVmTv.css",
     "src": "resources/sass/frontend/app.scss",
     "isEntry": true
   },
