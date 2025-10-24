@@ -33,6 +33,12 @@
             <hr>
         </li>
         <li>
+            <a href="{{ route('frontend.home') }}">
+                <i class="fa fa-home"></i>
+                {{ __('Home') }}
+            </a>
+        </li>
+        <li>
             <x-utils.link
                 :text="__('Logout')"
                 class=""
