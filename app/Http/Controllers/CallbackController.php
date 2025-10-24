@@ -9,18 +9,21 @@ use App\Services\OrderService;
 use App\Services\PaymentService;
 use App\Services\Api\pivotService;
 use Illuminate\Support\Facades\Log;
+use App\Services\SubscriptionService;
 
 class CallbackController extends Controller
 {
+    protected $apiService;
     protected $orderService;
     protected $paymentService;
-    protected $apiService;
+    protected $subscriptionService;
 
-    public function __construct(OrderService $orderService, PaymentService $paymentService, pivotService $apiService)
+    public function __construct(OrderService $orderService, PaymentService $paymentService, pivotService $apiService, SubscriptionService $subscriptionService)
     {
+        $this->apiService = $apiService;
         $this->orderService = $orderService;
         $this->paymentService = $paymentService;
-        $this->apiService = $apiService;
+        $this->subscriptionService = $subscriptionService;
     }
 
     public function paymentCallback(Request $request)
@@ -50,23 +53,6 @@ class CallbackController extends Controller
         }else {
             Log::info('Callback Request: No Request Data');
         }
-        // $order_number = $request->query('orderNumber');
-        // $status = $request->query('status');
-
-        // switch ($status) {
-        //     case 'SUCCESS':
-        //         return $this->successReturnUrl($order_number);
-        //         break;
-        //     case 'FAILED':
-        //         return $this->failureReturnUrl($order_number);
-        //         break;
-        //     case 'EXPIRED':
-        //         return $this->expirationReturnUrl($order_number);
-        //         break;
-        //     default:
-        //         return redirect()->route('frontend.user.transaction.index');
-        //         break;
-        // }
     }
 
     public function successReturnUrl($order_number)
@@ -79,6 +65,10 @@ class CallbackController extends Controller
 
         if ($order->payment->status != 'PAID') {
             $this->paymentUpdate($order->payment->transaction_id, $order->payment);
+        }
+
+        if ($order->orderItems->count() > 0 && $order->status == 'paid') {
+            $this->subscriptionService->store($order->orderItems->toArray());
         }
 
         return view('frontend.order.finish', [

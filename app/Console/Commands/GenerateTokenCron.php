@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Carbon\Carbon;
 use Filament\Forms\Get;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class GenerateTokenCron extends Command
 {
@@ -46,9 +47,9 @@ class GenerateTokenCron extends Command
 
             cache()->put('pivot_token', $token);
 
-            \Log::info("Cron job Generate Token Berhasil di jalankan " . date('Y-m-d H:i:s'));
+            Log::info("Cron job Generate Token Berhasil di jalankan " . date('Y-m-d H:i:s'));
         }catch (\Throwable $th) {
-            \Log::error($th->getMessage());
+            Log::error($th->getMessage());
         }
     }
 }

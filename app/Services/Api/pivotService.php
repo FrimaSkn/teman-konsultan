@@ -5,6 +5,7 @@ namespace App\Services\Api;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Package;
+use Illuminate\Support\Facades\Log;
 
 class pivotService
 {
@@ -87,7 +88,7 @@ class pivotService
 
             return response()->json(json_decode($request->getBody()->getContents()), 200);
         }catch (\Exception $e) {
-            \Log::error('Pivot Payment Error: ' . $e->getMessage());
+            Log::error('Pivot Payment Error: ' . $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
@@ -110,7 +111,7 @@ class pivotService
 
             return response()->json(json_decode($request->getBody()->getContents()), 200);
         }catch (\Exception $e) {
-            \Log::error('Pivot Payment Error: ' . $e->getMessage());
+            Log::error('Pivot Payment Error: ' . $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
