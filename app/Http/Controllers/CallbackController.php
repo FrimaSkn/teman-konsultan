@@ -38,6 +38,7 @@ class CallbackController extends Controller
             switch ($response['data']['status']) {
                 case 'PAID':
                     $this->orderService->updateStatus($order, 'paid');
+                    $this->subscriptionService->store($order->orderItems->toArray());
                     break;
                 case 'FAILED':
                     $this->orderService->updateStatus($order, 'failed');
@@ -57,7 +58,6 @@ class CallbackController extends Controller
             }
 
             $this->paymentCallbackUpdate($order->payment, $response);
-            $this->subscriptionService->store($order->orderItems->toArray());
         }
 
         return response()->json(['message' => 'Callback processed successfully'], 200);
