@@ -30,30 +30,34 @@ class CallbackController extends Controller
     {
         $response = $request->all();
         Log::info("Payment callback received: " . json_encode($response));
-        $order = $this->orderService->getByOrderNumber($request['data']['clientReferenceId']);
 
-        switch ($response['data']['status']) {
-            case 'PAID':
-                $this->orderService->updateStatus($order, 'paid');
-                break;
-            case 'FAILED':
-                $this->orderService->updateStatus($order, 'failed');
-                break;
-            case 'EXPIRED':
-                $this->orderService->updateStatus($order, 'expired');
-                break;
-            case 'CANCELLED':
-                $this->orderService->updateStatus($order, 'cancelled');
-                break;
-            case 'PROCESSING':
-                $this->orderService->updateStatus($order, 'pending');
-                break;
-            default:
-                Log::info('Unknown payment status received in callback: ' . $request['data']['status']);
-                break;
+        if ($request['data']['clientReferenceId']) {
+            # code...
+            $order = $this->orderService->getByOrderNumber($request['data']['clientReferenceId']);
+
+            switch ($response['data']['status']) {
+                case 'PAID':
+                    $this->orderService->updateStatus($order, 'paid');
+                    break;
+                case 'FAILED':
+                    $this->orderService->updateStatus($order, 'failed');
+                    break;
+                case 'EXPIRED':
+                    $this->orderService->updateStatus($order, 'expired');
+                    break;
+                case 'CANCELLED':
+                    $this->orderService->updateStatus($order, 'cancelled');
+                    break;
+                case 'PROCESSING':
+                    $this->orderService->updateStatus($order, 'pending');
+                    break;
+                default:
+                    Log::info('Unknown payment status received in callback: ' . $request['data']['status']);
+                    break;
+            }
+
+            $this->paymentCallbackUpdate($order->payment, $response);
         }
-
-        $this->paymentCallbackUpdate($order->payment, $response);
 
         return response()->json(['message' => 'Callback processed successfully'], 200);
     }
