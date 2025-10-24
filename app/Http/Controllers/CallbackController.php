@@ -57,6 +57,7 @@ class CallbackController extends Controller
             }
 
             $this->paymentCallbackUpdate($order->payment, $response);
+            $this->subscriptionService->store($order->orderItems->toArray());
         }
 
         return response()->json(['message' => 'Callback processed successfully'], 200);
