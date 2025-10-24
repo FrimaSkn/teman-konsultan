@@ -1,5 +1,7 @@
 POST https://temankonsultan.test/api/payment/callback
 Content-Type: application/json
+x-api-key: y6KXINCGtuLb2PZ7P053w4UXosEWmwP5
+
 
 {
   "event": "PAYMENT.TEST",
@@ -7,3 +9,4 @@ Content-Type: application/json
     "test": "OK"
   }
 }
+

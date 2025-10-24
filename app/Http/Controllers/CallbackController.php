@@ -28,34 +28,34 @@ class CallbackController extends Controller
 
     public function paymentCallback(Request $request)
     {
-        $response = response()->json([
-            'message' => 'Callback received',
-            'headers' => $request->headers->all(),
-            'data' => $request->all()], 200);
-        return $response->getData();
+        $response = $request->all();
+        Log::info("Payment callback received: " . json_encode($response));
+        $order = $this->orderService->getByOrderNumber($request['data']['clientReferenceId']);
 
-        if (!empty($request->all())) {
-            $data = $request->all();
-
-            if ($data['data']['status'] == 'PAID') {
-                $order = $this->orderService->getByOrderNumber($data['data']['clientReferenceId']);
+        switch ($response['data']['status']) {
+            case 'PAID':
                 $this->orderService->updateStatus($order, 'paid');
-            }
-
-            $payment = $this->paymentService->getByOrderNumber($data['data']['clientReferenceId']);
-            $payload = json_encode($data);
-            $this->paymentService->update($payment, [
-                    'currency' => $data['data']['amount']['currency'],
-                    'amount' => $data['data']['amount']['value'],
-                    'payment_url' => $data['data']['paymentUrl'],
-                    'status' => $data,
-                    'payload' => json_encode($payload),
-                ]);
-
-            Log::info('Callback Request:', json_encode($request->all()));
-        }else {
-            Log::info('Callback Request: No Request Data');
+                break;
+            case 'FAILED':
+                $this->orderService->updateStatus($order, 'failed');
+                break;
+            case 'EXPIRED':
+                $this->orderService->updateStatus($order, 'expired');
+                break;
+            case 'CANCELLED':
+                $this->orderService->updateStatus($order, 'cancelled');
+                break;
+            case 'PROCESSING':
+                $this->orderService->updateStatus($order, 'pending');
+                break;
+            default:
+                Log::info('Unknown payment status received in callback: ' . $request['data']['status']);
+                break;
         }
+
+        $this->paymentCallbackUpdate($order->payment, $response);
+
+        return response()->json(['message' => 'Callback processed successfully'], 200);
     }
 
     public function successReturnUrl($order_number)
@@ -99,6 +99,17 @@ class CallbackController extends Controller
         $this->paymentUpdate($order->payment->transaction_id, $order->payment);
 
         return redirect()->route('frontend.user.transaction.index');
+    }
+
+    protected function paymentCallbackUpdate(Payment $payment, array $data = [])
+    {
+        return $this->paymentService->update($payment, [
+            'currency' => $data['data']['amount']['currency'],
+            'amount' => $data['data']['amount']['value'],
+            'payment_url' => $data['data']['paymentUrl'],
+            'status' => $data['data']['status'],
+            'payload' => json_encode($data),
+        ]);
     }
 
     protected function paymentUpdate($transactionId, Payment $payment)

@@ -19,6 +19,6 @@ use App\Http\Controllers\CallbackController;
 //});
 
 
-Route::group(['prefix' => 'payment'], function () {
+Route::group(['prefix' => 'payment', 'middleware' => 'callbackApiKey'], function () {
     Route::any('callback', [CallbackController::class, 'paymentCallback'])->name('payment.callback');
 });
