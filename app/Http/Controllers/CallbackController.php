@@ -31,8 +31,8 @@ class CallbackController extends Controller
         $response = $request->all();
         Log::info("Payment callback received: " . json_encode($response));
 
-        if ($request['data']['clientReferenceId']) {
-            # code...
+        // if array key clientReferenceId exists
+        if (array_key_exists('clientReferenceId', $request['data'])) {
             $order = $this->orderService->getByOrderNumber($request['data']['clientReferenceId']);
 
             switch ($response['data']['status']) {
