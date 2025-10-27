@@ -23,7 +23,7 @@
                 {{ __('Transactions') }}
             </a>
         </li>
-        <li class="{{ activeMenu('frontend.user.account.*') }}">
+        <li class="{{ activeMenu('frontend.user.account') }}">
             <a href="{{ route('frontend.user.account') }}">
                 <i class="fa fa-user"></i>
                 {{ __('My Account') }}
