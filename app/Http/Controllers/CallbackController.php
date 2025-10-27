@@ -75,6 +75,10 @@ class CallbackController extends Controller
 
         if ($order->status != 'paid') {
             $this->orderService->updateStatus($order, 'paid');
+
+            if ($order->orderItems->count() > 0) {
+                $this->subscriptionService->store($order->orderItems->toArray());
+            }
         }
 
         if ($order->payment->status != 'PAID') {
@@ -94,9 +98,13 @@ class CallbackController extends Controller
     {
         $order = $this->orderService->getByOrderNumber($order_number);
 
-        $this->orderService->updateStatus($order, 'failed');
+        if ($order->status != 'failed')
+        {
+            $this->orderService->updateStatus($order, 'failed');
 
-        $this->paymentUpdate($order->payment->transaction_id, $order->payment);
+            $this->paymentUpdate($order->payment->transaction_id, $order->payment);
+        }
+
 
         return redirect()->route('frontend.user.transaction.index');
     }
@@ -105,9 +113,12 @@ class CallbackController extends Controller
     {
         $order = $this->orderService->getByOrderNumber($order_number);
 
-        $this->orderService->updateStatus($order, 'expired');
+        if ($order->status != 'expired') {
+            $this->orderService->updateStatus($order, 'expired');
 
-        $this->paymentUpdate($order->payment->transaction_id, $order->payment);
+            $this->paymentUpdate($order->payment->transaction_id, $order->payment);
+        }
+
 
         return redirect()->route('frontend.user.transaction.index');
     }
