@@ -207,10 +207,16 @@ class SubscriptionForm extends Component
                 $this->ended_at = Carbon::now()->addYears($this->quantity)->format('Y-m-d');
                 break;
             case 'periode':
+                $this->started_at = NULL;
+                $this->ended_at = NULL;
                 break;
             case 'once':
+                $this->started_at = NULL;
+                $this->ended_at = NULL;
                 break;
             default:
+                $this->started_at = NULL;
+                $this->ended_at = NULL;
                 break;
         }
 
@@ -219,7 +225,9 @@ class SubscriptionForm extends Component
             'ended_at' => $this->ended_at
         ];
 
-        $this->dispatch('setDate', $data);
+        if ($this->started_at != null && $this->ended_at != null) {
+            $this->dispatch('setDate', $data);
+        }
     }
 
     public function resetSubPackage()
@@ -266,7 +274,7 @@ class SubscriptionForm extends Component
             throw new GeneralException(__('There was a problem creating this order & subscription. Please try again.'));
         }
         DB::commit();
-        return redirect()->route('admin.subscriptions.index')->with('flash_success',__('The subscription was successfully created.'));
+        return redirect()->route('admin.subscription.index')->with('flash_success',__('The subscription was successfully created.'));
     }
 
     public function createSubscription($item)
