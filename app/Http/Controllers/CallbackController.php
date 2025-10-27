@@ -85,10 +85,6 @@ class CallbackController extends Controller
             $this->paymentUpdate($order->payment->transaction_id, $order->payment);
         }
 
-        if ($order->orderItems->count() > 0 && $order->status == 'paid') {
-            $this->subscriptionService->store($order->orderItems->toArray());
-        }
-
         return view('frontend.order.finish', [
             'order' => $order
         ]);
