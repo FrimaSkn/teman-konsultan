@@ -78,7 +78,7 @@ class SubscriptionTable extends DataTableComponent
                             return '<span class="text-no-wrap">' . $value[app()->getLocale()] . '</span>';
                             break;
                         default:
-                            return '';
+                            return '-';
                             break;
                     }
                 })
