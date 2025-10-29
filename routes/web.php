@@ -53,8 +53,3 @@ Route::group([
     Route::get('payment-failed/{order_number}', [CallbackController::class, 'failureReturnUrl'])->name('redirect.payment.failed');
     Route::get('payment-expired/{order_number}', [CallbackController::class, 'expirationReturnUrl'])->name('redirect.payment.expired');
 });
-
-// Route Callback
-Route::group(['prefix' => 'payment'], function () {
-    Route::any('callback', [CallbackController::class, 'paymentCallback'])->name('payment.callback');
-});

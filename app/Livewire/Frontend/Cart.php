@@ -224,7 +224,6 @@ class Cart extends Component
     public function checkout(OrderService $orderService)
     {
         try {
-
             $order = $orderService->store([
                 'user_id' => auth()->id(),
                 'order_number' => uniqid(),
@@ -246,12 +245,12 @@ class Cart extends Component
 
                 CartItem::where('id', $item['id'])->delete();
             }
+
+            return redirect()->route('frontend.order.index', $order->order_number);
         }catch (\Throwable $th) {
             throw new GeneralException(__('There was a problem creating this order & subscription. Please try again.'));
         }
 
-        // return redirect()->route('frontend.order.payment', $order->order_number);
-        return redirect()->route('frontend.order.index', $order->order_number);
     }
 
     public function render()

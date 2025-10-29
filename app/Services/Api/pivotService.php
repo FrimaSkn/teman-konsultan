@@ -27,12 +27,37 @@ class pivotService
         $productDetail = [];
         foreach ($order->orderItems as $item) {
             $package = Package::where('id', $item->package_id)->first();
+            $payload = json_decode($item->payload);
+            $packagePayload = json_decode($package->payload);
+            $description = '';
+
+            switch ($payload->type) {
+                case 'table':
+                    $data = collect($packagePayload)->where('type', $payload->type)->first();
+                    $value = (array) $data->data->table[$payload->sub_package_key]->data->table;
+                    $string = '';
+                    foreach ($value[app()->getLocale()] as $k => $v) {
+                        $string .= $k . ': ' . $v . ', ';
+                    }
+                    $description = $string;
+                    break;
+                case 'list':
+                    $data = collect($packagePayload)->where('type', $payload->type)->first();
+                    $value = (array) $data->data->list[$payload->sub_package_key]->key;
+                    $description = $value[app()->getLocale()];
+                    break;
+                default:
+                    $description = '-';
+                    break;
+            }
+
             $productDetail[] = [
                 'quantity' => $item->quantity,
                 'name' => $package->title . ' - ' . $package->category->name,
                 "type" => "PHYSICAL",
                 "category" => $item->package->category->name,
                 "name" => $item->package->title,
+                "description" => $description,
                 "price" => [
                     'value' => $item->price,
                     'currency' => 'IDR'

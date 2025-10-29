@@ -47,13 +47,19 @@
                     <div>List Items:</div>
                     <ul class="list-group">
                         @foreach ($order->orderItems as $item)
+                            @php
+                                $payload = json_decode($item->payload);
+                            @endphp
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-sm align-items-center">
-                                        <span class="text-lg font-semibold">
+                                        <div class="text-sm text-gray-500">{{ $item->package->category->name }}</div>
+                                        <span class="text-base font-semibold">
                                             {{ $item->package->title }}
                                         </span>
-                                        <div class="text-sm text-gray-500">{{ $item->package->category->name }}</div>
+                                        <span class="text-sm text-gray-500">
+                                            {!! get_sub_package($item->package, $payload->type, $payload->sub_package_key) !!}
+                                        </span>
                                     </div>
                                     <div class="text-center align-items-center col-sm">
                                         @switch($item->contract_type)

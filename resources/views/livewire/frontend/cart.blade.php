@@ -23,7 +23,7 @@
                                     $value = (array) $item['sub_package']['value'];
                                 @endphp
                                 <ul class="text-gray-600">
-                                    <li>{{ $key[app()->getLocale()] }} : {{ $value[app()->getLocale()] }}</li>
+                                    <li>{{ $key[app()->getLocale()] }}</li>
                                 </ul>
                                 @break
                             @default

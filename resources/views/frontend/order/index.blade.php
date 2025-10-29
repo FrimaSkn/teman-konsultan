@@ -21,8 +21,17 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($order->orderItems as $item )
+                        @php
+                            $payload = json_decode($item->payload);
+                        @endphp
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $item->package->title }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ $item->package->title }}
+
+                                <span class="text-sm text-gray-600">
+                                    {!! get_sub_package($item->package, $payload->type, $payload->sub_package_key) !!}
+                                </span>
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->package->category->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->contract_type ?? 'Package' }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->quantity }}</td>
