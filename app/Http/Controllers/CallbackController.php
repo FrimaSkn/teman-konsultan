@@ -94,29 +94,26 @@ class CallbackController extends Controller
     {
         $order = $this->orderService->getByOrderNumber($order_number);
 
-        if ($order->status != 'failed')
-        {
+        if ($order->status == 'failed') {
+            return redirect()->route('frontend.user.transaction.index');
+        }else {
             $this->orderService->updateStatus($order, 'failed');
-
             $this->paymentUpdate($order->payment->transaction_id, $order->payment);
+            return redirect()->route('frontend.user.transaction.index');
         }
-
-
-        return redirect()->route('frontend.user.transaction.index');
     }
 
     public function expirationReturnUrl($order_number)
     {
         $order = $this->orderService->getByOrderNumber($order_number);
 
-        if ($order->status != 'expired') {
+        if ($order->status == 'expired') {
+            return redirect()->route('frontend.user.transaction.index');
+        }else {
             $this->orderService->updateStatus($order, 'expired');
-
             $this->paymentUpdate($order->payment->transaction_id, $order->payment);
+            return redirect()->route('frontend.user.transaction.index');
         }
-
-
-        return redirect()->route('frontend.user.transaction.index');
     }
 
     protected function paymentCallbackUpdate(Payment $payment, array $data = [])
