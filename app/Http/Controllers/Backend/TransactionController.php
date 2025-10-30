@@ -16,8 +16,10 @@ class TransactionController extends Controller
     public function show($order_number)
     {
         $order = Order::where('order_number', $order_number)->firstOrFail();
+        $payment = json_decode($order->payment->payload ?? '');
         return view('backend.transaction.show', [
-            'order' => $order
+            'order' => $order,
+            'payment' => $payment
         ]);
     }
 }

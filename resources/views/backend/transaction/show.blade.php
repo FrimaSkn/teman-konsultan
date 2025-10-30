@@ -17,7 +17,14 @@
                             <th scope="row">{{ $order->order_number }}</th>
                         </tr>
                         <tr>
-                            <td>Total Amount</td><td class="p-2">:</td><td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                            <td>Transaction ID</td>
+                            <td class="p-2">:</td>
+                            <th scope="row">{{ $payment->data->id ?? '-' }}</th>
+                        </tr>
+                        <tr>
+                            <td>Payment Method</td>
+                            <td class="p-2">:</td>
+                            <th scope="row">{{ $payment->data->paymentMethod->type ?? '-' }}</th>
                         </tr>
                         <tr>
                             <td>Status</td>
@@ -35,10 +42,19 @@
                                     @case('cancelled')
                                         <span class="badge badge-pill badge-danger">Cancelled</span>
                                         @break
+                                    @case('expired')
+                                        <span class="badge badge-pill badge-danger">Expired</span>
+                                        @break
+                                    @case('failed')
+                                        <span class="badge badge-pill badge-danger">Failed</span>
+                                        @break
                                     @default
                                     -
                                 @endswitch
                             </td>
+                        </tr>
+                        <tr>
+                            <td>Total Amount</td><td class="p-2">:</td><td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                         </tr>
                     </table>
                 </div>
