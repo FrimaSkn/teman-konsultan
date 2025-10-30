@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Subscription;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SubscriptionService extends BaseService
 {
@@ -64,6 +65,7 @@ class SubscriptionService extends BaseService
             }
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Subscription Creation Error: ' . $e->getMessage());
 
             throw new \Exception('There was a problem creating this subscription. Please try again.');
         }

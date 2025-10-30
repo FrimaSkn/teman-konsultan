@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use Exception;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Exceptions\GeneralException;
-use App\Models\OrderItem;
-use Exception;
 
 class OrderService extends BaseService
 {
@@ -50,7 +51,7 @@ class OrderService extends BaseService
             ]);
         } catch (Exception $e) {
             DB::rollBack();
-
+            Log::error('Order Creation Error: ' . $e->getMessage());
             throw new GeneralException(__('There was a problem creating this order. Please try again.'));
         }
 

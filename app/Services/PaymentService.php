@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Payment;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PaymentService extends BaseService
 {
@@ -53,7 +54,7 @@ class PaymentService extends BaseService
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
-
+            Log::error('Payment Creation Error: ' . $e->getMessage());
             throw new \Exception('There was a problem creating this payment. Please try again.');
         }
 
@@ -96,8 +97,8 @@ class PaymentService extends BaseService
                 'payload' =>  $data['payload'],
             ]);
         } catch (\Exception $e) {
-            dd($e);
             DB::rollBack();
+            Log::error('Payment Update Error: ' . $e->getMessage());
             throw new \Exception('There was a problem updating this payment. Please try again.');
         }
         DB::commit();

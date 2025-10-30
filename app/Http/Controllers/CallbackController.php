@@ -77,7 +77,7 @@ class CallbackController extends Controller
             $this->orderService->updateStatus($order, 'paid');
 
             if ($order->orderItems->count() > 0) {
-                $this->subscriptionService->store($order->orderItems->toArray());
+                $this->subscriptionService->store($order->toArray());
             }
         }
 
