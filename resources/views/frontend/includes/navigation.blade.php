@@ -129,6 +129,7 @@
             </ul>
         </div>
 
+        {{-- menu mobile --}}
         <div x-data="menuToggle" class="flex items-center gap-2 lg:hidden">
             <div class="flex items-center gap-2">
                 <a rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}" class="text-xs {{ LaravelLocalization::getCurrentLocale() == 'en' ? 'px-2 py-px uppercase bg-primary rounded-md font-medium text-white':''}}">ENG</a>
@@ -143,7 +144,7 @@
                 <span></span>
             </div>
             <template x-teleport="body">
-                <div class="fixed inset-x-0 bottom-0 w-full h-screen bg-white top-14 z-[99] pt-10 md:pt-20" x-show="open"
+                <div class="fixed inset-x-0 bottom-0 w-full h-screen bg-white top-14 z-[99] pt-10 md:pt-20 overflow-y-auto pb-40" x-show="open"
                     x-transition:enter="transition ease-in duration-200"
                     x-transition:enter-start="-translate-y-[100%]"
                     x-transition:enter-end="translate-y-0"
@@ -154,7 +155,28 @@
                     <ul class="container mx-auto *:text-center divide-y-2 divide-amber-100 *:py-3">
                         <li><a href="{{ route('frontend.home') }}" class="menu-item {{ activeMenu('frontend.home') }}">@lang('Home')</a></li>
                         <li>
-                            <a href="#" class="flex items-center justify-center gap-1 menu-item">@lang('Our Services') <i data-lucide="chevron-right" class="size-4"></i></a>
+                            <div x-data="{ dropdown: false }" x-on:click.away="dropdown = false">
+                                <button x-on:click="dropdown = !dropdown" class="flex items-center justify-center gap-1 mx-auto menu-item">@lang('Our Services') <i data-lucide="chevron-right" x-bind:class="{ 'rotate-90': dropdown }" class="size-4"></i></button>
+                                <div x-show="dropdown" class="w-full px-2 bg-gray-100">
+                                    <ul x-data="{ submenu: 'null' }" x-on:click.away="submenu = 'null'" class="*:text-center divide-y-2 divide-primary *:py-3">
+                                        @foreach ($services as $category)
+                                            <li>
+                                                <button x-on:click.prevent="submenu = (submenu === '{{ $category->slug }}' ? 'null' : '{{ $category->slug }}')" x-bind:class="{ 'text-primary font-bold': submenu === '{{ $category->slug }}' }" class="flex items-center justify-center w-full gap-1 mx-auto menu-item">{{ $category->name }} <i data-lucide="chevron-right" x-bind:class="{ 'rotate-90': submenu === '{{ $category->slug }}' }" class="size-4"></i></button>
+
+                                                <div x-show="submenu === '{{ $category->slug }}'" class="mt-2 space-y-2">
+                                                    @foreach ($category->services as $service)
+                                                        <div class="p-2 bg-white rounded shadow hover:bg-gray-50">
+                                                            <a href="{{ route('frontend.services.page', $service['slug']) }}" class="block">
+                                                                <h2 class="font-medium">{{ $service['name'] }}</h2>
+                                                            </a>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
                         <li><a href="{{ route('frontend.harga') }}" class="menu-item {{ activeMenu('frontend.harga') }}">@lang('Pricing')</a></li>
                         <li><a href="{{ route('frontend.post.index') }}" class="menu-item {{ activeMenu('frontend.post.index') }}">@lang('Articles')</a></li>
