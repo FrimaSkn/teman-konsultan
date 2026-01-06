@@ -52,14 +52,14 @@ class pivotService
             }
 
             $productDetail[] = [
-                'quantity' => $item->quantity,
+                'quantity' => (int) $item->quantity,
                 'name' => $package->title . ' - ' . $package->category->name,
                 "type" => "PHYSICAL",
                 "category" => $item->package->category->name,
                 "name" => $item->package->title,
                 "description" => $description,
                 "price" => [
-                    'value' => $item->price,
+                    'value' => (int) $item->price,
                     'currency' => 'IDR'
                 ]
             ];
@@ -79,7 +79,7 @@ class pivotService
         $body = [
             'clientReferenceId' => $order->order_number,
             'amount' => [
-                'value' => $order->total_amount,
+                'value' => (int) $order->total_amount,
                 'currency' => 'IDR'
             ],
             'paymentType' => 'SINGLE',
