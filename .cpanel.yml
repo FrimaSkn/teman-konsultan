@@ -1,10 +1,10 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/temw7575/web_root/staging-web/
+    - export DEPLOYPATH=/home/temw7575/web_root/web_production/
     - /bin/cp -R * $DEPLOYPATH
     - /bin/rm -rf $DEPLOYPATH/.git
     - /bin/rm -rf $DEPLOYPATH/.cpanel.yml
     - /bin/rm -rf $DEPLOYPATH/.gitignore
-    - ln -s $DEPLOYPATH/public/* /home/temw7575/public_html/staging
-    - ln -s $DEPLOYPATH/storage/app/public/ /home/temw7575/public_html/staging/storage
+    - ln -s $DEPLOYPATH/public/* /home/temw7575/public_html
+    - ln -s $DEPLOYPATH/storage/app/public/ /home/temw7575/public_html/storage
