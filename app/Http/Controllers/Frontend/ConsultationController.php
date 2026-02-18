@@ -59,6 +59,6 @@ class ConsultationController extends Controller
 
         // Mail::to('info@temankonsultan.com')->send(new ConsultationForm($store));
 
-        return redirect()->route('frontend.auth.free-consultation.messages')->with('success', __('Your consultation request has been sent successfully!'));
+        return redirect()->route('frontend.auth.free-consultation.messages')->with('flash_success', __('Your consultation request has been sent successfully!'));
     }
 }

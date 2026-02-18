@@ -40,6 +40,6 @@ class ContactUsController extends Controller
 
         // Mail::to('info@temankonsultan.com')->send(new ContactForm($store));
 
-        return redirect()->back()->with('success', __('Your message has been sent successfully!'));
+        return redirect()->back()->with('flash_success', __('Your message has been sent successfully!'));
     }
 }
