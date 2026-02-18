@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Models\Package;
 use Illuminate\Http\Request;
@@ -9,11 +9,28 @@ use App\Models\CartItem;
 
 class CartController extends Controller
 {
+/**
+ * Show the cart index page.
+ *
+ * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+ */
     public function index()
     {
         return view('frontend.cart.index');
     }
 
+/**
+ * Store a newly created resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\RedirectResponse
+ */
+/**
+ * Validate and store a cart item based on the given request.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\RedirectResponse
+ */
     public function store(Request $request)
     {
         $validate = $request->validate([

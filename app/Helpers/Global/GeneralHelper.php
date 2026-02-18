@@ -156,3 +156,31 @@ if (!function_exists('getClass')) {
         return $class;
     }
 }
+
+
+if (!function_exists('get_sub_package')) {
+    function get_sub_package($package, $type, $key)
+    {
+        $payload = json_decode($package->payload);
+
+        switch ($type) {
+            case 'table':
+                $data = collect($payload)->where('type', $type)->first();
+                $value = (array) $data->data->table[$key]->data->table;
+                $string = '<br>';
+                foreach ($value[app()->getLocale()] as $k => $v) {
+                    $string .= $k . ': ' . $v . '<br>';
+                }
+                return $string;
+                break;
+            case 'list':
+                $data = collect($payload)->where('type', $type)->first();
+                $value = (array) $data->data->list[$key]->key;
+                return '<br>' . $value[app()->getLocale()];
+                break;
+            default:
+                return '';
+                break;
+        }
+    }
+}

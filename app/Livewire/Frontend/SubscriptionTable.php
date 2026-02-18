@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend;
 
+use App\Models\Package;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -49,8 +50,39 @@ class SubscriptionTable extends DataTableComponent
                 ->format(function ($value) {
                     $lang = app()->getLocale();
                     $value = (array) json_decode($value);
-                    return $value[$lang];
+                    return '<span class="text-no-wrap">' . $value[$lang] . '</span>';
+                    // return $value[$lang];
                 })
+                ->html()
+                ->searchable()
+                ->sortable(),
+            Column::make("Sub Package", "orderItem.payload")
+                ->format(function ($value, $row) {
+                    $payload = json_decode($value);
+                    $package = Package::find($payload->package_id);
+                    $packagePayload = json_decode($package->payload);
+
+                    switch ($payload->type) {
+                        case 'table':
+                            $data = collect($packagePayload)->where('type', $payload->type)->first();
+                            $value = (array) $data->data->table[$payload->sub_package_key]->data->table;
+                            $string = '';
+                            foreach ($value[app()->getLocale()] as $k => $v) {
+                                $string .= $k . ': ' . $v . '<br>';
+                            }
+                            return '<span class="text-no-wrap">' .  $string . '</span>';
+                            break;
+                        case 'list':
+                            $data = collect($packagePayload)->where('type', $payload->type)->first();
+                            $value = (array) $data->data->list[$payload->sub_package_key]->key;
+                            return '<span class="text-no-wrap">' . $value[app()->getLocale()] . '</span>';
+                            break;
+                        default:
+                            return '-';
+                            break;
+                    }
+                })
+                ->html()
                 ->sortable(),
             Column::make("Subscription number", "subscription_number")
                 ->format(function ($value) {
@@ -70,7 +102,6 @@ class SubscriptionTable extends DataTableComponent
                     if (Carbon::now()->format('Y-m-d') <= $subscription->ended_at && Carbon::now()->format('Y-m-d') >= $subscription->started_at) {
                         $subscription->status = 'Active';
                         return '<span class="pt-1 badge badge-pill badge-success">' . $subscription->status . '</span>';
-                        # code...
                     }else{
                         $subscription->status = 'Expired';
                         return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';

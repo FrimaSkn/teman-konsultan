@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Frontend\OrderController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -42,3 +43,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], f
 
 // Switch between the included languages
 Route::get('lang/{lang}', [LocaleController::class, 'change'])->name('locale.change');
+
+
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth' ]
+], function () {
+    Route::get('payment-success/{order_number}', [CallbackController::class, 'successReturnUrl'])->name('redirect.payment.success');
+    Route::get('payment-failed/{order_number}', [CallbackController::class, 'failureReturnUrl'])->name('redirect.payment.failed');
+    Route::get('payment-expired/{order_number}', [CallbackController::class, 'expirationReturnUrl'])->name('redirect.payment.expired');
+});

@@ -36,7 +36,7 @@
     "src": "node_modules/@coreui/icons/fonts/CoreUI-Icons-Free.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CSv8Z-UG.css",
+    "file": "assets/app-B5e-aQaL.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -100,12 +100,12 @@
     "isEntry": true
   },
   "resources/sass/frontend/app.scss": {
-    "file": "assets/app-DrFhvJoC.css",
+    "file": "assets/app-B1vYhPCm.css",
     "src": "resources/sass/frontend/app.scss",
     "isEntry": true
   },
   "resources/sass/frontend/dashboard.scss": {
-    "file": "assets/dashboard-BfZvPpDX.css",
+    "file": "assets/dashboard-Dmq35zHQ.css",
     "src": "resources/sass/frontend/dashboard.scss",
     "isEntry": true
   },

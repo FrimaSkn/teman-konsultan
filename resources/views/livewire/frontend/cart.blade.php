@@ -23,7 +23,7 @@
                                     $value = (array) $item['sub_package']['value'];
                                 @endphp
                                 <ul class="text-gray-600">
-                                    <li>{{ $key[app()->getLocale()] }} : {{ $value[app()->getLocale()] }}</li>
+                                    <li>{{ $key[app()->getLocale()] }}</li>
                                 </ul>
                                 @break
                             @default
@@ -102,5 +102,9 @@
                 <button wire:loading.attr="disabled" wire:click="checkout" class="px-2 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center mt-2 max-md:text-sm md:mt-4">Checkout</button>
             </div>
         @endif
+    </div>
+
+    <div class="flex justify-center">
+        <a href="{{ route('frontend.harga') }}" wire:loading.attr="disabled" class="px-2 pt-1 pb-1.5 uppercase bg-primary rounded-lg hover:bg-opacity-90 text-secondary font-bold text-nowrap inline-flex items-center mt-2 max-md:text-sm md:mt-4">@lang('Add Package')</a>
     </div>
 </div>

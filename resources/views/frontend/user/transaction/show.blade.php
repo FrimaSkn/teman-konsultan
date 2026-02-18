@@ -20,7 +20,14 @@
                                     <th scope="row">{{ $order->order_number }}</th>
                                 </tr>
                                 <tr>
-                                    <td>Total Amount</td><td class="p-2">:</td><td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                                    <td>Transaction ID</td>
+                                    <td class="p-2">:</td>
+                                    <th scope="row">{{ $payment->data->id ?? '-' }}</th>
+                                </tr>
+                                <tr>
+                                    <td>Payment Method</td>
+                                    <td class="p-2">:</td>
+                                    <th scope="row">{{ $payment->data->paymentMethod->type ?? '-' }}</th>
                                 </tr>
                                 <tr>
                                     <td>Status</td>
@@ -38,10 +45,19 @@
                                             @case('cancelled')
                                                 <span class="badge badge-pill badge-danger">Cancelled</span>
                                                 @break
+                                            @case('expired')
+                                                <span class="badge badge-pill badge-danger">Expired</span>
+                                                @break
+                                            @case('failed')
+                                                <span class="badge badge-pill badge-danger">Failed</span>
+                                                @break
                                             @default
                                             -
                                         @endswitch
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>Total Amount</td><td class="p-2">:</td><td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -50,15 +66,21 @@
                             <div>List Items:</div>
                             <ul class="list-group">
                                 @foreach ($order->orderItems as $item)
+                                    @php
+                                        $payload = json_decode($item->payload);
+                                    @endphp
                                     <li class="list-group-item">
                                         <div class="row">
                                             <div class="col-sm align-items-center">
+                                                <div class="text-sm text-gray-500">{{ $item->package->category->name }}</div>
                                                 <span class="text-lg font-semibold">
                                                     {{ $item->package->title }}
                                                 </span>
-                                                <div class="text-sm text-gray-500">{{ $item->package->category->name }}</div>
+                                                <span class="text-sm text-secondary">
+                                                    {!! get_sub_package($item->package, $payload->type, $payload->sub_package_key) !!}
+                                                </span>
                                             </div>
-                                            <div class="text-center align-items-center col-sm">
+                                            <div class="text-center align-items-center col-sm align-self-center">
                                                 @switch($item->contract_type)
                                                     @case('daily')
                                                         <span>Subscription / day:</span>
@@ -82,7 +104,7 @@
                                                 @endswitch
                                                 <div class="font-semibold col-sm">{{ $item->quantity }}</div>
                                             </div>
-                                            <div class="text-right col-sm">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</div>
+                                            <div class="text-right col-sm align-self-center">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</div>
                                         </div>
                                     </li>
                                 @endforeach
