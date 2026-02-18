@@ -3,6 +3,7 @@
 namespace App\Livewire\Backend;
 
 use Carbon\Carbon;
+use App\Models\Package;
 use App\Models\Subscription;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -59,6 +60,34 @@ class SubscriptionTable extends DataTableComponent
                     $value = (array) json_decode($value);
                     return $value[$lang];
                 })
+                ->sortable(),
+            Column::make("Sub Package", "orderItem.payload")
+                ->format(function ($value, $row) {
+                    $payload = json_decode($value);
+                    $package = Package::find($payload->package_id);
+                    $packagePayload = json_decode($package->payload);
+
+                    switch ($payload->type) {
+                        case 'table':
+                            $data = collect($packagePayload)->where('type', $payload->type)->first();
+                            $value = (array) $data->data->table[$payload->sub_package_key]->data->table;
+                            $string = '';
+                            foreach ($value[app()->getLocale()] as $k => $v) {
+                                $string .= $k . ': ' . $v . '<br>';
+                            }
+                            return '<span class="text-no-wrap">' .  $string . '</span>';
+                            break;
+                        case 'list':
+                            $data = collect($packagePayload)->where('type', $payload->type)->first();
+                            $value = (array) $data->data->list[$payload->sub_package_key]->key;
+                            return '<span class="text-no-wrap">' . $value[app()->getLocale()] . '</span>';
+                            break;
+                        default:
+                            return '-';
+                            break;
+                    }
+                })
+                ->html()
                 ->sortable(),
             Column::make("Subscription number", "subscription_number")
                 ->format(function ($value) {

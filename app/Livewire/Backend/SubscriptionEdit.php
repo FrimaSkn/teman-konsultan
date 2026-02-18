@@ -229,10 +229,16 @@ class SubscriptionEdit extends Component
                 $this->ended_at = Carbon::now()->addYears($this->quantity)->format('Y-m-d');
                 break;
             case 'periode':
+                $this->started_at = NULL;
+                $this->ended_at = NULL;
                 break;
             case 'once':
+                $this->started_at = NULL;
+                $this->ended_at = NULL;
                 break;
             default:
+                $this->started_at = NULL;
+                $this->ended_at = NULL;
                 break;
         }
 
@@ -241,7 +247,9 @@ class SubscriptionEdit extends Component
             'ended_at' => $this->ended_at
         ];
 
-        $this->dispatch('updateDate', $data);
+        if ($this->started_at != null && $this->ended_at != null) {
+            $this->dispatch('setDate', $data);
+        }
     }
 
     public function resetSubPackage()

@@ -1,7 +1,7 @@
 <?php
 
 use Tabuna\Breadcrumbs\Trail;
-use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ConsultationController;
 use App\Domains\Auth\Http\Controllers\Frontend\Auth\LoginController;
 use App\Domains\Auth\Http\Controllers\Frontend\Auth\SocialController;
