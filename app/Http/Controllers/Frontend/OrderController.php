@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\Payment;
 use App\Models\Subscription;
-use Illuminate\Http\Request;
 use App\Services\Api\pivotService;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Services\PaymentService;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Can;
 
 class OrderController extends Controller
@@ -26,9 +27,9 @@ class OrderController extends Controller
         $this->apiService = $apiService;
     }
 
-    public function index($order_number)
+    public function index()
     {
-        $order = Order::with('orderItems')->where('order_number', $order_number)->firstOrFail();
+        $order = CartItem::with('package')->where('user_id', auth()->id())->get();
 
         return view('frontend.order.index', [
             'order' => $order

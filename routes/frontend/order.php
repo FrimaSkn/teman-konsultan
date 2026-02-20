@@ -4,7 +4,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
 
 Route::group(['middleware' => ['auth', config('boilerplate.access.middleware.verified')], 'prefix' => 'order', 'as' => 'order.'], function() {
-    Route::get('{order_number}', [OrderController::class, 'index'])->name('index');
+    Route::get('/', [OrderController::class, 'index'])->name('index');
     Route::get('payment/{order_number}', [OrderController::class, 'payment_pivot'])->name('payment');
 });
 

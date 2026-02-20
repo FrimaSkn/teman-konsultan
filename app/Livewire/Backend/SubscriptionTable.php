@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Backend;
 
-use Carbon\Carbon;
 use App\Models\Package;
 use App\Models\Subscription;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\IncrementColumn;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class SubscriptionTable extends DataTableComponent
 {
@@ -37,6 +39,35 @@ class SubscriptionTable extends DataTableComponent
             });
     }
 
+    public function filters(): array
+    {
+        return [
+            SelectFilter::make('Category')
+                ->options(
+                    \App\Models\PackageCategory::all()
+                        ->pluck('name', 'id')
+                        ->toArray()
+                )
+                ->filter(function (Builder $builder, string $value) {
+                    $builder->whereHas('orderItem.package.category', function ($query) use ($value) {
+                        $query->where('id', $value);
+                    });
+                }),
+            SelectFilter::make('Package')
+                ->options(
+                    \App\Models\Package::all()
+                        ->pluck('title', 'id')
+                        ->toArray()
+                )
+                ->filter(function (Builder $builder, string $value) {
+                    $builder->whereHas('orderItem.package', function ($query) use ($value) {
+                        $query->where('id', $value);
+                    });
+                }),
+        ];
+    }
+
+
     public function columns(): array
     {
         return [
@@ -44,9 +75,12 @@ class SubscriptionTable extends DataTableComponent
             Column::make("Id", "id")
                 ->deselected()
                 ->sortable(),
-            Column::make("User", "user.name")
-                ->sortable()
-                ->searchable(),
+            Column::make("User ID", "user.unique_id")
+                    ->sortable()
+                    ->searchable(),
+            // Column::make("User", "user.name")
+            //     ->sortable()
+            //     ->searchable(),
             Column::make("Category", "orderItem.package.category.name")
                 ->format(function ($value) {
                     $lang = app()->getLocale();
@@ -75,12 +109,12 @@ class SubscriptionTable extends DataTableComponent
                             foreach ($value[app()->getLocale()] as $k => $v) {
                                 $string .= $k . ': ' . $v . '<br>';
                             }
-                            return '<span class="text-no-wrap">' .  $string . '</span>';
+                            return '<span>' .  $string . '</span>';
                             break;
                         case 'list':
                             $data = collect($packagePayload)->where('type', $payload->type)->first();
                             $value = (array) $data->data->list[$payload->sub_package_key]->key;
-                            return '<span class="text-no-wrap">' . $value[app()->getLocale()] . '</span>';
+                            return '<span>' . $value[app()->getLocale()] . '</span>';
                             break;
                         default:
                             return '-';
@@ -89,7 +123,15 @@ class SubscriptionTable extends DataTableComponent
                 })
                 ->html()
                 ->sortable(),
+            Column::make('Notes', 'note'),
             Column::make("Subscription number", "subscription_number")
+                ->format(function ($value) {
+                    return '<span class="text-no-wrap">' . $value . '</span>';
+                })
+                ->html()
+                ->searchable()
+                ->sortable(),
+            Column::make("Order number", "orderItem.order.order_number")
                 ->format(function ($value) {
                     return '<span class="text-no-wrap">' . $value . '</span>';
                 })

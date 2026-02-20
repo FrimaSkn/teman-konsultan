@@ -88,6 +88,11 @@
         <input type="number" disabled id="total-amount" class="form-control" placeholder="Total Amount" value="0" wire:model.blur="total_amount" disabled wire:loading.attr="disabled">
     </div>
 
+    <div class="form-group">
+        <label for="note">Notes:</label>
+        <textarea wire:model.blur="note" class="form-control" rows="5" id="note"></textarea>
+    </div>
+
     <button wire:loading.attr="disabled" wire:click="submit" class="float-right btn btn-sm btn-primary" type="submit">@lang('Update Subscription')</button>
 </div>
 

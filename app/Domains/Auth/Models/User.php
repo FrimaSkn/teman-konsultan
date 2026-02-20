@@ -62,6 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         'to_be_logged_out',
         'provider',
         'provider_id',
+        'unique_id'
     ];
 
     /**
@@ -110,6 +111,28 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         'roles',
         'cartItems',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->unique_id = self::generateUniqueId();
+        });
+    }
+
+    private static function generateUniqueId(): string
+    {
+        $last = self::orderByDesc('id')->first();
+
+        if ($last === null) {
+            $number = 'ID' . '000001';
+            return $number;
+        }
+
+        $number = 'ID' . str_pad($last->id + 1, 6, '0', STR_PAD_LEFT);
+        return $number;
+    }
 
     /**
      * Send the password reset notification.

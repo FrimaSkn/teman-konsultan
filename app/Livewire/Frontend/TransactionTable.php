@@ -52,8 +52,10 @@ class TransactionTable extends DataTableComponent
                 ->format(fn($value) => 'Rp ' . number_format($value, 0, ',', '.'))
                 ->sortable(),
             Column::make("Created at", "created_at")
+                ->format(fn($value) => $value->format('d M Y H:i:s'))
                 ->sortable(),
             Column::make("Updated at", "updated_at")
+                ->format(fn($value) => $value->format('d M Y H:i:s'))
                 ->sortable(),
             Column::make(__('Actions'))
                 ->label(fn($row) => view('frontend.user.transaction.includes.actions', ['model' => $row])),

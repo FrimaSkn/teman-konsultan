@@ -18,7 +18,7 @@ class OrderItem extends Model
         'price',
     ];
 
-    protected $with = ['package'];
+    protected $with = ['package', 'subscription', 'package'];
 
     public function order()
     {
@@ -32,6 +32,6 @@ class OrderItem extends Model
 
     public function subscription()
     {
-        return $this->hasOne(Subscription::class);
+        return $this->hasOne(Subscription::class, 'order_item', 'id');
     }
 }

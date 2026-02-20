@@ -90,6 +90,11 @@
         <input type="number" id="total-amount" class="form-control" placeholder="Total Amount" value="0" wire:model.blur="total_amount" readonly wire:loading.attr="disabled">
     </div>
 
+    <div class="form-group">
+        <label for="note">Notes:</label>
+        <textarea wire:model="note" class="form-control" rows="5" id="note"></textarea>
+    </div>
+
     <button wire:loading.attr="disabled" wire:click="submit" class="float-right btn btn-sm btn-primary" type="submit">@lang('Create Subscription')</button>
 </div>
 

@@ -14,10 +14,33 @@ class Order extends Model
         'user_id',
         'order_number',
         'status',
-        'total_amount'
+        'total_amount',
+        'manual_order'
     ];
 
     protected $with = ['orderItems', 'payment'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            $order->order_number = self::generateOrderNumber();
+        });
+    }
+
+    private static function generateOrderNumber(): string
+    {
+        $lastOrder = self::orderByDesc('id')->first();
+
+        if ($lastOrder === null) {
+            $orderNumber = 'W' . date('ym') . '000001';
+            return $orderNumber;
+        }
+
+        $orderNumber = 'W' . date('ym') . str_pad($lastOrder->id + 1, 6, '0', STR_PAD_LEFT);
+        return $orderNumber;
+    }
 
     public function orderItems()
     {

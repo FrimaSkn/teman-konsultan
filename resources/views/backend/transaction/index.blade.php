@@ -9,7 +9,9 @@
         </x-slot>
 
         <x-slot name="body">
-            <livewire:backend.transaction-table />
+            <div class="transaction-table">
+                <livewire:backend.transaction-table />
+            </div>
         </x-slot>
     </x-backend.card>
 @endsection

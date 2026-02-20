@@ -11,6 +11,11 @@
         </tr>
 
         <tr>
+            <th>@lang('User ID')</th>
+            <td>{{ $logged_in_user->unique_id }}</td>
+        </tr>
+
+        <tr>
             <th>@lang('Name')</th>
             <td>{{ $logged_in_user->name }}</td>
         </tr>

@@ -39,7 +39,7 @@
 
                 @if (isset($paket['button_type']))
                     @if ($paket['button_type'] == 'order')
-                        <x-frontend.charge.include.btn-form :paket="$paket" :type="'default'" minContract="{{ $paket['min_contract'] ?? 1 }}" contractType="{{ $paket['contract_type'] ?? null }}"  />
+                        <x-frontend.charge.include.btn-form :paket="$paket" packagePrice="{{ $paket['package_price'] ?? 0 }}" :type="'default'" minContract="{{ $paket['min_contract'] ?? 1 }}" contractType="{{ $paket['contract_type'] ?? null }}"  />
                     @endif
 
                     @if ($paket['button_type'] == 'contact')
@@ -61,7 +61,7 @@
                                 <td class="py-2 text-right">
 
                                     @if ($list['button_type'] == 'order')
-                                        <x-frontend.charge.include.btn-form :paket="$paket" :key="$key" :type="'list'" minContract="{{ $list['min_contract'] ?? 1 }}" contractType="{{ $list['contract_type'] ?? null }}" />
+                                        <x-frontend.charge.include.btn-form :paket="$paket" packagePrice="{{ $list['package_price'] ?? 0 }}" :key="$key" :type="'list'" minContract="{{ $list['min_contract'] ?? 1 }}" contractType="{{ $list['contract_type'] ?? null }}" />
                                     @endif
 
                                     @if ($list['button_type'] == 'contact')
@@ -94,7 +94,7 @@
                                 @endforeach
                                 <td class="py-2 text-right">
                                      @if ($tableRow['data']['button_type'] == 'order')
-                                        <x-frontend.charge.include.btn-form :paket="$paket" :key="$key" :type="'table'" minContract="{{ $tableRow['data']['min_contract'] ?? 1 }}" contractType="{{ $tableRow['data']['contract_type'] ?? null }}" />
+                                        <x-frontend.charge.include.btn-form :paket="$paket" packagePrice="{{ $tableRow['data']['package_price'] ?? 0 }}" :key="$key" :type="'table'" minContract="{{ $tableRow['data']['min_contract'] ?? 1 }}" contractType="{{ $tableRow['data']['contract_type'] ?? null }}" />
                                     @endif
 
                                     @if ($tableRow['data']['button_type'] == 'contact')

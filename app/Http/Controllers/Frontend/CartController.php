@@ -40,7 +40,10 @@ class CartController extends Controller
             'sub_package_key' => 'nullable',
             'min_contract' => 'required|integer|min:1',
             'contract_type' => 'nullable|string',
+            'package_price' => 'required|integer',
         ]);
+
+        // dd($validate);
 
         $validate['quantity'] = $validate['min_contract'];
 
