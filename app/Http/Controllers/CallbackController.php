@@ -81,6 +81,7 @@ class CallbackController extends Controller
 
             if ($order->orderItems->count() > 0) {
                 $this->subscriptionService->store($order->toArray());
+                $this->cartTruncate($order->orderItems);
             }
         }
 
@@ -88,7 +89,6 @@ class CallbackController extends Controller
             $this->paymentUpdate($order->payment->transaction_id, $order->payment);
         }
 
-        $this->cartTruncate($order->orderItems);
 
         return view('frontend.order.finish', [
             'order' => $order
