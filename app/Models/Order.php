@@ -20,6 +20,11 @@ class Order extends Model
 
     protected $with = ['orderItems', 'payment'];
 
+    const STATUS_PENDING = 'pending';
+    const STATUS_PAID = 'paid';
+    const STATUS_FAILED = 'failed';
+    const STATUS_CANCELLED = 'cancelled';
+
     protected static function boot()
     {
         parent::boot();

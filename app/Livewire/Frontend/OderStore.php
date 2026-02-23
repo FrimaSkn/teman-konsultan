@@ -33,6 +33,7 @@ class OderStore extends Component
             $data = $orderService->store([
                 'user_id' => auth()->id(),
                 'order_number' => uniqid(),
+                'status' => Order::STATUS_FAILED,
                 'total_amount' =>  $this->total_amount,
             ]);
 
