@@ -35,6 +35,13 @@ class TransactionTable extends DataTableComponent
         $order->save();
     }
 
+    public function checkManualOrder($id)
+    {
+        $order = Order::find($id);
+        return $order->manual_order;
+
+    }
+
     public function columns(): array
     {
         return [
@@ -44,21 +51,16 @@ class TransactionTable extends DataTableComponent
             Column::make("User", "user.name")
                 ->searchable()
                 ->sortable(),
+            Column::make("User", "user.unique_id")
+                ->searchable()
+                ->sortable(),
             Column::make("Order number", "order_number")
                 ->sortable(),
             Column::make("Status", "status")
-                // ->format(function ($value) {
-                //         $status = [
-                //             'pending' => '<span class="pt-1 badge badge-pill badge-secondary">Pending</span>',
-                //             'paid' => '<span class="pt-1 badge badge-pill badge-success">Paid</span>',
-                //             'failed' => '<span class="pt-1 badge badge-pill badge-danger">Failed</span>',
-                //             'cancelled' => '<span class="pt-1 badge badge-pill badge-warning">Cancelled</span>',
-                //         ];
-
-                //         return $status[$value] ?? $value;
-                //     })
-                // ->html()
-                ->format(fn($value, $row, $column) => view('backend.transaction.includes.status', ['value' => $value, 'row' => $row, 'column' => $column]))
+                ->format(function ($value, $row, $column) {
+                    $manualOrder = $this->checkManualOrder($row->id);
+                    return view('backend.transaction.includes.status', ['value' => $value, 'row' => $row, 'column' => $column, 'manualOrder' => $manualOrder]);
+                })
                 ->sortable(),
             Column::make("Total amount", "total_amount")
                 ->format(fn($value) => 'Rp ' . number_format($value, 0, ',', '.'))
