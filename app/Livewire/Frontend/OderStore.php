@@ -51,7 +51,7 @@ class OderStore extends Component
                     'price' => $payload->package_price,
                 ]);
 
-                CartItem::where('id', $item['id'])->delete();
+                // CartItem::where('id', $item['id'])->delete();
             }
 
             $response = $apiService->redirectPayment($data);

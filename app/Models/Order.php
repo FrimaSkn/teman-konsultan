@@ -24,6 +24,7 @@ class Order extends Model
     const STATUS_PAID = 'paid';
     const STATUS_FAILED = 'failed';
     const STATUS_CANCELLED = 'cancelled';
+    const STATUS_EXPIRED = 'expired';
 
     protected static function boot()
     {
