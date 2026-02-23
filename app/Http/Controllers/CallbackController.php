@@ -45,7 +45,7 @@ class CallbackController extends Controller
                 case 'PAID':
                     $this->orderService->updateStatus($order, 'paid');
                     $this->subscriptionService->store($order->toArray());
-                    $this->cartTruncate($order->orderItems);
+                    $this->cartTruncate($order);
                     break;
                 case 'FAILED':
                     $this->orderService->updateStatus($order, 'failed');
@@ -81,7 +81,7 @@ class CallbackController extends Controller
 
             if ($order->orderItems->count() > 0) {
                 $this->subscriptionService->store($order->toArray());
-                $this->cartTruncate($order->orderItems);
+                $this->cartTruncate($order);
             }
         }
 
@@ -149,10 +149,8 @@ class CallbackController extends Controller
             }
     }
 
-    protected function cartTruncate($orderItems)
+    protected function cartTruncate($order)
     {
-        foreach ($orderItems as $item) {
-            CartItem::where('id', $item['id'])->delete();
-        }
+        CartItem::where('user_id', $order->user_id)->delete();
     }
 }
