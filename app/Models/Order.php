@@ -44,7 +44,7 @@ class Order extends Model
             return $orderNumber;
         }
 
-        $orderNumber = 'W' . date('ym') . str_pad($lastOrder->id + 1, 6, '0', STR_PAD_LEFT);
+        $orderNumber = 'W' . date('ym') . str_pad($lastOrder->id + 10, 6, '0', STR_PAD_LEFT);
         return $orderNumber;
     }
 
