@@ -102,7 +102,7 @@ class SubscriptionTable extends DataTableComponent
 
                     if ($subscription->ended_at == null && $subscription->started_at == null) {
                         $subscription->status = 'Inactive';
-                        return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';
+                        return '<span class="pt-1 badge badge-pill badge-secondary">' . $subscription->status . '</span>';
                     }
 
                     if (Carbon::now()->format('Y-m-d') <= $subscription->ended_at && Carbon::now()->format('Y-m-d') >= $subscription->started_at) {
@@ -110,7 +110,7 @@ class SubscriptionTable extends DataTableComponent
                         return '<span class="pt-1 badge badge-pill badge-success">' . $subscription->status . '</span>';
                     }elseif (Carbon::now()->format('Y-m-d') < $subscription->started_at) {
                         $subscription->status = 'Inactive';
-                        return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';
+                        return '<span class="pt-1 badge badge-pill badge-secondary">' . $subscription->status . '</span>';
                     }else{
                         $subscription->status = 'Expired';
                         return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';

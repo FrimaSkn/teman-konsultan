@@ -128,7 +128,7 @@
                                                 @php
                                                     $subscription->status = 'Inactive';
                                                 @endphp
-                                                <span class="pt-1 badge badge-pill badge-danger">{{ $subscription->status }}</span>
+                                                <span class="pt-1 badge badge-pill badge-secondary">{{ $subscription->status }}</span>
                                             @else
                                                 @if (\Carbon\Carbon::now()->format('Y-m-d') <= $subscription->ended_at && \Carbon\Carbon::now()->format('Y-m-d') >= $subscription->started_at)
                                                     @php
@@ -139,7 +139,7 @@
                                                     @php
                                                         $subscription->status = 'Inactive';
                                                     @endphp
-                                                    <span class="pt-1 badge badge-pill badge-danger">{{ $subscription->status }}</span>
+                                                    <span class="pt-1 badge badge-pill badge-secondary">{{ $subscription->status }}</span>
                                                 @else
                                                     @php
                                                         $subscription->status = 'Expired';
