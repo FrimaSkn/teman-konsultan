@@ -143,16 +143,16 @@ class SubscriptionTable extends DataTableComponent
                     $subscription = Subscription::find($value);
 
                     if ($subscription->ended_at == null && $subscription->started_at == null) {
-                        return 'N/A';
+                        $subscription->status = 'Inactive';
+                        return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';
                     }
 
-                    if (Carbon::now()->format('Y-m-d') < $subscription->started_at  ) {
-                        $subscription->status = 'Pending';
-                        return '<span class="pt-1 badge badge-pill badge-secondary">' . $subscription->status . '</span>';
-
-                    }elseif (Carbon::now()->format('Y-m-d') <= $subscription->ended_at && Carbon::now()->format('Y-m-d') >= $subscription->started_at){
+                    if (Carbon::now()->format('Y-m-d') <= $subscription->ended_at && Carbon::now()->format('Y-m-d') >= $subscription->started_at) {
                         $subscription->status = 'Active';
                         return '<span class="pt-1 badge badge-pill badge-success">' . $subscription->status . '</span>';
+                    }elseif (Carbon::now()->format('Y-m-d') < $subscription->started_at) {
+                        $subscription->status = 'Inactive';
+                        return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';
                     }else{
                         $subscription->status = 'Expired';
                         return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';

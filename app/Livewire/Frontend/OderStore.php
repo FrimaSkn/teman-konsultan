@@ -27,7 +27,7 @@ class OderStore extends Component
 
     public function submit(OrderService $orderService, PaymentService $paymentService, pivotService $apiService)
     {
-        // dd($this->order);
+        // dd('submit');
         DB::beginTransaction();
         try {
             $data = $orderService->store([
@@ -55,7 +55,6 @@ class OderStore extends Component
             }
 
             $response = $apiService->redirectPayment($data);
-            // dd($response);
 
             if ($response->getStatusCode() == 200) {
                 $body = $response->getData();
