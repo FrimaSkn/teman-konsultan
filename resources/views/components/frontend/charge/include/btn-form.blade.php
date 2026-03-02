@@ -3,13 +3,14 @@
     'key' => null,
     'type' => 'slider',
     'minContract' => 1,
-    'contractType' => null
+    'contractType' => null,
+    'packagePrice' => 0
 ])
-
 <form action="{{ route('frontend.cart.store') }}" method="POST">
     @csrf
     <input type="text" name="package_id" value="{{ $paket['id'] }}" hidden  />
     <input type="text" name="slug" value="{{ $paket['slug'] }}" hidden  />
+    <input type="text" name="package_price" value="{{ $packagePrice }}" hidden  />
     <input type="text" name="type" value="{{ $type }}" hidden  />
     <input type="text" name="sub_package_key" value="{{ $key }}" hidden  />
     <input type="text" name="min_contract" value="{{ $minContract }}" hidden  />

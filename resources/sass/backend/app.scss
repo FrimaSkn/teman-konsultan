@@ -14,7 +14,6 @@
 @tailwind utilities;
 @tailwind variants;
 
-
 .fi-btn, .fi-fo-builder-item, .fi-checkbox-input, .fi-input-wrp, .fi-pagination-items{
     @apply border-gray-300 border rounded-md;
 }
@@ -66,6 +65,22 @@ input.fi-checkbox-input:checked {
     }
 }
 
+ul.dropdown-menu {
+    margin-top: unset !important;
+
+    .form-control {
+        padding: .375rem 0.75rem;
+        padding-left: 0.75rem !important;
+        padding-top: .375rem !important;
+        padding-bottom: .375rem !important;
+        padding-right: 1.8rem !important;
+    }
+}
+
+.transaction-table .table-responsive {
+    overflow: unset !important;
+}
+
 #table-perPage.form-control {
     min-width: 3.8rem;
     width: 100%;
@@ -84,7 +99,7 @@ input.fi-checkbox-input:checked {
     [type='tel'],
     [type='time'],
     [type='week'],
-    [multiple], textarea, select
+    [multiple], select
      {
         height: calc(1.5em + 0.5rem + 2px);
         padding: 0.375rem 0.75rem;
@@ -106,6 +121,20 @@ input.fi-checkbox-input:checked {
 
         .form-control {
             height: calc(1.5em + 0.5rem + 2px);
+            padding: 0.1rem 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            background-clip: padding-box;
+            border: 1px solid;
+            color: #768192;
+            background-color: #fff;
+            border-color: #d8dbe0;
+            border-radius: 0.25rem;
+        }
+
+        textarea.form-control {
+            height: unset;
             padding: 0.1rem 0.5rem;
             font-size: 0.875rem;
             font-weight: 400;

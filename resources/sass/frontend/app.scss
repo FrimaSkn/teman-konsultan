@@ -27,4 +27,42 @@
             @apply bg-blue-100 border border-blue-400 text-blue-700;
         }
     }
+
+    /* toast */
+    .toast {
+        @apply relative p-3 overflow-hidden rounded;
+
+        &.toast-success {
+            @apply text-green-700 bg-green-100 border-green-400;
+
+            .toast-close {
+                @apply text-green-700;
+            }
+        }
+
+        &.toast-danger {
+            @apply text-red-700 bg-red-100 border-red-400;
+
+            .toast-close {
+                @apply text-red-700;
+            }
+        }
+
+        &.toast-warning {
+            @apply text-orange-700 bg-orange-100 border-orange-400;
+
+            .toast-close {
+                @apply text-orange-700;
+            }
+        }
+
+        &.toast-info {
+            @apply text-blue-700 bg-blue-100 border-blue-400;
+
+            .toast-close {
+                @apply text-blue-700;
+            }
+        }
+    }
+
 }

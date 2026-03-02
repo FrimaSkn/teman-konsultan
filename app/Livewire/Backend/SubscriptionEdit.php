@@ -19,6 +19,7 @@ class SubscriptionEdit extends Component
     public $user_id, $category_id, $package_id, $sub_package_key, $sub_package_type;
     public $price, $contract_type, $min_contract, $quantity, $total_amount;
     public $started_at, $ended_at;
+    public $note;
 
     public function mount()
     {
@@ -48,6 +49,7 @@ class SubscriptionEdit extends Component
         $this->getPackages($this->category_id);
         $this->getSubPackages($this->package_id);
         $this->getSubPackages($this->package_id);
+        $this->note = $this->record->note;
     }
 
 
@@ -262,6 +264,7 @@ class SubscriptionEdit extends Component
         $this->total_amount = null;
         $this->started_at = null;
         $this->ended_at = null;
+        $this->note = null;
         $this->dispatch('clearDate');
     }
 
@@ -272,6 +275,7 @@ class SubscriptionEdit extends Component
             $this->record->update([
                 'started_at' => Carbon::createFromFormat('d/m/Y', $this->started_at)->format('Y-m-d'),
                 'ended_at' => Carbon::createFromFormat('d/m/Y', $this->ended_at)->format('Y-m-d'),
+                'note' => $this->note
             ]);
 
             // $order = Order::create([
@@ -313,6 +317,7 @@ class SubscriptionEdit extends Component
                 'contract_type' => $item->contract_type,
                 'started_at' => Carbon::createFromFormat('d/m/Y', $this->started_at)->format('Y-m-d'),
                 'ended_at' => Carbon::createFromFormat('d/m/Y', $this->ended_at)->format('Y-m-d'),
+                'note' => $this->note
             ];
 
             Subscription::create($data);

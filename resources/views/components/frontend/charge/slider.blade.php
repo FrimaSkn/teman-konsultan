@@ -235,7 +235,7 @@
                         @endif
 
                         @if ($paket['button_type'] == 'order')
-                            <x-frontend.charge.include.btn-form :paket="$paket" :key="$key" type="slider" minContract="{{ $paket['min_contract'] ?? 1 }}" contractType="{{ $paket['contract_type'] ?? null }}" />
+                            <x-frontend.charge.include.btn-form :paket="$paket" :key="$key" packagePrice="{{ $paket['package_price'] ?? 0 }}" type="slider" minContract="{{ $paket['min_contract'] ?? 1 }}" contractType="{{ $paket['contract_type'] ?? null }}" />
                         @endif
 
 

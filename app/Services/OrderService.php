@@ -47,6 +47,7 @@ class OrderService extends BaseService
             $order = $this->createOrder([
                 'user_id' => $data['user_id'],
                 'order_number' => $data['order_number'],
+                'status' => $data['status'] ?? 'pending',
                 'total_amount' =>  $data['total_amount'],
             ]);
         } catch (Exception $e) {
@@ -71,6 +72,7 @@ class OrderService extends BaseService
         return $this->model::create([
             'user_id' => $data['user_id'],
             'order_number' => $data['order_number'],
+            'status' => $data['status'] ?? 'pending',
             'total_amount' =>  $data['total_amount'],
         ]);
     }

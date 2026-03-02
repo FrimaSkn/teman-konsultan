@@ -3,29 +3,39 @@
 @section('title', __('Reset Password'))
 
 @section('content')
-    <div class="container py-4 mx-auto">
+    <x-frontend.hero-section />
+
+    <div class="container py-10 mx-auto">
         <div class="grid grid-cols-3">
             <div class="col-start-2">
                 <x-frontend.card>
                     <x-slot name="header">
-                        @lang('Reset Password')
+                        <div class="text-xl font-medium text-center uppercase md:text-2xl text-underline">
+                            @lang('Reset Password')
+                        </div>
                     </x-slot>
 
                     <x-slot name="body">
+                        @if(isset($errors) && $errors->any())
+                            <x-utils.alert type="danger">
+                                @foreach($errors->all() as $error)
+                                    {{ $error }}<br/>
+                                @endforeach
+                            </x-utils.alert>
+                        @endif
+
                         <x-forms.post :action="route('frontend.auth.password.email')">
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-mail Address')</label>
-
-                                <div class="col-md-6">
-                                    <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="{{ __('E-mail Address') }}" maxlength="255" required autofocus autocomplete="email" />
+                            <div class="grid grid-cols-3">
+                                <div class="relative col-span-3 my-3">
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">@lang('E-mail Address')</label>
+                                    <input type="email" id="email" name="email" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
                                 </div>
-                            </div><!--form-group-->
+                            </div>
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button class="btn btn-primary" type="submit">@lang('Send Password Reset Link')</button>
-                                </div>
-                            </div><!--form-group-->
+                            <button class="pl-8 pr-6 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center" type="submit">
+                                <span>@lang('Send Password Reset Link')</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
                         </x-forms.post>
                     </x-slot>
                 </x-frontend.card>

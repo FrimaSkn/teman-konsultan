@@ -20,6 +20,7 @@ class SubscriptionForm extends Component
     public $price, $contract_type, $min_contract, $quantity, $total_amount;
     public $ended_at;
     public $started_at;
+    public $note;
 
     public function mount()
     {
@@ -249,9 +250,9 @@ class SubscriptionForm extends Component
         try {
             $order = Order::create([
                 'user_id' => $this->user_id,
-                'order_number' => uniqid(),
-                'status' => 'paid',
+                'status' => 'pending',
                 'total_amount' =>  $this->total_amount,
+                'manual_order' => true
             ]);
 
             $orderItem = $order->orderItems()->create([
@@ -270,7 +271,6 @@ class SubscriptionForm extends Component
 
         }catch (\Throwable $th) {
             DB::rollBack();
-            dd($th);
             throw new GeneralException(__('There was a problem creating this order & subscription. Please try again.'));
         }
         DB::commit();
@@ -287,6 +287,7 @@ class SubscriptionForm extends Component
                 'contract_type' => $item->contract_type,
                 'started_at' => $this->started_at,
                 'ended_at' => $this->ended_at,
+                'note' => $this->note
             ];
 
             Subscription::create($data);

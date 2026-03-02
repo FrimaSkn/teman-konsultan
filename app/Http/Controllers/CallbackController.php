@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\Payment;
-use Illuminate\Http\Request;
+use App\Services\Api\pivotService;
 use App\Services\OrderService;
 use App\Services\PaymentService;
-use App\Services\Api\pivotService;
-use Illuminate\Support\Facades\Log;
 use App\Services\SubscriptionService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CallbackController extends Controller
 {
@@ -43,6 +45,7 @@ class CallbackController extends Controller
                 case 'PAID':
                     $this->orderService->updateStatus($order, 'paid');
                     $this->subscriptionService->store($order->toArray());
+                    $this->cartTruncate($order);
                     break;
                 case 'FAILED':
                     $this->orderService->updateStatus($order, 'failed');
@@ -78,12 +81,14 @@ class CallbackController extends Controller
 
             if ($order->orderItems->count() > 0) {
                 $this->subscriptionService->store($order->toArray());
+                $this->cartTruncate($order);
             }
         }
 
         if ($order->payment->status != 'PAID') {
             $this->paymentUpdate($order->payment->transaction_id, $order->payment);
         }
+
 
         return view('frontend.order.finish', [
             'order' => $order
@@ -142,5 +147,10 @@ class CallbackController extends Controller
                     'payload' => json_encode($body),
                 ]);
             }
+    }
+
+    protected function cartTruncate($order)
+    {
+        CartItem::where('user_id', $order->user_id)->delete();
     }
 }

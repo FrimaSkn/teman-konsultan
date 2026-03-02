@@ -13,6 +13,7 @@ class Subscription extends Model
     protected $fillable = [
         'user_id',
         'order_item',
+        'note',
         'subscription_number',
         'status',
         'contract_type',
@@ -20,7 +21,30 @@ class Subscription extends Model
         'ended_at',
     ];
 
-    protected $with = ['user', 'orderItem'];
+    protected $with = ['user'];
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->subscription_number = self::generateOrderNumber();
+        });
+    }
+
+    private static function generateOrderNumber(): string
+    {
+        $last = self::orderByDesc('id')->first();
+
+        if ($last === null) {
+            $number = 'S' . date('ym') . '000001';
+            return $number;
+        }
+
+        $number = 'S' . date('ym') . str_pad($last->id + 1, 6, '0', STR_PAD_LEFT);
+        return $number;
+    }
 
     public function user()
     {

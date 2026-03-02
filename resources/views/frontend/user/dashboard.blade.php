@@ -106,6 +106,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Package Name</th>
+                                    <th scope="col">Notes</th>
                                     <th scope="col">Subscription Number</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Contract type</th>
@@ -120,16 +121,25 @@
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $subscription->orderItem->package->category->name }}</td>
                                         <td>{{ $subscription->orderItem->package->title }}</td>
+                                        <td>{{ $subscription->note ?? 'NULL' }}</td>
                                         <td>{{ $subscription->subscription_number }}</td>
                                         <td>
                                             @if ($subscription->ended_at == null && $subscription->started_at == null)
-                                                <span class="pt-1">N/A</span>
+                                                @php
+                                                    $subscription->status = 'Inactive';
+                                                @endphp
+                                                <span class="pt-1 badge badge-pill badge-secondary">{{ $subscription->status }}</span>
                                             @else
                                                 @if (\Carbon\Carbon::now()->format('Y-m-d') <= $subscription->ended_at && \Carbon\Carbon::now()->format('Y-m-d') >= $subscription->started_at)
                                                     @php
                                                     $subscription->status = 'Active';
                                                     @endphp
                                                     <span class="pt-1 badge badge-pill badge-success">{{ $subscription->status }}</span>
+                                                @elseif (\Carbon\Carbon::now()->format('Y-m-d') < $subscription->started_at)
+                                                    @php
+                                                        $subscription->status = 'Inactive';
+                                                    @endphp
+                                                    <span class="pt-1 badge badge-pill badge-secondary">{{ $subscription->status }}</span>
                                                 @else
                                                     @php
                                                         $subscription->status = 'Expired';

@@ -224,29 +224,29 @@ class Cart extends Component
     public function checkout(OrderService $orderService)
     {
         try {
-            $order = $orderService->store([
-                'user_id' => auth()->id(),
-                'order_number' => uniqid(),
-                'total_amount' =>  $this->totalAmount,
-            ]);
+            // $order = $orderService->store([
+            //     'user_id' => auth()->id(),
+            //     'order_number' => uniqid(),
+            //     'total_amount' =>  $this->totalAmount,
+            // ]);
 
-            foreach ($this->items as $item) {
-                $orderService->createOrderItem($order, [
-                    'package_id' => $item['package_id'],
-                    'payload' => json_encode([
-                        'package_id' => $item['package_id'],
-                        'type' => $item['type'],
-                        'sub_package_key' => $item['sub_package_key'],
-                    ]),
-                    'contract_type' => $item['contract_type'],
-                    'quantity' => $item['quantity'],
-                    'price' => $item['price'],
-                ]);
+            // foreach ($this->items as $item) {
+            //     $orderService->createOrderItem($order, [
+            //         'package_id' => $item['package_id'],
+            //         'payload' => json_encode([
+            //             'package_id' => $item['package_id'],
+            //             'type' => $item['type'],
+            //             'sub_package_key' => $item['sub_package_key'],
+            //         ]),
+            //         'contract_type' => $item['contract_type'],
+            //         'quantity' => $item['quantity'],
+            //         'price' => $item['price'],
+            //     ]);
 
-                CartItem::where('id', $item['id'])->delete();
-            }
+            //     CartItem::where('id', $item['id'])->delete();
+            // }
 
-            return redirect()->route('frontend.order.index', $order->order_number);
+            return redirect()->route('frontend.order.index');
         }catch (\Throwable $th) {
             throw new GeneralException(__('There was a problem creating this order & subscription. Please try again.'));
         }

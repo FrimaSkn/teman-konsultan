@@ -29,8 +29,9 @@
 
                             <div class="grid grid-cols-3">
                                 <div class="relative col-span-3 my-3">
-                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 uppercase">password</label>
+                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 uppercase">@lang("Password")</label>
                                     <input type="password" id="password" name="password" class="shadow-xs bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                                    <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
                                 </div>
                             </div>
 
@@ -72,7 +73,7 @@
 
                             <div class="grid grid-cols-3 gap-4 mt-4">
                                 <div class="flex items-end justify-between col-span-3">
-                                    <a href="{{ route('frontend.auth.register') }}" class="underline">Don’t have an account yet? Register here</a>
+                                    <a href="{{ route('frontend.auth.register') }}" class="underline">@lang("Don’t have an account yet? Register here")</a>
                                     <button class="pl-8 pr-6 pt-1 pb-1.5 uppercase bg-secondary rounded-lg hover:bg-opacity-90 text-primary font-bold text-nowrap inline-flex items-center" type="submit">
                                         <span>@lang('Login')</span>
                                         <i data-lucide="chevron-right"></i>

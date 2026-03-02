@@ -25,7 +25,8 @@
     @include('includes.partials.logged-in-as')
     @include('frontend.includes.navigation')
 
-    <x-frontend.toast />
+    {{-- <x-frontend.toast /> --}}
+    @include('includes.partials.toast-messages')
 
     <div id="app" class="overflow-hidden">
         {{-- @include('includes.partials.messages') --}}

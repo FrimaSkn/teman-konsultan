@@ -24,8 +24,12 @@ class SubscriptionTable extends DataTableComponent
         $this->setPrimaryKey('id');
         $this->setColumnSelectStatus(false);
         $this->setThAttributes(function(Column $column) {
-                if (!$column->isField('id')) {
+                if (!$column->isField('id') && !$column->isField('note')) {
                     return ['class' => 'text-no-wrap'];
+                }
+
+                if ($column->isField('note')) {
+                    return ['class' => 'min-w-10'];
                 }
 
                 return [];
@@ -50,7 +54,7 @@ class SubscriptionTable extends DataTableComponent
                 ->format(function ($value) {
                     $lang = app()->getLocale();
                     $value = (array) json_decode($value);
-                    return '<span class="text-no-wrap">' . $value[$lang] . '</span>';
+                    return '<span>' . $value[$lang] . '</span>';
                     // return $value[$lang];
                 })
                 ->html()
@@ -70,12 +74,12 @@ class SubscriptionTable extends DataTableComponent
                             foreach ($value[app()->getLocale()] as $k => $v) {
                                 $string .= $k . ': ' . $v . '<br>';
                             }
-                            return '<span class="text-no-wrap">' .  $string . '</span>';
+                            return '<span>' .  $string . '</span>';
                             break;
                         case 'list':
                             $data = collect($packagePayload)->where('type', $payload->type)->first();
                             $value = (array) $data->data->list[$payload->sub_package_key]->key;
-                            return '<span class="text-no-wrap">' . $value[app()->getLocale()] . '</span>';
+                            return '<span>' . $value[app()->getLocale()] . '</span>';
                             break;
                         default:
                             return '-';
@@ -84,6 +88,7 @@ class SubscriptionTable extends DataTableComponent
                 })
                 ->html()
                 ->sortable(),
+            Column::make("Notes", "note"),
             Column::make("Subscription number", "subscription_number")
                 ->format(function ($value) {
                     return '<span class="text-no-wrap">' . $value . '</span>';
@@ -96,12 +101,16 @@ class SubscriptionTable extends DataTableComponent
                     $subscription = Subscription::find($value);
 
                     if ($subscription->ended_at == null && $subscription->started_at == null) {
-                        return '<span class="pt-1 badge badge-pill badge-success">Active</span>';
+                        $subscription->status = 'Inactive';
+                        return '<span class="pt-1 badge badge-pill badge-secondary">' . $subscription->status . '</span>';
                     }
 
                     if (Carbon::now()->format('Y-m-d') <= $subscription->ended_at && Carbon::now()->format('Y-m-d') >= $subscription->started_at) {
                         $subscription->status = 'Active';
                         return '<span class="pt-1 badge badge-pill badge-success">' . $subscription->status . '</span>';
+                    }elseif (Carbon::now()->format('Y-m-d') < $subscription->started_at) {
+                        $subscription->status = 'Inactive';
+                        return '<span class="pt-1 badge badge-pill badge-secondary">' . $subscription->status . '</span>';
                     }else{
                         $subscription->status = 'Expired';
                         return '<span class="pt-1 badge badge-pill badge-danger">' . $subscription->status . '</span>';
