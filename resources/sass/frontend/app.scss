@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '_navigation';
-@import 'custom-swiper';
-@import '_global';
-
+@import "_navigation";
+@import "custom-swiper";
+@import "_global";
 
 @layer components {
     .alert {
@@ -65,4 +64,74 @@
         }
     }
 
+    .prose table {
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+    }
+    .prose th,
+    .prose td {
+        border: 1px solid #d1d5db;
+        padding: 0.5rem 0.75rem;
+        vertical-align: top;
+    }
+    .prose thead th {
+        background: #f3f4f6;
+        border-bottom: 1px solid #d1d5db;
+    }
+    .prose tbody tr {
+        border-bottom: 0;
+    }
+    .prose td p,
+    .prose th p {
+        margin: 0;
+    }
+
+    .prose .filament-tiptap-grid-builder {
+        display: grid;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+
+    .prose .filament-tiptap-grid-builder__column > :first-child {
+        margin-top: 0;
+    }
+    .prose .filament-tiptap-grid-builder__column > :last-child {
+        margin-bottom: 0;
+    }
+
+    /* Tumpuk jadi 1 kolom di layar kecil (inline style butuh !important) */
+    @media (max-width: 767px) {
+        .prose
+            .filament-tiptap-grid-builder[data-type="responsive"][data-stack-at="md"] {
+            grid-template-columns: 1fr !important;
+        }
+        .prose
+            .filament-tiptap-grid-builder[data-type="responsive"][data-stack-at="md"]
+            > .filament-tiptap-grid-builder__column {
+            grid-column: auto !important;
+        }
+    }
+    @media (max-width: 639px) {
+        .prose
+            .filament-tiptap-grid-builder[data-type="responsive"][data-stack-at="sm"] {
+            grid-template-columns: 1fr !important;
+        }
+        .prose
+            .filament-tiptap-grid-builder[data-type="responsive"][data-stack-at="sm"]
+            > .filament-tiptap-grid-builder__column {
+            grid-column: auto !important;
+        }
+    }
+    @media (max-width: 1023px) {
+        .prose
+            .filament-tiptap-grid-builder[data-type="responsive"][data-stack-at="lg"] {
+            grid-template-columns: 1fr !important;
+        }
+        .prose
+            .filament-tiptap-grid-builder[data-type="responsive"][data-stack-at="lg"]
+            > .filament-tiptap-grid-builder__column {
+            grid-column: auto !important;
+        }
+    }
 }
