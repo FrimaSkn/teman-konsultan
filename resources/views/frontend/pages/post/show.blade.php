@@ -9,7 +9,8 @@
         <img class="w-full object-cover" src="{{ asset($post->getFirstMediaUrl('post_image')) }}" alt="">
         <h1 class="mt-5 text-xl font-semibold uppercase md:text-3xl mb-8">{{ $post->title }}</h1>
         <article class="tiptap-content prose max-w-none">
-            {!! tiptap_converter()->asHTML($post->content) !!}
+            {!! $post->content !!}
+            {{-- {!! tiptap_converter()->asHTML($post->content) !!} --}}
         </article>
     </section>
 @endsection
