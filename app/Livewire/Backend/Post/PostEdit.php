@@ -2,17 +2,19 @@
 
 namespace App\Livewire\Backend\Post;
 
-use Filament\Forms;
-use App\Models\Post;
-use Livewire\Component;
-use Filament\Forms\Form;
-use Filament\Contracts\Plugin;
-use Illuminate\Contracts\View\View;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Contracts\HasForms;
 use App\Livewire\Trait\FrimzTranslatableFields;
-use Filament\Forms\Concerns\InteractsWithForms;
+use App\Models\Post;
+use Filament\Contracts\Plugin;
+use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use FilamentTiptapEditor\Enums\TiptapOutput;
+use FilamentTiptapEditor\TiptapEditor;
+use Illuminate\Contracts\View\View;
+use Livewire\Component;
 
 class PostEdit extends Component implements HasForms, Plugin
 {
@@ -40,10 +42,29 @@ class PostEdit extends Component implements HasForms, Plugin
                         ->maxLength(255)
                         ->required()
                         ->translatable(),
-                    Forms\Components\RichEditor::make('content')
+                    // Forms\Components\RichEditor::make('content')
+                    //     ->required()
+                    //      ->toolbarButtons([
+                    //         'blockquote',
+                    //         'bold',
+                    //         'bulletList',
+                    //         'italic',
+                    //         'link',
+                    //         'orderedList',
+                    //         'redo',
+                    //         'undo',
+                    //     ])
+                    //     ->translatable(),
+                    TiptapEditor::make('content')
+                        ->profile('default')
+                        ->output(TiptapOutput::Html) // optional, change the format for saved data, default is html
+                        ->maxContentWidth('5xl')
+                        ->extraInputAttributes([
+                            'style' => 'min-height: 300px; height: 500px;',
+                        ])
                         ->required()
-                        ->translatable(),
-                ])->columnSpan(['xl' => 8]),
+                        ->translatable()
+                ])->columnSpan(['xl' => 9]),
                 Section::make()->schema([
                     SpatieMediaLibraryFileUpload::make('image')
                         ->collection('post_image')
@@ -57,7 +78,7 @@ class PostEdit extends Component implements HasForms, Plugin
                             'archived' => 'Archived',
                         ])
                         ->required(),
-                ])->columnSpan(['xl' => 4]),
+                ])->columnSpan(['xl' => 3]),
             ])
             ->columns(12)
             ->statePath('data')
