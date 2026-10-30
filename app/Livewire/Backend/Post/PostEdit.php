@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Backend\Post;
 
+use App\Livewire\Backend\Post\Forms\PostSeoForm;
 use App\Livewire\Trait\FrimzTranslatableFields;
 use App\Models\Post;
 use Filament\Contracts\Plugin;
@@ -64,7 +65,7 @@ class PostEdit extends Component implements HasForms, Plugin
                         ])
                         ->required()
                         ->translatable()
-                ])->columnSpan(['xl' => 9]),
+                ])->columnSpan(['xl' => 8]),
                 Section::make()->schema([
                     SpatieMediaLibraryFileUpload::make('image')
                         ->collection('post_image')
@@ -78,7 +79,8 @@ class PostEdit extends Component implements HasForms, Plugin
                             'archived' => 'Archived',
                         ])
                         ->required(),
-                ])->columnSpan(['xl' => 3]),
+                        PostSeoForm::schema(),
+                ])->columnSpan(['xl' => 4]),
             ])
             ->columns(12)
             ->statePath('data')
@@ -90,7 +92,9 @@ class PostEdit extends Component implements HasForms, Plugin
         $data = $this->form->getState();
         $this->record->update($data);
 
-        return redirect()->route('admin.post.index')->with('flash_success', 'Article created successfully.');
+        $this->form->model($this->record)->saveRelationships();
+
+        return redirect()->route('admin.post.index')->with('flash_success', 'Article updated successfully.');
 
     }
 

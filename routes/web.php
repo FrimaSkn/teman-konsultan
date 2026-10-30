@@ -3,6 +3,7 @@
 use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\SitemapController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -10,6 +11,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
  *
  * Routes that are used between both frontend and backend.
  */
+
+Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('robots.txt', [SitemapController::class, 'robots'])->name('robots');
 
 /*
  * Frontend Routes

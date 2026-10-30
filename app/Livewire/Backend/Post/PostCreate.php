@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Backend\Post;
 
+use App\Livewire\Backend\Post\Forms\PostSeoForm;
 use App\Livewire\Trait\FrimzTranslatableFields;
 use App\Models\Post;
 use Filament\Contracts\Plugin;
@@ -52,7 +53,7 @@ class PostCreate extends Component implements HasForms, Plugin
                         ])
                         ->required()
                         ->translatable()
-                ])->columnSpan(['xl' => 9]),
+                ])->columnSpan(['xl' => 8]),
                 Section::make()->schema([
                     SpatieMediaLibraryFileUpload::make('image')
                         ->collection('post_image')
@@ -66,7 +67,8 @@ class PostCreate extends Component implements HasForms, Plugin
                             'archived' => 'Archived',
                         ])
                         ->required(),
-                ])->columnSpan(['xl' => 3]),
+                        PostSeoForm::schema(),
+                ])->columnSpan(['xl' => 4]),
             ])
             ->columns(12)
             ->statePath('data')

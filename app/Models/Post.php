@@ -24,10 +24,23 @@ class Post extends Model implements HasMedia
         'slug',
         'content',
         'excerpt',
+        'meta_title',
+        'meta_description',
+        'focus_keyword',
+        'canonical_url',
+        'robots',
         'status',
     ];
 
-    public $translatable = ['title', 'excerpt', 'content', 'slug'];
+    public $translatable = [
+        'title',
+        'excerpt',
+        'content',
+        'slug',
+        'meta_title',
+        'meta_description',
+        'focus_keyword',
+    ];
 
     /**
      * Get the options for generating the slug.
@@ -54,6 +67,37 @@ class Post extends Model implements HasMedia
         $this
         ->addMediaCollection('post_image')
         ->useDisk('public_post');
+
+        $this
+        ->addMediaCollection('post_og_image')
+        ->singleFile()
+        ->useDisk('public_post');
+    }
+
+    public function getSeoTitleAttribute(): string
+    {
+        return $this->meta_title ?: (string) $this->title;
+    }
+
+    public function getSeoDescriptionAttribute(): string
+    {
+        return $this->meta_description ?: (string) ($this->excerpt ?? '');
+    }
+
+    public function getSeoImageAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('post_og_image')
+            ?: $this->getFirstMediaUrl('post_image')
+            ?: null;
+    }
+
+    public function getSeoRobotsAttribute(): string
+    {
+        if ($this->status !== 'published') {
+            return 'noindex,nofollow';
+        }
+
+        return $this->robots ?: 'index,follow';
     }
 
     // public function getRouteKeyName()
