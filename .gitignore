@@ -8,6 +8,7 @@
 # /public/build
 /public/mix-manifest.json
 /storage/*.key
+/storage/*
 /vendor
 /.vscode
 *.sublime-project
@@ -32,3 +33,4 @@ output.txt
 Thumbs.db
 yarn-error.log
 *.zip
+*.sql
