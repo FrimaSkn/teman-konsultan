@@ -1,42 +1,43 @@
 /** @type {import('tailwindcss').Config} */
 
+import typography from "@tailwindcss/typography";
+
 export default {
-    darkMode: 'false',
+    darkMode: "false",
     content: [
         "./resources/views/frontend/**/*.blade.php",
-        './resources/views/components/frontend/**/*.blade.php',
-        './resources/views/components/utils/**/*.blade.php',
+        "./resources/views/components/frontend/**/*.blade.php",
+        "./resources/views/components/utils/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./resources/**/*.blade.php",
         "./resources/views/vendor/pagination/*.blade.php",
+        "./vendor/awcodes/filament-tiptap-editor/resources/**/*.blade.php",
     ],
     theme: {
         extend: {
             container: {
                 center: true,
-                padding: '1rem',
+                padding: "1rem",
                 screens: {
                     sm: "540px",
                     md: "720px",
                     lg: "1010px",
-                    xl: "1220px"
-                }
+                    xl: "1220px",
+                },
             },
             colors: {
-                primary: '#283e89',
-                secondary: '#e4bd22',
-                accent: '#58585a',
-                neutral: '#374151',
-                'base-100': '#FFFFFF',
-                info: '#3ABFF8',
-                success: '#36D399',
-                warning: '#FBBD23',
-                error: '#F87272',
+                primary: "#283e89",
+                secondary: "#e4bd22",
+                accent: "#58585a",
+                neutral: "#374151",
+                "base-100": "#FFFFFF",
+                info: "#3ABFF8",
+                success: "#36D399",
+                warning: "#FBBD23",
+                error: "#F87272",
             },
         },
     },
-    plugins: [
-    ],
-}
-
+    plugins: [typography],
+};
