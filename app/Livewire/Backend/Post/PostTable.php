@@ -3,6 +3,7 @@
 namespace App\Livewire\Backend\Post;
 
 use App\Models\Post;
+use App\Support\Seo\SeoAnalyzer;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables;
@@ -36,6 +37,15 @@ class PostTable extends Component implements HasForms, HasTable
                         'draft' => 'warning',
                     })
                     ->searchable(),
+                Tables\Columns\TextColumn::make('seo_score')
+                    ->label('SEO')
+                    ->badge()
+                    ->state(fn (Post $record): string => $this->seoScore($record) . '%')
+                    ->color(function (Post $record): string {
+                        $score = $this->seoScore($record);
+
+                        return $score >= 80 ? 'success' : ($score >= 50 ? 'warning' : 'danger');
+                    }),
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Author'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -61,6 +71,20 @@ class PostTable extends Component implements HasForms, HasTable
                     //
                 ]),
             ]);
+    }
+
+    protected function seoScore(Post $record): int
+    {
+        return SeoAnalyzer::analyze([
+            'title' => $record->title,
+            'excerpt' => $record->excerpt,
+            'content' => $record->content,
+            'meta_title' => $record->meta_title,
+            'meta_description' => $record->meta_description,
+            'focus_keyword' => $record->focus_keyword,
+            'slug' => $record->slug,
+            'canonical_url' => $record->canonical_url,
+        ], app()->getLocale(), (bool) $record->seo_image)['score'];
     }
 
     public function render(): View

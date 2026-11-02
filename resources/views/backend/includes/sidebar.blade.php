@@ -176,6 +176,15 @@
                     >
                     {{ __('General Settings') }}
                 </x-utils.link>
+
+                <x-utils.link
+                    :href="route('admin.settings.seo')"
+                    class="c-sidebar-nav-link"
+                    :active="activeClass(Route::is('admin.settings.seo'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-search"
+                    >
+                    {{ __('SEO Settings') }}
+                </x-utils.link>
             </li>
 
             <li class="c-sidebar-nav-title">@lang('System')</li>

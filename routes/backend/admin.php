@@ -192,6 +192,15 @@ Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         $trail->parent('admin.dashboard')
                 ->push(__('General Settings'), route('admin.settings.general'));
     });
+
+    Route::get('seo', function () {
+        return view('backend.settings.seo');
+    })
+    ->name('seo')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('admin.dashboard')
+                ->push(__('SEO Settings'), route('admin.settings.seo'));
+    });
 });
 
 Route::group(['prefix' => 'subscription', 'as' => 'subscription.'], function () {

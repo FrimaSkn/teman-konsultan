@@ -1,5 +1,6 @@
 <?php
 
+use App\Settings\SeoSettings;
 use App\Settings\SettingHome;
 
 return [
@@ -10,6 +11,7 @@ return [
      */
     'settings' => [
         SettingHome::class,
+        SeoSettings::class,
     ],
 
     /*

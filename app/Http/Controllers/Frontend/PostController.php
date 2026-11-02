@@ -19,7 +19,8 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        $post = \App\Models\Post::FindBySlugOrFail($slug);
+        $post = \App\Models\Post::Published()->FindBySlugOrFail($slug);
+
         return view('frontend.pages.post.show', [
             'post' => $post
         ]);
