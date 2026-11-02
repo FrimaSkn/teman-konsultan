@@ -31,8 +31,8 @@ class SeoAnalyzer
         $checks = [
             self::check(
                 'meta_title',
-                'Meta title is 30-60 characters',
-                $titleLength >= 30 && $titleLength <= 60,
+                'Meta title is 30-80 characters',
+                $titleLength >= 30 && $titleLength <= 80,
                 $titleLength . ' characters'
             ),
             self::check(
