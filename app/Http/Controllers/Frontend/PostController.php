@@ -22,7 +22,8 @@ class PostController extends Controller
         $post = \App\Models\Post::Published()->FindBySlugOrFail($slug);
 
         return view('frontend.pages.post.show', [
-            'post' => $post
+            'post' => $post,
+            'seoModel' => $post
         ]);
     }
 }

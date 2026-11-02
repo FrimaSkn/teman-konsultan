@@ -14,6 +14,7 @@ class ServicesController extends Controller
 
         return view('frontend.pages.services.page', [
             'service' => $service,
+            'seoModel' => $service,
         ]);
     }
 }
