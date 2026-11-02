@@ -135,7 +135,6 @@ class SeoResolver
             'locale' => $locale,
             'ogLocale' => $this->ogLocale($locale),
             'siteName' => $siteName,
-            'twitterSite' => $this->settings->twitter_site,
             'alternates' => $alternates,
             'publishedTime' => $publishedTime,
             'modifiedTime' => $modifiedTime,

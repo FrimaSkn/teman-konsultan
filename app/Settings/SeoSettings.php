@@ -11,7 +11,6 @@ class SeoSettings extends Settings
     public $default_meta_description;
     public $default_og_image;
     public $default_robots;
-    public $twitter_site;
     public $google_site_verification;
     public $bing_site_verification;
     public $google_analytics_id;

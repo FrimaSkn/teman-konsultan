@@ -45,9 +45,6 @@
 @endif
 
 <meta name="twitter:card" content="{{ $seo['image'] ? 'summary_large_image' : 'summary' }}">
-@if ($seo['twitterSite'])
-    <meta name="twitter:site" content="{{ $seo['twitterSite'] }}">
-@endif
 <meta name="twitter:title" content="{{ $seo['pageTitle'] }}">
 <meta name="twitter:description" content="{{ $seo['description'] }}">
 @if ($seo['image'])

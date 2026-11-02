@@ -11,7 +11,6 @@ return new class extends SettingsMigration
         $this->migrator->add('seo.default_meta_description', null);
         $this->migrator->add('seo.default_og_image', null);
         $this->migrator->add('seo.default_robots', 'index,follow');
-        $this->migrator->add('seo.twitter_site', null);
         $this->migrator->add('seo.google_site_verification', null);
         $this->migrator->add('seo.bing_site_verification', null);
         $this->migrator->add('seo.google_analytics_id', null);

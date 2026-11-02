@@ -58,12 +58,6 @@ class SeoSettings extends Component implements HasForms
                         Forms\Components\Toggle::make('sitemap_enabled')
                             ->label('Enable sitemap.xml'),
                     ])->columns(2),
-                Section::make('Social')
-                    ->schema([
-                        Forms\Components\TextInput::make('twitter_site')
-                            ->label('Twitter / X handle')
-                            ->placeholder('@temankonsultan'),
-                    ])->columns(2),
                 Section::make('Verification & Analytics')
                     ->schema([
                         Forms\Components\TextInput::make('google_site_verification')
